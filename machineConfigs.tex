@@ -1,0 +1,140 @@
+% machineConfigs.tex
+% A discussion of possible machine configurations
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\chapter{Machine Configurations}
+Deciding upon a machine configuration is just one of the many steps required to design and build a 3D printer.
+This step is one which should be carefully considered since it is generally difficult to change the layout of a machine after construction.
+The number of possible axis configurations is $n!$ and machine builders will create everyone of those combinations claiming it to be the best. 
+To aid in choosing between machine configurations they can be broken down into three main categories: fixed build platform, fixed extruder, and moving build platform-moving extruder.
+Additional comparisons will be made between systems with and without robotic arms.
+
+\section{Number of Axes}
+\label{sec:numberAxes}
+In order to position a tool at any location and in any non-colliding posture on the outside of a convex part a minimum of five degrees of freedom are required.
+Such machines are commonly referred to as five-axis machines and typically have three linear and two rotary axes.
+The limitation of having only five axes to control a part with six degrees of freedom is that at some locations the tool can not move freely in any direction and may require a large reorientation to create an otherwise continuous tool path.
+When using subtractive processing techniques such as machining, discontinuous tool paths add cycle time and may reduce the surface finish but the overall structural integrity and shape of the part is maintained.
+However, for some additive processes such as automated fiber placement or continuous fiber 3D printing, discontinuous tool paths can greatly reduce the part's overall mechanical characteristics.
+For these applications six axes are required with the 6R robots used in factory automation being one example.
+
+Each additional axis used increases the cost, programming difficulty, and positioning inaccuracy for that machine.
+Because of this, the decision to go beyond fives axes should be carefully considered.
+The main advantage of six axes over five is preventing the machine from needing to be re-oriented during a continuous tool path.
+An example re-orientation discontinuity occurs when a turn is made at the singularity of a rotary trunnion table, Fig.~\ref{fig:trunnion}.
+For such a tool path the C-axis would need to rotate \ang{90} at the peak of the part.
+Although this path is not ideal it would not negatively affect a traditional FFF printer. The extruder would pause, the table rotate, then the extruder would continue, without breaking the bead.
+For automated fiber placement such a motion is not practical since it would cause tape buckling due to the a tight corner.
+It is in general unlikely that there would be a need for such sharp turns in a tool path.
+A square corner on a part will require a \ang{90} re-orientation to keep the nozzle normal to the part's surfaces no matter the number of axes on the machine and curved features tend to work best with curved tool paths.
+
+\begin{figure}
+\begin{center}
+	\begin{overpic}[height=8cm, keepaspectratio]
+		{TrunionMachine.pdf}
+		\put(5,53){\textbf{C}}
+		\put(68,47){\textbf{B}}
+		\put(36,95){\textbf{Z}}
+		\put(64,89){\textbf{Y}}
+		\put(48,82){\textbf{X}}
+		\put(8,65.5){\makebox(0,0)[r]{\small Tool Path}}
+		\put(19,77){\makebox(0,0)[r]{\small Singular Point}}
+	\end{overpic}
+	\caption{Axis naming \cite{ISO841} and singular tool path.}
+	\label{fig:trunnion}
+\end{center}
+\end{figure}
+
+Due to the increased cost and programming complexity combined with the reduced precision, a traditional 3-axis machine having linear X, Y, Z axes combined with a two axis rotary table is the ideal working platform for off-axis printing.
+With such a configuration all sides of the part not blocked by the build platform can be reached and every location can be reached at any configuration.
+Programming is simplified when the rotary axes are used only for positioning and the actual printing is done in traditional 2.5D style.
+This technique is called 3+2 since only the three linear axes are used while printing leaving the two rotary axes to be used only during orientation positioning.
+Besides being easier to program, the 3+2 approach is typically more accurate since only three axes needs to be coordinated by the machine during printing.
+
+Having a mature, robust, and off-the-shelf solution is most likely the number one reason 6R robots are often used in the off-axis 3D printing community \cite{Hedges2014, Arevo2015, Vurpillat2016}. 
+These robots are designed for the demands of factory automation making them fast, accurate, and reliable.
+They usually come with their own programming languages and simulation environments making them moderately easy to control and have the necessary hardware to interface with the print head.
+When using robots large parts can be printed with a relatively compact machine, however there are limitations to this configuration which will be discussed later in this chapter.
+
+\section{Fixed Build Platform}
+Robotic configurations with fixed build platforms allow for the largest print volumes.
+These robots can easily reach parts that occupy one quarter of their working volume and can handle even larger parts if the shape allows.
+For extra long parts these robots can be mounted on rails and print parts of unlimited lengths.
+Arevo Labs and the result of a collaboration between Lockheed Martin and Wolf Robotics are examples of this style of machine \cite{Hedges2014, Arevo2015}.
+Due to the large surface area these machines can cover the build platform is often not heated so additional measures are needed to ensure proper bed adhesion.
+With the nozzle mounted on the robot it is possible to decrease build times while increasing surface finish by keeping the head normal to the finished surface; however, there are limitations as to how steep of a surface material will adhere and not droop.
+Having a fixed build platform does not enable the reduction of support structure.
+
+\section{Fixed Extruder}
+Using a fixed extruder with a robot mounted build platform does reduce the size of parts which can be printed but greatly increases the flexibility of both the tool path and the print order.
+Parts can be finished with the nozzle normal to the exterior surface, as can be done with a robot held extruder configuration, but without any angle limitations.
+Being able to rotate the part freely in space allows printed surfaces to be rotated normal to gravity reducing the need for support material.
+This free rotation also enables printing across the traditional 2.5D layers created at the start of a part greatly decreasing its $z$ direction anisotropy.
+
+As parts become larger both the part and the platform needed to hold it start to cause interference problems while printing with a robot held build platform.
+With a robot mounted extruder the robot's payload is constant no matter how large the part, assuming the feed material is mounted separately.
+With a robot held build platform this is not the case. 
+As the work piece becomes larger the robot needs to hold and move more mass.
+The build platform itself must be large enough to hold the work piece and adds considerable weight.
+Large build platforms also make clearances with the extruder more challenging causing some of the flexibility created by this configuration to be lost when working towards the middle of the platform.
+
+Song et al. \cite{Song2015} provide an interesting effort to produce a low cost six axis FFF printer.
+In their design the extruder is mounted to a Gough-Stewart mechanism, a tilting platform moved by six linear actuators, with a fixed build platform underneath.
+Their design provides full six axis motion enabling in plane finishing and contoured tool paths at a total cost of just over \$1400.
+Although this design does provide a full six degrees of freedom, the max angles and work envelope are fairly limited.
+With a tool angle of \SI{10}{\degree} about the $x$\nobreakdash-axis the working volume is about \SI{100}{\mm} x \SI{100}{\mm} x \SI{70}{\mm}, with additional limitations inside that range.
+Even with these limitations it is an interesting machine which could be useful for home users who wish to increase the surface finish and strength of many of their parts.
+
+\section{Moving Platform and Extruder}
+The ideal configuration for flexible, off-axis 3D printing is an extruder which moves in X, Y, and Z, mounted over a trunnion table.
+This configuration enables easy programming when performing 3+2 work, the trunnion table can be located in an arbitrary position and then G-code from standard slicing software could be used to print features in that orientation.
+Having the axes on two separate platforms allows for more rigid and accurate construction when compared to a 6R robot since the positioning errors are no longer compounding in series.
+A trunnion table will not allow parts as large as a robot held extruder configuration but tables with one meter swing diameters are commonly available%
+\footnote{Nikken \SI{1200}{mm} trunion table: http://www.nikken-world.com/Nikken-5AX-1200-Ultra-Heavy-Duty.aspx}%
+.
+
+An excellent example of this style of off-axis printer and the advantages is can create was developed and tested at Mitsubishi Electric Research Laboratories \cite{Yerazunis2016}.
+Their machine uses an in-house made tip/tilt trunnion table mounted under a delta printer providing five degrees of freedom.
+By utilizing this machine configuration they are able to reach a larger portion of their build volume at a wider range of angles than is possible with Song's Gough-Stewart machine and it does not have the added complexity of a 6R robot.
+By using a Bowden extruder their print head is kept light and the delta configuration for the $xyz$ motion of the print head provides an easier method for moving the head in three directions than a more typical Cartesian system.
+Their tests on a printed dome specimen showed that the tool paths enabled by off-axis printing can create parts which are nearly 4.5 times stronger than that of a traditional FFF part.
+
+
+Stratasys released a style of FFF machine at IMTS 2016, which they are calling ``3D Demonstrator'', that uses a two axis rotary table holding the build platform and a 6R robot holding the print head \cite{Vurpillat2016}.
+Having eight axes creates a redundant system in their task space which can make programming much more difficult.
+To reduce this difficulty they have chosen to always keep the tool aligned with the Z-axis, effectively simulating a three axis machine mounted over a trunnion.
+Since the printing volume is limited to the space over the trunnion table only a small percentage of the robot's working envelope is used creating a system that occupies a much larger foot print than needed.
+
+\section{Review}
+Which type of machine configuration to choose depends on the particular applications for which it will be used.
+For large parts which require minimal off-axis work a 6R robot with a fixed build platform and robot held print head is most likely the best choice.
+When parts have tool paths with large off-axis angles then a moving platform will be required.
+If an off-the-shelf solutions is desirable then an industrial robot is currently the best solution.
+When more accuracy is desired or if work is being done to produce a better off-axis solution then a trunnion table with a moving print head should be explored.
+For multi-material prints it will be tough to beat the ease of a robot held build platform with several fixed print heads mounted within the working range, see Table \ref{table:configcompare}.
+Since the needs for this project were to print around a cylinder, i.e. steep off-axis angles, with the potential for multi-material prints, and without needing to create a new machine it was decided to use an industrial robot with a robot held build platform and a fixed extruder.
+
+\begin{table}
+	\caption{Optimal configuration based on application.}
+	\centering
+	\begin{tabular}{l l}
+		\toprule
+		\textbf{Application} & \textbf{Configuration} \\
+		\midrule
+		Large parts & Robot held extruder \\
+		Multi-material & Robot held platform \\
+		\addlinespace
+		Steep off-axis angles & Rotating platform \\
+		Off-the-shelf & Robot \\
+		Increase accuracy & Trunnion table \\
+		\addlinespace
+		Reduced complexity & Five axes \\
+		Avoid singular tool path & Six axes \\	
+		\bottomrule		
+	\end{tabular}	
+	\label{table:configcompare}
+\end{table}
+
+
+
+\end{document}

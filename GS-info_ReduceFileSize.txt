@@ -1,0 +1,16 @@
+From stackoverflow: https://tex.stackexchange.com/questions/18987/how-to-make-the-pdfs-produced-by-pdflatex-smaller
+
+download Ghostscript: https://www.ghostscript.com/download/
+
+If using Windows:
+Note where Ghostscript is installed so you can add its internal folders "bin" and lib" to PATH
+(PATH is a system variable. Google Windows x add to path, where x is your current windows version, for how to do this)
+
+open command prompt
+cd into the folder containing the file you want to compress
+use command: gswin64c -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=foo-compressed.pdf foo.pdf
+where "foo" is the name of the file you want compressed and "foo-compressed" is the name you want the compressed file to be.
+-dPDFSETTINGS= is the compression level, I'd used /prepress in general and then /ebook for smaller options.
+See the quick tips for more info. 
+
+See here for quick tips: http://milan.kupcevic.net/ghostscript-ps-pdf/

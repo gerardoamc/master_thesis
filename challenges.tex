@@ -1,0 +1,143 @@
+ % challenges
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\chapter{Challenges of Off-Axis 3D Printing}
+
+Any system which moves from 2D to 3D experiences a dramatic increase in challenges, and 3D printing is no exception.
+Although the name ``3D printing'' implies that the problem was already 3D, apart from computing the need for support structure the work is all done in 2D.
+In standard 3D printing there is no need to worry about crashing the machine since the print head is either moving in the $xy$\nobreakdash-plane or is moving in the $+z$ direction away from the previously printed material.
+This is not always true with off-axis printing.
+For standard 3D printing the nozzle only needs to be accurately measured in the $z$ direction while the $x$ and $y$ directions can be approximated.
+Not so for off-axis work.
+Even choosing the correct order in which to print a part becomes ambiguous with off-axis printing.
+For traditional printers, simply step up in $z$ and then print whatever needs to be there.
+With off-axis printing the order in which features are printed is only limited by clearances and having a surface on which to print. 
+
+\section{Reach, Clearance, and Collisions}
+Since off-axis printing enables rotating the part out of the $xy$\nobreakdash-plane, it is now necessary to ensure collisions between the build platform, part, and print head do not occur.
+Although finishing parts with the nozzle normal to the surface will provide the best surface finish, this will not be possible for all geometries.
+In Figure~\ref{fig:nozzleCollision} it can be seen that the angle between the two features is too steep for the nozzle to clear the previously printed material.
+If the surface finish on one of these features is determined to be more important than the other that feature could be printed first with the second feature printed in a typical 2.5D fashion.
+If both features need a quality surface finish then one of the features could have its infill printed thick and then be finished in plane and then the other printed with low layer heights.
+A solution not as fast as finishing both sides in plane but still faster than having to print everything with low layer heights.
+
+\begin{figure}
+\centering
+	\begin{overpic}[height=8cm, keepaspectratio]
+		{NozzleCollision.pdf}
+		\put(100,85){Print Head}
+		\put(95,62){Nozzle}
+		\put(81,11){Printed Infill}
+		\put(35,101){\makebox(0,0)[r]{Collision Point}}
+	\end{overpic}
+	\caption{Surface and nozzle geometry do not allow finishing part normal to surface.}%
+	\label{fig:nozzleCollision}
+\end{figure}
+
+Without the ability for standard printers to print off-axis, nozzle designs up to now have not been optimized for these reach and clearance scenarios.
+Work will need to be done to create a nozzle which is longer and skinnier enabling it to reach more locations.
+Some nozzles may even need to be developed with angled orifices allowing them to print with the nozzle ``normal'' to the surface even with difficult to reach designs such as Figure~\ref{fig:nozzleCollision}.
+
+\section{Bed Adhesion}
+When performing standard 3D printing, warpage caused from differential cooling across layers creates forces which can break parts free from the print bed.
+The majority of the print head's tool pressure is in the downward direction with only a small amount of lateral forces acting to remove the part from the print bed.
+These lateral forces are small enough that only parts which have large height to adhesion surface area ratios tend to be affected with tall skinny parts occasionally becoming detached from the build platform causing a print to fail.
+For off-axis printing the parts can now be rotated so that the downward force of the nozzle is no longer normal to the build plate.
+These pressures can be larger than usual if there is overfilling of the part or the nozzle location is not properly calibrated, Fig.~\ref{fig:nozzleForces}.
+This situation is made worse when small size build platforms are required in order to reach angled tool paths near the base of the part.
+All of this may suggest that bed adhesion should be made high but there is an upper limit for adhesion since after printing the part needs to be removed without damage.
+This implies that the adhesion between the first and second layers of the part must be higher than the adhesion between the first layer and the build platform.
+The bonding between the part and the build platform could be aided by the use of releasable adhesives including hot-melt adhesives or electrically releasable adhesives \cite{Simon2010}.
+
+
+\begin{figure}
+\centering
+	\begin{overpic}[height=8cm, keepaspectratio]
+		{Bending.pdf}
+		\put(3,36.5){\makebox(0,0)[r]{Part Deflection}}
+		\put(-1,52){\makebox(0,0)[r]{Nozzle}}
+		\put(76,51){\makebox(0,0)[r]{Increased Stress}}
+		\put(76,66){\makebox(0,0)[r]{Build Platform}}
+	\end{overpic}
+	\caption{Nozzle inaccuracy increases stress at build platform.}%
+	\label{fig:nozzleForces}
+\end{figure}
+
+
+\section{Joint Weakness}
+Between layer adhesion is already a cause of weakness and warpage in 3D printed parts and this problem will continue in off-axis 3D printing.
+It has been shown that layer print time and more specifically layer cooling have a major affect on how well consecutive layers adhere to each other \cite{Sun2015}.
+If the previously printed layer has cooled below a critical temperature before the next layer is applied the bonding between the two layers will be weak often leading to cracking and warping of the part.
+These failures typically happen on large prints or when multiple parts are printed at the same time since these scenarios increase the time between between layers.
+
+For off-axis printing this between-layer weakness will cause problems at the joints where new orientations are printed across previously printed layers.
+In many scenarios this joint will be located at the base of a new feature creating weak bonding at the location which experiences the greatest bending moments.
+Special care will need to be taken when designing parts and tool paths to ensure that such joints are located in areas with lower stresses or have been made large enough to withstand the operating forces.
+
+Since these joints will often be located in areas of high bending moments additional work should be done investigating techniques to increase their strength.
+For example, it may be possible to design joints which create mechanical locking between beads instead of only relying on between bead adhesion.
+Possible shapes could include dovetails, ball and socket, "Christmas Tree" groves used in turbines, or new shapes which are not manufacturable when using standard subtractive techniques but are possible for off-axis printers.
+
+Localized re-heating could be another technique used to increase the strength of such joints.
+Before layers of a new orientation are printed across cold base layers the part could be brought over to a heat source which warms the desired section above its critical adhesion temperature and create a bond equal in strength to a standard between layer interface.
+This bond will not be as strong in tension as a continuous bead but will be much stronger than the bond created upon cold layers.
+
+\section{Measuring Nozzle Location}
+\label{sec:challangenozzle}
+In 2.5D printing only the $z$\nobreakdash-height of the nozzle is critical, $x$ and~$y$ locations are relative to each other requiring the machine to only be repeatable, not accurate.
+Should the $x$ and~$y$ locations be calibrated inaccurately, as long as the part is still printed on the build platform the accuracy is close enough.
+Calibrating the $z$\nobreakdash-height is more critical but can be easily accomplished with a feeler gauge, often just a sheet of paper. 
+When a part is printed with off-axis techniques the $x$ and~$y$ locations become as critical as the $z$ location.
+If the $y$ location of the nozzle is not properly calibrated the part will be printed slightly shifted in the $y$\nobreakdash-axis.
+Later when the part is rotated \ang{90} about the $x$\nobreakdash-axis to print beads across the layers the programmed $z$\nobreakdash-height will be incorrect causing beads to be printed too far from the part reducing their chance of adhesion or worse, the nozzle is too low causing it to collide with the part, Fig.~\ref{fig:locErrors}.
+
+\begin{figure}
+\centering
+	\hspace{4pt}
+	\begin{overpic}[scale=0.5]
+		{Y_error_flat.pdf}
+		\put(74,100){$x/y$ error ($\epsilon$)}
+		\put(88,81){\shortstack[l]{Measured nozzle\\location}}
+		\put(79,20){\shortstack[l]{Programmed\\location}}
+		\put(10,17){\makebox(0,0)[r]{\shortstack[l]{Build\\plate}}}
+		\put(17,34){\makebox(0,0)[r]{\shortstack[l]{Printed\\Location}}}
+		\put(19,57){\makebox(0,0)[r]{Part}}
+		\put(30,83){\makebox(0,0)[r]{\shortstack[l]{Actual nozzle\\location}}}
+	\end{overpic}
+	\hfill	
+	\begin{overpic}[scale=0.5]
+		{Y_error_horiz.pdf}
+		\put(-1,60){\makebox(0,0)[r]{\shortstack[r]{Off-axis layer \\height error ($\epsilon$)}}}
+	\end{overpic}
+	\hspace{4pt}
+	\caption{Location error in off-axis printing}
+	\label{fig:locErrors}
+\end{figure}
+
+\section{Build Platform}
+When working with 2.5D processes the table is designed to be as large as will fit in the machine.
+With those processes a large platform provides more working space while producing very few drawbacks, namely some additional cost and weight.
+For off-axis work a large platform can interfere with accessing features on the part which are at low angles near the build platform.
+To minimize this interference it is best if the build platform is made as small as possible.
+Instead of utilizing one large build platform, off-axis printers will need a variety of platforms varying in print area, distance from mounting surface, and angle from the 6th axis.
+When performing off-axis operations a small set of platforms will generally cover a large percentage of the work but customized platforms will need to be developed from time to time for particularly difficult to reach tool paths.
+It should be noted that it is not the part's geometry which dictates the build platform's geometry but instead the chosen tool path.
+For a printer utilizing support structure any object which fits within its build volume can be printed utilizing 2.5D tool paths.
+It is when off-axis printing techniques are used that the tool path will require clearance between the nozzle, part, and build platform.
+
+\section{Tool Path Planning}
+Of all the challenges in off-axis printing none is more difficult than tool path planning.
+As work continues in anisotropic topology optimization new demands will be placed on the 3D printer to produce parts with not only difficult geometries but also specific bead orientations.
+Creating such tool paths will not be easy and will require more input from the operator than current slicing packages enable.
+Programs more similar to the CAM packages used in the machine tool industry will need to be created which allow a user to easily control how layers and regions are built.
+
+Print order for 2.5D parts is set by $z$\nobreakdash-height and simply starts at the bottom of a part and works its way upward.
+Off-axis printing does not suffer from this mandated print order.
+This will provide it with the most opportunities to create higher quality parts, however, finding an optimum order in which regions of a part should be printed is a task analogous to the traveling salesman problem%
+\footnote{The traveling salesman problem is a graph theory and optimization problem where, given a list of cities and the distances between them, determine the shortest possible route which visits each city exactly once and returns to the starting city.}
+which, being an NP-hard problem, will be difficult to automate.
+To handle the increasingly complex parts and design requirements demanded today, software will need to be developed which can use heuristics to properly weigh all of the design and process requirements and produce a tool path which is within an acceptable margin of the optimal solution.
+These heuristics will combine hard limits such as machine reach and nozzle clearance with more flexible requirements including bead orientation, keeping beads continuous, amount of support structure, and surface finish.
+
+\end{document}

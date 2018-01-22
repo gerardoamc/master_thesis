@@ -1,0 +1,94 @@
+% scislice
+
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\chapter{SciSlice}
+\epigraph{The \emph{Sci}entific \emph{Slice}r}
+
+SciSlice was created to fix a major problem in FFF research, the inability to finely control tool paths when using traditional slicing software.
+Infill orientation is just one example of a parameter that many researchers would like to control but cannot without custom software or hard work hand programming.
+Most traditional slicing software uses a default orientation of $\pm$\ang{45} for all of their parts.
+Creative researchers have been able to produce tensile specimens with \ang{0}/\ang{90} orientations by placing the specimen at a \ang{45} angle on the build platform, but that process can be difficult in some software and often limits the available build area.
+For test parts with more complex layer-by-layer or sub-region by sub-region needs, such as those produced through topology optimization software, traditional slicing software is no help at all.
+SciSlice can handle all of these tasks.
+Any printing parameter can be custom set for individual layers and even regions within a layer.
+These parameters include everything from layer height to infill angle to travel speed of the print head.
+By being able to independently and accurately control all of these printing parameters SciSlice enables research into how each of these parameters affect the mechanical, thermal, and electrical properties of a printed part.
+
+Even with all of these advantages SciSlice is not the be-all end-all of slicing software.
+Its number one limitation is the inability to generate support structure.
+It is possible to model support structure in one STL and the part in another and tool path them as separate regions within a layer but this process is much more work than traditional slicing software.
+By providing the ability to custom control every printing parameter SciSlice is also more cumbersome to use when fine control over all of those parameters is not required.
+However, if the goal is to print five simply shaped, no overhang test specimens in one build, each with slightly different parameters, and then repeat the same test but with all of the parts in the opposite order, SciSlice is the tool for the job.
+
+\section{Work Flow}
+The process for using SciSlice typically starts with some part shape that needs to be printed.
+This part can be a full STL, a single slice from an STL, or a predefined outline of a part.
+If a full STL is used then each layer of the printed part is made from a new slice of that STL, just like typical slicing software works.
+If a single slice or a predefined outline is used then that same outline will be repeated for a user specified number of layers.
+
+After the desired part has been selected the appropriate infill is chosen.
+The currently implemented infills are no-infill, parallel lines, and hexagons.
+Next all of the printing parameters for the part are set.
+These parameters can be loaded from a previously saved file or custom set for the current print.
+Finally when the user has finished entering parameters the slicing and tool path generation process begins.
+
+For each layer in a part the process for going from user input to machine code output works as follows:
+\begin{enumerate}[noitemsep, nolistsep]
+	\item An outline which defines the boundary of the layer, including any holes or internal features, is created from a new STL slice or copied from the single outline being used.
+	\item Offsets of the outline are created for the desired number of brims and shells.
+	\item One additional offset outline is created to be used from trimming the infill.
+	\item A field of infill lines is created which is large enough to cover the trim outline at any rotation angle.
+	\item The field is centered over the trim outline and rotated to the desired angle.
+	\item The infill field is trimmed along the outline and any external lines are discarded.
+	\item The brims, shells, and remaining infill are sorted into a print order and combined to form a tool path.
+	\item The tool path is translated to the desired $xyz$ print location.
+	\item The generic tool path is converted into the desired machine code, i.e. G-code for regular 3D printers or RAPID for the ABB robot used here.
+	
+\end{enumerate}
+
+After these steps are completed for every layer in the part the machine code is saved to a file with the appropriate file extension and can then be used to operate a machine.
+
+\section{Outlines}
+An outline is the base shape for each layer of a part and can be initialized from a slice of an STL or from a shape which is predefined in the source code.
+Complete outlines are made from a list of lines which are non-intersecting and where each endpoint of every line is coincident to exactly one endpoint of another line.
+Outlines follow the typical computational geometry convention where the left side of each line is inside the part and the right side of the line is outside the part.
+Holes and nested features are allowed in outlines but will have all of the same print parameters.
+For layers which require different parameters for different regions separate outlines must be used. 
+
+\section{Infills}
+Being able to create infills with arbitrary angles and path widths (the distance between the centerlines of adjacent beads) is the main purpose of SciSlice.
+Several default infill patterns are provided but the most common for research is a simple field of parallel lines.
+SciSlice provides the ability to shift an infill field after it has been centered and rotated but before it is trimmed allowing the user to finely control where the field is located within a part.
+This infill shift aids in the strategic placement of beads when the path width parameter is not an integer multiple of the space available inside an outline.
+
+\section{Parameters}
+There are three main categories of printing parameters: parameters which stay the same for an entire print, parameters which can change between parts, and parameters which can change between every layer.
+While not every parameter can be in any group, most can be switched between these three groups through minor editing of SciSlice source code.
+For the group of parameters which change between parts, the parameter with the longest list of values determines how many parts will be printed, while the remaining parameters will be continuously cycled until the longest list is exhausted.
+To prevent parts from being printed on top of each other either the \texttt{shiftX} or \texttt{shiftY} parameter must be at least as long as the longest list.
+Layer parameters are continuously cycled within a part until the required number of layers has been printed.
+If multiple parts are printed in a single build then the layer parameters will start over from the beginning of their lists with each new part.
+
+\section{Path Planning}
+SciSlice uses a rudimentary nearest endpoint search when sorting a layer into a tool path.
+The starting point for a layer is, by user option, either the lowest left point on a layer or a pseudo-random%
+\footnote{The user provides the seed value for a pseudo-random number generator allowing the results to be repeatable between prints.}
+point on the outside of a layer.
+For most tests it is convenient to always start each layer in the same location but this can cause noticeable surface defects on parts due to inconsistencies in extrusion at the start and end of each layer.
+The starting point for a layer is always the start point of a line.
+
+After the starting point for a layer has been selected the next move point is to the endpoint of the start point's line.
+From this end point one of two options can occur.
+If the line is part of an outline the entire outline is printed, including internal features, before any other outlines or infill lines are printed.
+If the current line is instead part of an infill a nearest endpoint search is again performed selecting the nearest start or end of a line and that line is printed.
+This process is repeated until all of the lines in a layer have been printed.
+
+Since this method for organizing a layer into a print path takes into account very few variables it can sometimes provide a less than ideal tool path.
+More advanced sorting methods should take into account bead cooling times and required part strength to prioritize areas where beads should not be allowed to cool too much between passes.
+Sorting should also attempt to reduce long traverses and $z$\nobreakdash-axis retracts which would help to shorten cycle times and prevent stringing of material.
+
+
+
+\end{document}

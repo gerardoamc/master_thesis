@@ -1,0 +1,381 @@
+% validation.tex
+
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\chapter{Validation}
+
+\section{Extruder}
+Knowing the volume of filament being extruded during printing is critical for part strength and quality.
+Under-extrusion causes poor bead and layer adhesion reducing part solidity and strength while over-extrusion reduces surface quality and often leads to print failure.
+Direct volumetric flow measurements are not currently possible on FFF printers causing most printers to the use open loop linear displacement of filament as their method for controlling extrusion amounts.
+Due to variations in filament diameter, voids within the filament, and feed gear slippage, simple linear displacement creates challenges when trying to accurately control part solidity especially for parts with target solidities near 100\%.
+Some work has been done to create closed loop control for filament extrusion \cite{Greeff2017} which can both measure slippage at the feed gear and filament width allowing for more accurate volumetric flow rates but such a system has not been implemented on this extruder.
+Without closed loop control the only method available for controlling flow rates is to accurately calibrate the filament's rate of linear displacement and from that value calculate the resultant flow rates based on the filament's measured diameter.
+
+To calibrate the extruder's feed rate an extrusion rate of \SI{25}{mm/min} was set and two marks were placed on the filament.
+\SI{25}{mm/min} was chosen as the initial calibration speed because it is the calculated extrusion rate needed for a print speed of \SI{1800}{mm/min} and layer height of \SI{0.2}{mm}, the values which were used for printing all of the torsion specimens used in this study.
+The first mark was placed several millimeters above the extruder's inlet to ensure the stepper motor had finished accelerating before the mark entered the extruder.
+The second mark was placed \SI{50}{mm} away from the first mark.
+With the extruder at the material's operating temperature extrusion was started.
+When the first mark entered the extruder a timer was started and the time between the first and second marks entering the extruder was recorded.
+This time was then compared to the expected \SI{2}{min} and adjustments were made to the RAMBo program until the experimental result matched the expected result.
+
+After the initial test produced an error of less than 1\% it was repeated at \SI{12}{mm/min} and \SI{50}{mm/min} with the length of the former being left the same and the later doubled to keep the test at \SI{2}{min}.
+Both of these tests produced errors of less than 1\% showing the extruder to be effectively calibrated for a wide range of extrusion rates.
+
+\section{Test Specimen}
+A cylindrical torsion test specimen was chosen to enable comparing the strength of off-axis printed parts to those produced through traditional 2.5D printing.
+This sample was chosen because it would provide an application and shape where off-axis printing could out perform a 2.5D printer without being too complex to tool path and test.
+Since an FFF printed ASTM D638 tensile specimen is strongest when the beads are printed inline with the tensile forces a 2.5D printer can already produce an optimum bead orientation for that test specimen.
+More complex shapes which should perform better when manufactured on an off-axis printer would be more difficult to test than a cylindrical torsion specimen and are not currently possible to tool path.
+A printed part subjected to torsion should be strongest when the beads which make up its gauge section are wrapped around the outside of the cylinder allowing them to be more inline with the load path than beads printed straight along the part's length.
+It is currently possible to create this tool path for our off-axis system and is a bead orientation which cannot be produced on a 2.5D printer.
+
+This sample shape was also chosen because future work with off-axis printing will include analysis of the Osswald-Osswald failure criterion and build upon previous tests in this area \cite{Obst2017}.
+In this model the $\operatorname{\sigma_{11}-\tau_{12}}$ and $\operatorname{\sigma_{11}-\tau_{13}}$ interactions are easiest to measure with a test specimen which has a hollow core and multiple layers of \ang{45} spiraled beads.
+Previous studies were not able to measure these interaction values because it was not possible to print specimens with spiraled beads.
+With off-axis printing these specimens will be producible allowing for a full analysis of the Osswald-Osswald model.
+
+The test specimen design thus chosen for the off-axis printer is a hollow cylinder with $\pm$\ang{45} spiraled beads.
+It is not currently possible to print a sample with only spiraled beads since the first layer of the spiral would have no surface on which to rest while cooling.
+Instead a central core must first be printed in traditional 2.5D fashion onto which the spiraled layers are printed.
+Having an internal core not at $\pm$\ang{45} will the affect interaction value measurements and calculations, so the test specimens are designed to have a spiral thickness $10\times$ the thickness of the inner core.
+Previous work had used a hollow torsion specimen with an inside diameter of \SI{7}{mm} so that value was also used as the outer diameter of the core.
+This \SI{7}{mm} value is around the minimum diameter which can support the tool pressures encountered while printing the spirals so no attempts were made to print smaller cores.
+Previous work had used a sample \SI{170}{mm} in length but, due to travel limitations of the 5th axis during core printing with the inline build platform, the specimen length was set to \SI{95}{mm} preventing axis over travel alarms, Fig.~\ref{fig:torsionspecimen}.
+Future work will include printing a central core from PVA, a water soluble material, so that fewer spiraled layers need to be printed reducing the specimens diameter and print time.
+These central cores can be printed on a different machine eliminating the \SI{95}{mm} height restriction.
+
+\begin{figure}
+        \includegraphics[width=0.9\textwidth]{twisttest.pdf}
+        \caption{Torsion test specimen - (\si{mm})}%
+        \label{fig:torsionspecimen}
+\end{figure}
+
+\subsection{Off-Axis Printing}
+Printing of the off-axis test specimens starts with two 100\% infill circular layers printed on the build platform.
+Printing these two complete layers first creates a larger surface contacting the print bed allowing for greater bed adhesion than just a spiraled core would be able to produce.
+A larger contact area between the two surfaces helps prevent bed adhesion failures when starting the first spiraled layer, sec.~\ref{sec:bedadhesion}.
+Next the inner core is printed as a continuous \SI{7}{mm} helix to a height of \SI{95}{mm}.
+Both of these sections are printed with the build platform normal to the nozzle and with a layer height of \SI{0.2}{mm}.
+By printing the inner core with a continuous helix instead of layer by layer the surface finish of the cylinder was greatly improved and the print time was decreased.
+These improvements were possible because a continuous helix eliminates the stopping and starting which would normally occur at each layer.
+Experiments done at different print speeds showed that single walled helix cylinders of any size printed with PLA at \SI{220}{\degreeCelsius} would produce failures if a lap around the helix took less than 1.8 seconds.
+When lap times were below this value the previous layers would not cool enough causing them to buckle and produce cylinders with poor circularity and surface finish.
+The \SI{7}{mm} cylinders where thus printed at \SI{10}{mm/sec} to prevent this problem.
+
+After the inner core was printed the build platform was rotated to allow printing around the outside of the core at a speed of \SI{30}{mm/s}.
+As previously mentioned the cylinder is placed rotated \ang{45} off the robot's $x$\nobreakdash-axis to prevent wrist singularities, sec.~\ref{sec:singularity}.
+Every layer starts with the same side of the cylinder up, i.e. with the sixth axis at the rotation angle, and begins printing at the end of the core nearest the build platform.
+By starting each layer with the sixth axis at the same angle some layering bias is created in the part.
+This problem could be prevented by starting each layer at a random rotation angle but such code was not implemented.
+From there the layers were printed from the bottom of the core to the top and back again repeating until the entire layer was finished.
+By printing the beads back and forth from top to bottom instead of only from the bottom to the top it was possible to print each layer in one continuous path again improving surface finish and reducing cycle time by eliminating retractions.
+To help prevent bed adhesion failures the 25 layers were printed beyond the interface between the print bed and the helix core allowing them to extend onto the outside of the build platform by \SI{0.5}{mm}.
+After successfully printing multiple samples with this overlap distance prints began experiencing bed adhesion failures.
+Re-performing the bed adhesion tests showed adhesion values approximately one quarter the original test results.
+To prevent further bed adhesion failures the overlap distance was changed to \SI{3}{mm}.
+At this distance it was not possible to remove parts from the build platform causing the platforms to be used as sacrificial parts instead of their previous use as a wear part.
+
+After all 25 layers were finished the grips were printed onto the part.
+The complete lower grip was printed first and then the upper grip was printed.
+If the grips had been printed one layer from one, one layer from the other, nozzle drool would have caused stringing across the part each time the nozzle switched grips.
+Printing one complete grip and then the other also allowed for each grip layer to be hotter when the next layer was printed helping to increase the strength between layers, Fig.~\ref{fig:offaxislayers}.
+No cracking of the grips was observed during testing showing that there was sufficient between layer adhesion in these areas.
+
+\begin{figure}
+\centering
+	\begin{overpic}[width=0.4\textwidth, keepaspectratio, angle=90]
+		{Otto_Torsion.pdf}
+		\put(18,35){\makebox(0,0)[r]{Helix core}}
+		\put(29,39){25 layers $\pm$\ang{45}}
+		\put(58,39){Grip}
+		\put(74,31){A}
+		\put(74,0){A}
+	\end{overpic}
+	\caption{Layers in off-axis printed samples. Not to scale.}
+	\label{fig:offaxislayers}
+\end{figure}
+
+When printing beads of material to cover a predefined area it often happens that an integer number of beads would either slightly under-fill or slightly overfill the space.
+Most open source slicing software uses a fixed distance between adjacent beads, often called \emph{path width}, and fills the available area with beads this distance apart leaving a gap in any area where the next bead does not fit.
+This option was not chosen for the torsion specimens since it would consistently leave gaps along the line where a layer starts and ends.
+Instead it was chosen to provide a guideline value for the path width, the nozzle diameter of \SI{0.5}{mm}, and then dynamically adjust the actual path width for each layer based upon how many beads can evenly fit in the layer.
+The dynamic allocation calculates the number of beads which will fit into a layer with the equation
+
+\begin{equation}
+n = \left[ \frac{c \times \sin(\theta_H)}{W} \right],
+\end{equation}
+where $n$ is the number of printed beads, the square brackets ``[ ]'' mean \emph{round to nearest integer}%
+\footnote{This formula was implemented in Python which uses the IEEE 754 recommended round to nearest even integer for values halfway between two integers.}%
+, $c$ is the finished circumference, $\theta_H$ is the helix angle, and $W$ is the desired path width.
+\nomenclature[S]{$n$}{Number of beads \nomunit{-}}%
+\nomenclature[S]{$c$}{Circumference \nomunit{\si{mm}}}%
+\nomenclature[S]{$\theta_H$}{Helix angle \nomunit{\si{\degree}}}%
+\nomenclature[S]{$W$}{Desired path width \nomunit{\si{mm}}}%
+This number of beads is then evenly distributed across the current layer.
+Since \emph{round nearest} was chosen to convert the decimal value into an integer instead of \emph{floor} a layer may become over or under filled.
+To prevent problems associated with overfilling a max overfill value for a layer was set to 1\%.
+Although this technique can lead to problems for areas with very few beads, even the first helix layer of the specimen, printed at a diameter of \SI{7.4}{mm}, with an angle of \ang{45}, needs a theoretical 32.8 beads which, when rounded to 33, produces an overfill of only 0.4\%.
+For all 25 layers of the specimen, printed at a layer height of \SI{0.2}{mm}, only the 7th layer has its number of beads reduced from 44 to 43 with the 1\% max overfill rule.
+The worst under-filling is on layer 3 at 1.2\%.
+The average filling across all 25 layers is 0.04\% under-filled, considerably better than the extrusion volume accuracy.
+
+\subsection{Standard 2.5D Printing}
+2.5D printer comparison test specimens were printed on an Ultimaker 3 FFF printer.
+The specimens were printed on their side with $\pm$\ang{45} infill and one shell, Fig.~\ref{fig:buildorientation}.
+A layer height of \SI{0.2}{mm} was used to match that of the off-axis prints.
+The Ultimaker 3 version of the open source Cura slicing software was used to generate the tool paths.
+Due to the print geometry and orientation, support structure was required to create the print.
+A PVA water soluble support material was used along with Cura's ``touching bed'' support structure option to create support material only on the outside of the part and not inside the hollow core.
+Tests showed that the hollow core could be printed successfully without the use of support material.
+
+\begin{figure}[!h]
+\centering
+	\begin{overpic}[width=0.8\textwidth, keepaspectratio]
+		{buildorientation.pdf}
+		\put(0,14){Z}
+		\put(13.5,0){X}
+	\end{overpic}
+    \caption{Build orientation on 2.5D printer.}%
+    \label{fig:buildorientation}
+\end{figure}
+
+\subsection{Material}
+MatterHacker's \SI{3}{mm} diameter red PLA batch number 2016-09-12-1 filament was used in this study.
+Both the off-axis samples and the comparison 2.5D printed specimens were manufactured from the same spool of filament for all of the tests eliminating any differences which often occur between filament production runs.
+
+\subsection{Post Processing}
+The test specimens created on the off-axis printer required additional machining to create flats on the grips.
+These flats allowed the three jaw chucks on the torsion testing machine to more reliably hold the specimens.
+To machine the flats the specimens were placed in a rotary indexing head and clamped in the indexing head's three jaw chuck on the central body of the specimen.
+Clamping on the central body ensures the flats are positioned equidistant from the specimen's neutral axis.
+The flats were machined the full length of the grip and to a depth such that the smallest flat was at least \SI{10}{mm} wide.
+After three flats were machined into one grip the sample was flipped and three flats were machined into the opposite grip.
+Since the torsion testing machine can start with the powered head at any angle no effort was made to index the flats between ends.
+
+Specimens created on the standard 2.5D printer were soaked in \SI{55}{\degreeCelsius} water over night to soften the PVA support structure for removal.
+These specimens were printed with flats on the grips to eliminate the machining step, however, the three $\pm$\ang{45} specimens warped at their grips and therefore did require machining.
+The specimens were then dried overnight in desiccant to help mitigate any material property changes which may have occurred from their time in warm water.
+
+\section{Bed Adhesion}
+\label{sec:bedadhesion}
+Bed adhesion tests were performed to determine how well the helix core stuck to various print bed materials.
+These tests were necessary since the printing forces are not normal to the build platform as they are in 2.5D printing but instead will create bending moments on the helix core which can cause delamination from the print bed.
+To perform the bed adhesion tests helix cores of 7, 10, and \SI{15}{mm} diameters and \SI{60}{mm} in height were printed and broken off.
+Each core had two full layers printed at the base before the helix started.
+After the core was printed it was rotated until it was parallel with the ground.
+Next increasing amounts of weight were suspended from the core \SI{50}{mm} from the base until the core broke off the platform, Fig.~\ref{fig:bedadhesion}.
+Each test was only performed with one sample and the weight at failure was recorded.
+From these measurements the stress on the upper surface of the core can be calculated using equations \ref{eq:stress} and~\ref{eq:IxSolid}, with the results given in Table~\ref{tab:bedadhesion}.
+
+\begin{table}
+\caption{Stress on upper surface of PLA core at bed adhesion failure.}
+\centering
+\begin{tabular}{l c c c}
+	\textbf{Bed Material} & \textbf{Core Diameter} (\si{mm}) &
+		\textbf{Mass} (\si{g}) & \textbf{Stress} (\si{\mega\pascal}) \\
+	\toprule
+	ABS & 15 & 2290 & 3.4 \\
+	ABS & 7 & 310 & 4.5 \\
+	\midrule
+	PLA & 15 & 1260 & 1.9 \\
+	PLA & 10 & 240 & 1.2 \\
+	PLA & 7 & 130 & 1.9 \\
+	\midrule
+	Heated AL & 15 & 180 &  0.27 \\
+	Heated AL with Glue & 15 & 145 & 0.21 \\
+	Heated AL with Tape & 15 & 95 & 0.14 \\
+	\bottomrule
+\end{tabular}
+	\label{tab:bedadhesion}
+\end{table}
+
+\begin{wrapfigure}{R}{0.4\textwidth}
+\centering
+	\includegraphics[width=0.38\textwidth]{bedadhesion.pdf}
+	\caption{A \SI{1}{kg} weight testing bed adhesion between PLA (left, blue) and red ABS (right red).\\}
+	\label{fig:bedadhesion}
+\end{wrapfigure}
+
+Since only the first two layers of the core were solid and the rest of the layers had a \SI{0.5}{mm} wall thickness it was not known if the bending stress would be fully transferred to the solid base or only act upon an outer ring on the base.
+Because of this unknown the stress calculations were done for both a hollow cylinder and a solid cylinder.
+The equation for stress on the upper surface of a cantilevered cylinder is
+\begin{equation}
+\sigma = \frac{M_z r}{I_x}
+\label{eq:stress}
+\end{equation}
+where $M_z$ is the bending moment, $r$ the radius, and $I_x$ the area moment of inertia.
+For solid cylinders
+\begin{equation}
+I_x = \frac{\pi}{4}r^4
+\label{eq:IxSolid}
+\end{equation}
+while for hollow cylinders
+\begin{equation}
+I_x = \frac{\pi}{4}\left(r_2^4-r_1^4\right)
+\end{equation}
+where $r_2$ and $r_1$ are the cylinder's outer and inner radii, respectively.%
+\nomenclature[S]{$\sigma$}{Stress \nomunit{\si{Pa}}}%
+\nomenclature[S]{$r$}{Radius \nomunit{\si{m}}}%
+\nomenclature[S]{$I_x$}{Area moment of inertia \nomunit{\si{m^4}}}
+It is expected that the stress at failure will be constant for each bed material and not vary relative to core diameter.
+When comparing the two calculations the solid values, shown in Table \ref{tab:bedadhesion}, were found to be approximately the same for each bed material while the hollow tube values showed the \SI{7}{mm} cores to fail at a stress eight times larger than the \SI{15}{mm} cores.
+Since the values obtained from the solid beam calculations aligned with the expected values it is assumed that the stress is well transferred from the thin helix section to the solid base layers thus making these values the more accurate approximation.
+
+Only one test of each sample was performed so these results should not be seen to provide exact values but there is enough of a spread between different bed material data points to make a general conclusion.
+The main conclusion to be made from these results is that PLA adheres best to an ABS build platform performing twice as well as PLA and a factor of ten better than an aluminum platform.
+This result is slightly surprising since it had been assumed that PLA would bond best to itself.
+Further tests should be done printing ABS onto an ABS platform to determine if ABS adheres best to itself or if the ABS/PLA combo is what provides the extra strength.
+
+After performing these bed adhesion tests multiple specimens were successfully printed without experiencing bed adhesion failures.
+Several weeks later bed adhesion problems began occurring on nearly every print.
+Additional bed adhesion tests were then performed which showed adhesion strengths of approximately one quarter that of the previous tests.
+Adjusting the $z$\nobreakdash-height and trying several ABS build platforms did not fix the problem.
+Old successful platforms and new unused platforms were tested all showing similar low adhesion strengths.
+Due to time restrictions more thorough tests were not able to be performed but it is suspected that increased humidity in the lab due to changes is weather is related to the problem.
+
+Tests have not yet been performed to correlate initial $z$\nobreakdash-height with bed adhesion.
+Anecdotal evidence from warpage on 2.5D printers seems to show that setting the first layer's $z$\nobreakdash-height too high increases the chance of warpage implying that printing the first layer too high also decreases bed adhesion.
+Further tests should be performed to determine how accurately the $z$\nobreakdash-height needs to be set and how much it affects bed adhesion.
+
+Tests have also not been performed which measure the tool forces during printing.
+If this value was known it would then be possible to know how much bed adhesion is necessary for a print based on its contact area and moment arm.
+Tool forces are expected to be low during normal operation but if overfilling or robot positioning errors cause the nozzle to contact the part these forces will become much higher.
+While either of these problems could cause a part to be out of tolerance, if the error is only in a small area then it would be best if the print could stay adhered to the platform instead of falling off the machine and not completing the print..
+Staying adhered would allow the operator decide if the part passes its quality checks or if it can be fixed through post processing.
+
+
+
+\section{Mechanical Testing}
+An ADMET eXpert 9618 torsion testing machine was used for all of the mechanical tests, Fig.~\ref{fig:torsionmachine}.
+This machine has a torque capacity of \SI{300}{Nm} and a test speed range from \SIrange{0.002}{40}{rpm}.
+ASTM D5448 \cite{ShearMethod2012} recommends the strain rate for the part be set such that failure occurs between 1 and 10 minutes of test initiation. 
+An initial strain rate of \SI{50}{\deg/min} was chosen which produced part yield near 30 seconds and failure after 5 minutes.
+Because this rate produced failures within the recommended time window it was chosen for the remaining tests.
+All tests were done with the non-rotating head unlocked from the $z$\nobreakdash-axis preventing tensile and compressive forces from developing along the part's central axis as it is twisted producing pure torsion results.
+For off-axis printed parts testing was performed such that the twisting of the part was in the same direction as the beads in the outer most layer.
+Only one test was performed in the opposite rotation direction which showed a negligible effect on yield strength but additional testing will be needed to determine the significance of the rotation direction and outside layer orientation.
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.9\textwidth]{TorsionMachine.pdf}
+	\caption{ADMET eXpert 9610 torsion testing machine with sample.}
+	\label{fig:torsionmachine}
+\end{figure}
+
+\section{Results}
+From Figures \ref{fig:pm45Graphs} and \ref{fig:OttoGraphs} it can be seen that while both specimen types have similar yield strengths the off-axis samples are significantly more ductile after yield than the 2.5D parts.
+Both sets of samples also show nearly identical Young's moduli and angle at yield.
+Although this data shows the 2.5D samples failing at a higher torque than the off-axis samples it is believed this is more related to the 2.5D samples being slightly larger in diameter and possibly more dense than it is the parts actually being stronger.
+While the mass of each as tested sample is known the true volume of the part is not known making density calculations difficult.
+The $\pm$\ang{45} samples weighed less but they have both printed flats and machined flats reducing their part volume and lowering their mass, Table \ref{table:torsionspecimen}.
+It is also possible that the clamping force of the chuck jaws prevented layer delamination in the 2.5D samples artificially increasing their strength.
+
+Specimen numbers were assigned consecutively at the time a print was started.
+This timing was chosen over assigning numbers after print completion to help track and categorize print failures.
+The prefix ``Ulti'' was added to 2.5D printed part numbers since they were printed on an Ultimaker while the prefix ``Otto'' was added to off-axis printed samples since the IRB-120 robot is nicknamed Otto.
+Samples 11 and 12 were off-axis printed samples but their data was not included because they were significantly under extruded due to improper guide wheel tightening on the print head.
+
+
+\begin{figure}
+\centering
+    \hspace{0.1cm}\includegraphics[]{UltimakerGraphs.tikz}
+\caption{Torsion test data for 2.5D printed samples with $\pm$\ang{45} infill.}
+\label{fig:pm45Graphs}
+\end{figure}
+
+\begin{figure}
+\centering
+    \hspace{0.1cm} \includegraphics[]{OttoGraphs.tikz}
+\caption{Torsion test data for off-axis printed samples.}
+\label{fig:OttoGraphs}
+\end{figure}
+
+
+\begin{table}
+	\caption{Torsion specimen measured diameter and mass.}
+	\centering
+	\begin{tabular}{l c c}
+		\toprule
+		\textbf{ID} & \textbf{Diameter (\si{mm})} & \textbf{mass (\si{g})} \\
+		\midrule
+		Otto8 & 16.7 & 34.9\\
+		Otto9 & 16.75 & 34.9 \\
+		Otto10 & 16.75 & 34.3\\
+		Otto13 & 16.85 & 32.0\\
+		\addlinespace
+		Ulti24 & 16.85 & 30.4\\
+		Ulti25 & 16.95 & 30.3\\
+		Ulti26 & 16.9 & 32.1\\	
+		\bottomrule		
+	\end{tabular}	
+	\label{table:torsionspecimen}
+\end{table}
+
+\begin{figure}
+\centering
+	\begin{overpic}[width=0.8\textwidth, keepaspectratio]
+		{Sample26.pdf}
+		\put(52,52){\makebox(0,0)[r]{\shortstack[l]{Failure across\\ layers in fillet}}}
+		\put(87,57){\makebox(0,0)[c]{Arrested at chuck jaw}}
+		\put(40,5){\makebox(0,0)[c]{\shortstack[l]{Between layer failure\\ in gauge area}}}
+	\end{overpic}
+	\caption{Failure areas in 2.5D printed sample.}
+	\label{fig:2.5Dsample}
+\end{figure}
+
+The brittleness at failure of the 2.5D printed parts can be explained by their method of failure, Fig.~\ref{fig:2.5Dsample}.
+As stress builds up in the specimen white crazing can be seen forming near both grips, Fig.~\ref{fig:crazing}, until the bond between two layers suddenly fails splitting the part across the entire length of the gauge area.
+This brittle failure only crosses through layers near the grips whereas the gauge area's failure is completely between two layers.
+Since 2.5D printing cannot create beads across layers there is no material to help perform crack arresting as the initial failure propagates through the part. 
+
+\begin{figure}
+\centering
+	\begin{overpic}[width=0.8\textwidth, keepaspectratio]
+		{Crazing.pdf}
+		\put(55,43){Crazing}
+	\end{overpic}
+	\caption{Lighter coloring indicates crazing near fillet in 2.5D printed sample.}
+	\label{fig:crazing}
+\end{figure}
+
+Off-axis printed parts, on the other hand, do not have a single layer whose adhesion can fail but must instead break individual beads through the entire cross-section of the part.
+As a torque is applied to the off-axis samples white crazing again appears but typically in only one location on the part.
+When the part begins to yield it starts necking instead of experiencing a brittle failure. Fig.~\ref{fig:off-axisparts}.
+The necking is from each bead of material elongating as it deforms instead of breaking at the interface between layers.
+
+\begin{figure}
+\centering
+	\begin{overpic}[width=0.6\textwidth, keepaspectratio]
+		{Samples8-10.pdf}
+		\put(101,15){\rotatebox{90}{\large{End attached to platform}}}
+		\put(-5,35){\rotatebox{90}{\large{Top}}}
+	\end{overpic}
+	\caption{Three off-axis samples showing typical necking in gauge area nearest the build platform.}
+	\label{fig:off-axisparts}
+\end{figure}
+
+Due to part deflection caused by the nozzle forces during printing, the off-axis specimens have a gauge area which is larger in diameter away from the build platform where the part is less rigid and smaller in diameter near the build platform where the part is more rigid.
+This difference in deflection creates an approximately \SI{100}{\micro m} taper across the specimen's gauge section.
+Because of this taper all off-axis specimens failed near the grip which was printed closest to the build platform.
+
+
+\subsection{Stress Reducing Fillets}
+The effectiveness of stress reducing fillets in composite test specimens should always be checked to ensure they are performing properly and not causing premature part failure.
+While the off-axis printed specimens did fail near the fillets they did not show any failures outside of the gauge area.
+This suggests that the non-centered failure location is most likely from the slight taper found in the gauge area and not from the addition of stress concentrators at the fillets.
+
+For the 2.5D printed parts the failure in the gauge area is between two layers but as the crack enters the fillet area it begins to break across layers.
+Without high speed video of the failure it is difficult to know where the failure started, i.e. in the gauge area or at the fillet. Crazing witnessed near the fillets, Fig.~\ref{fig:crazing}, before failure suggests that the failures start near the fillets and then propagate between two layers in the gauge area and across layers in the fillet.
+It was suspected that the fillets would be more effective in the 2.5D printed parts than the off-axis printed parts since their tool path produced continuous beads between the gauge area and the grips whereas the off-axis parts have discrete layers forming a stair stepped fillet.
+The failures starting near the fillets in the 2.5D parts seem to suggest that there is a concentration of stress at the fillet/gauge intersection.
+
+The two distinct failure modes in the 2.5D specimens, between layers in the gauge area, across layers in the fillet, suggest a possible explanation for the noticeable crazing and suspected stress concentrators near the fillets.
+Since FFF printed parts show the most anisotropic mechanical properties in tension, with between layer strength being the weakest, it is suspected that these specimens will fail by splitting apart between two layers.
+However, the entire part cannot split open since both ends are firmly compressed together by the three jaw chucks on the torsion test machine.
+As the weakest two layers try to separate in the gauge area they are held firm at the grips causing the stress to concentrate at the fillet.
+Observations of the failed parts show that the failures reach into the fillet area but stop where the jaws contact the specimen.
+Therefore, it is not the printing geometry that has caused stress concentrators to form at the fillet but instead a combination of work holding and failure mode.
+
+\end{document}
