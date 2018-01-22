@@ -1,0 +1,66 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              Gerardo Mazzei                   %
+%       based on Luke Van Hulle's thesis        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The main thesis document
+
+%% These arara commands are placed here to show the order of operations required to compile this document. If you want to use arara with the subfiles package then these commands will also need to go in every included file. Arara is convenient for multiple workstation compilation and when you need other people to be able to build your document but so far I am not very satisfied with the error reports it generates. Hopefully version 4.0 has a little more documentation and fixes these problems.
+
+% arara: pdflatex
+% arara: nomencl
+% arara: bibtex
+% arara: pdflatex
+\documentclass[ 12pt, letterpaper, twoside, openany]{book}
+
+\input{02_Inputs}
+\input{03_PGF_Plot}
+\input{04_Colors}
+
+% To make the Structure section work in TexMaker it needs to see
+% the \include command, but the subfiles package needs \subfile
+% so I changed \include to just call \subfile.
+\renewcommand{\include}[1]{
+        \subfile{#1}}
+
+\begin{document}
+
+        \frontmatter
+        		\pagenumbering{gobble} %No page number in front matter
+                \include{cover}
+                \addcontentsline{toc}{chapter}{Front Matter}
+                \pagenumbering{roman}
+                \include{abstract}                
+                \addcontentsline{toc}{section}{Abstract}
+                \include{acknowledgments}
+                \addcontentsline{toc}{section}{Acknowledgments}
+                \renewcommand{\contentsname}{Table of Contents}
+                \tableofcontents
+                
+               % \printnomenclature
+               % \addcontentsline{toc}{section}{Nomenclature}
+               % \listoffigures
+               %\addcontentsline{toc}{section}{\listfigurename}
+               %\listoftables
+               %\addcontentsline{toc}{section}{\listtablename}
+               %\cleardoublepage
+                
+        \mainmatter
+                \pagestyle{fancy} % Needed again because it is turned off in some
+                                                  % previous sections.                
+                %\include{motivation}
+                %\include{scislice};
+                %\include{machineConfigs}
+                %\include{challenges}
+                %\include{setup}
+                %\include{toolpath}
+                %\include{validation}
+                %\include{conclusion}
+%               \include{examples}
+        
+        %\printbibliography
+        
+        
+        
+
+\end{document}

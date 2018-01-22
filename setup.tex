@@ -1,0 +1,313 @@
+% setup.tex
+
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\chapter{Equipment and Setup}
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.9\textwidth]{EnclosurePic.pdf}
+	\caption{The robot in its enclosure holding an example part on the straight build platform with the angled platform on the table.}
+	\label{fig:enclosurepic}
+\end{figure}
+
+\section{Equipment}
+The following equipment was used for performing off-axis printing: an ABB IRB\nobreakdash-120 robot holding the build platform, a fixed LulzBot single extruder tool head v2, and a safety enclosure containing both the robot and print head, Fig.~\ref{fig:enclosurepic}.
+A RAMBo motherboard located in a separate electrical enclosure, Fig.~\ref{fig:elecenclosure}, controls the print head and handles inputs from the robot.
+In this print cell the robot is the master running the print motion program which controls the actions of the printer through digital I/O.
+
+\begin{figure}
+\centering
+	\begin{overpic}[width=0.9\textwidth, keepaspectratio]
+		{ElectricalEnclosure.jpg}
+	\end{overpic}
+	\caption{Electrical enclosure with RAMBo and power supply on the left and opto-couplers on the right. Some wires have been removed for clarity.}
+	\label{fig:elecenclosure}
+\end{figure}
+
+\subsection{Robot}
+An ABB IRB\nobreakdash-120 robot was chosen to be the platform to enable off-axis printing.
+The style of the IRB\nobreakdash-120 is known as a 6R wrist-partitioned robot. 
+6R means it has six rotary axes, as opposed to linear axes, and wrist-partitioned signifies that the robot's last three axes are in a ``wrist'' configuration signifying that all three of their axes of rotation intersect at a single point.
+The robot has a \SI{580}{mm} reach, a max height of \SI{982}{mm}, and a max payload of about \SI{2}{kg} in the desired configurations.
+The rated pose accuracy is \SI{20}{\micro m} with a pose repeatability of \SI{10}{\micro m}.
+
+Although a 5\nobreakdash-axis trunnion table would be able to perform the required work, an industrial 6R robot was chosen since it provided an off-the-shelf solution that is mature and reliable, see Table \ref{table:configcompare} for configuration comparisons. 
+With the robot's large work envelope it is possible to mount multiple extruders inside the safety enclosure enabling multi-material printing.
+
+\subsection{Print Head}
+A modified LulzBot TAZ single extruder tool head v2 is used for extruding the print material.
+This head was chosen because experience with it on a Taz~5 FFF printer in our lab has shown it to be a reliable extruder.
+It is an open source printer with models of the print head freely available making modifications easy to produce.
+The stepper motor which drives the filament was moved to enable closer access to the nozzle.
+In its factory configuration the stepper motor is normally mounted with the back of the motor extending out past the front of the extruder.
+In this configuration a build platform rotated parallel to the $xz$\nobreakdash-plane can only reach to \SI{50}{mm} away from the centerline of the nozzle before contacting the stepper motor.
+With the stepper motor switched to stick out the back side of the print head assembly the platform's minimum reach was reduced to \SI{20}{mm} away from the nozzle at which point the end of the large gear's axle contacts the platform.
+Some modifications could be done to this axle to enable even closer reaches but they were not performed at this time.
+Platforms with swing diameters less than \SI{50}{mm} can fit under the print head's framing and reach to within \SI{10}{mm} of the nozzle.
+The small blower fan which cools the filament column was also moved to increase access to the nozzle.
+
+To facilitate moving the stepper motor, a new extruder mount%
+\footnote{http://download.lulzbot.com/TAZ/5.0/production\_parts/printed\_parts/extruder\_mount\_hex/}
+was designed and printed.
+The new mount has the stepper motor bolted behind the print head body and on the left side of the large herringbone gear.
+Placing the motor on the left caused less interference with other hardware on the print head.
+Glue was used to remount the small blower fan which cools the filament column above the heater also on the left side of the nozzle.
+This side change was necessary because the large part cooling fan's location prevented moving the blower fan farther back on the extruder mount.
+
+\begin{figure}
+\linethickness{1pt}
+\centering
+	\subfloat[\label{fig:factoryhead}Factory Taz 5 print head.]{
+		\begin{overpic}[width=0.55\textwidth, keepaspectratio]
+			{Taz5Head_standard.JPG}
+		\end{overpic}}
+	\subfloat[\label{fig:modifiedhead}Modified print head.]{
+		\begin{overpic}[width=0.4\textwidth, keepaspectratio]
+			{PrintHeadQuartered.jpg}
+			\put(8,30){\vector(2,3){10}}
+			\put(-25,24){New stepper loc.}
+			\put(40,15){\vector(5,1){16}}
+			\put(39,15){\makebox(0,0)[r]{New blower loc.}}
+		\end{overpic}}
+	\caption{Stepper motor and small fan locations for factory and modified Taz 5 print heads.}
+	\label{fig:printheads}
+\end{figure}
+
+\subsection{Print Head Controller - RAMBo}
+A RAMBo motherboard is used to control the extruder stepper motor, two fans, nozzle heater, and bed heater.
+The RAMBo board was designed by Ultimachine to be an open source plug and play hardware solution for RepRap 3D printers.
+At its core is an Arduino Mega 2560 microcontroller with additional hardware integrated onto the PCB board for controlling a printer.
+This hardware includes five stepper motor drivers, mosfets for controlling a print bed and two nozzles, internal resistors to create voltage dividers for the thermistors, plus many more connections for other printing hardware.
+The board is powered with \SI{24}{\volt} DC power and can be programmed over USB.
+
+When the RAMBo board is used to control a Taz printer it typically uses the open source Marlin firmware \cite{marlin2017}.
+This firmware is designed to perform many different tasks, i.e. control up to five axes, monitor stroke limits, interpret G-code, etc., on a wide variety of machine configurations and platforms.
+As such it is a moderately large and complex software set making modifications to the program difficult.
+Since there are fewer tasks required of the RAMBo board with this off-axis application it was decided to write a program from scratch for controlling the print head instead of modifying the Marlin firmware.
+This new program \cite{rambo2017} uses a state machine to control the extruder instead of a G-code interpreter allowing simple integration to the multi-channel digital I/O used for communication between the robot and RAMBo.
+
+\section{Robot Print Head Interface}
+\label{sec:interface}
+Communication between the print head and robot is necessary to coordinate movements and increase print quality.
+Without communication the print head or its program would need to know how long every robot positioning move would take in order for the extruder to start and stop extruding at the correct locations.
+Multi-channel digit I/O was chosen as the communication method between the two systems.
+Serial communication would be preferred but the option was not purchased with the robot and the addition of this communication layer was deemed too difficult to implement during initial setup of the system.
+Outputs from the robot include when to start and stop printing and when to prime/retract the filament to prevent nozzle drool.
+Nozzle and bed temperatures as well as extrusion rates are also sent from the robot to the RAMBo controller.
+To transfer these values the RAMBo program is set into the appropriate state and then timed pulses are sent representing numeric values.
+Inputs to the robot are currently limited to nozzle and build platform ``at temperature'' but may be expanded in the future.
+
+
+The digital logic pins on the robot use \SI{24}{\volt} while the logic pins on the RAMBo board only use \SI{5}{\volt}.
+Optocoupler relay boards were used to enable electrically isolated logic level stepping between the two systems.
+A total of 16 inputs and 16 outputs are available on the robot and more than 32 pins are available on the RAMBo board.
+Sixteen of the available RAMBo pins were originally designed for controlling an LCD screen and as such are conveniently located together on the board.
+The remaining 16 pins will need to be scavenged from various other unused locations around the board.
+
+\section{Setup}
+When choosing the nozzle location and build platform design the following factors were considered:
+avoiding robot singularities,
+working envelope size,
+robot to platform clearances,
+and location of axis limits.
+After balancing these factors a nozzle location and \ang{45} platform design was chosen with a second \ang{0} platform design being added later for producing continuous beads around cylindrical test specimens.
+
+
+\subsection{Build Volume}
+Creating a large build volume is a major goal when deciding upon nozzle location and build platform configuration.
+Build volume is a simple parameter to characterize in 2.5D printers, simply multiply the travel limits of the three axes, but becomes more complex in off-axis printing.
+When the robot is holding the platform at a fixed angle to the nozzle a large $xyz$\nobreakdash-space may be available.
+At another angle only a small build volume may be reachable or the reachable build volume does not fully overlap the previous space.
+The most permissive definition for build volume is thus the union of reachable work space for every platform angle.
+Such a definition would provide a large build volume but some regions in this build volume would be work space singular meaning that at least one degree of freedom is lost in that region.
+Because this union definition includes work space singularities a false impression is given as to the allowable part volume which can be printed utilizing off-axis techniques.
+
+A more restrictive build volume definition could then be the intersection of reachable work space for every platform angle.
+This definition seems to leave only the volume which can be reached at any angle however, due to the robot's axis limits combined with nozzle clearance problems, not every platform angle is reachable.
+With unreachable angles the intersection would be an empty set, not a very useful value.
+Eliminating unreachable angles still creates locations with infinitely small reachable volumes again creating an empty set.
+
+A compromise was needed to balance the two previous definitions and provide a build volume that was a useful reference for design comparison.
+The union definition contains too much volume that cannot provide the needed tool path flexibility while the intersection contains too many angles which would most likely not be required in a print.
+The compromise was to define a \emph{cubic build volume} as follows: the volume of the largest cube whose five faces not touching the build platform can be printed with the nozzle normal to each face, Fig.~\ref{fig:buildvolume}.
+A cube was chosen to make testing easier, requiring only five orientations be tested, and to eliminate the trade off between build volume and cross sectional area.
+For example, some configurations may enable a cube of \SI{500}{mm} per side to be properly finished for a volume of \SI{0.125}{m^3} or a rectangular prism \SI{800}{mm} wide, \SI{200}{mm} deep and \SI{800}{mm} tall creating a build volume of \SI{0.128}{m^3}.
+The later build volume is larger but the $xy$ aspect ratio is worse.
+It cannot be said in general if the change in aspect ratio is acceptable since it may work for some parts and not others.
+Similar problems can be found if a cylinder was used instead.
+Choosing a cube eliminates the general problem of needing to know what aspect ratio is acceptable.
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.6\textwidth]{BuildVolume.pdf}
+	\caption{A cube with side lengths of \SI{400}{mm} on Otto's angled build platform.}
+	\label{fig:buildvolume}
+\end{figure}
+
+If a part fits inside the cubic build volume it is known that the part can be printed on the printer but tool path limitations may still exist.
+These limitations are less likely to occur by requiring the faces of the cube to be printed while the nozzle is normal to them.
+Disregarding part/nozzle interference problems, most parts which fit inside this build volume will be able to benefit from the off-axis printing goal of improving surface finish since each side of the part will be reachable with the nozzle normal to the surface.
+The normal to cube face requirement also implies that large sections of the build volume are reachable at multiple angles enabling flexibility when creating continuous tool paths and printing without support structure.
+Knowing if a specific tool path is achievable will require more detailed testing than simply checking cubic build volume but using this metric provides an easy method to compare platform configurations and helps show which part shapes are more likely to be reachable than others.
+
+
+\section{Build Platform}
+Two build platforms were designed and built for use on the robot.
+The initial build platform was heated and had a build plate angled so as to be out of alignment from the sixth axis, Fig.~\ref{fig:angledplatform}.
+While the angle of the platform enabled a large cubic build volume this configuration did not allow continuous beads to be printed around a cylinder.
+Due to this limitation a new inline build platform was developed.
+
+The inline platform, Figs.~\ref{fig:inlinepic} and~\ref{fig:inlinedrawing}, uses an aluminum base and an M5x0.8 stud onto which a semi-sacrificial ABS boss is threaded.
+This ABS boss is the platform onto which parts are actually printed.
+Since PLA sticks well enough to cold ABS there is no need to heat the build platform, see section~\ref{sec:bedadhesion} for more details.
+During initial print tests the ABS platform would last for several parts before it would break during part removal.
+Later parts were printed overlapping the ABS boss by \SI{3}{mm} which caused platform failures every time a part was removed.
+Since these ABS pieces could be printed en masse on a traditional printer in less than \SI{10}{min/part} it was considered acceptable to use them as sacrificial pieces.
+This platform design also allows flexibility when sizing the ABS boss eliminating nozzle clearance problems which occur when printing small parts on large platforms.
+If a small part needs to be printed a small boss can be applied and vice versa.
+Without the need for a heater this platform also prevented cable management problems which would have arisen when tool paths required turning the sixth axis multiple revolutions.
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.7\textwidth]{AngledPlatform.pdf}
+	\caption{The original angled build platform.}
+	\label{fig:angledplatform}
+\end{figure}
+
+\begin{figure}
+\centering
+	\begin{overpic}[width=0.9\textwidth, keepaspectratio]{MulticolorSpecimen.pdf}
+	\put(61,36.5){\makebox(0,0)[r]{ABS boss}}
+	\put(63,5){\makebox(0,0)[r]{Aluminum base}}
+	\end{overpic}
+	\caption{The inline build platform with a multi-colored specimen showing the grips in blue and gauge area in red.}
+	\label{fig:inlinepic}
+\end{figure}
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.9\textwidth]{InlinePlatform2.pdf}
+	\caption{Drawing of the inline platform's aluminum base.}
+	\label{fig:inlinedrawing}
+\end{figure}
+
+\subsection{Robot Enclosure}
+The robot was mounted inside a safety enclosure to help prevent injuries during operation.
+The enclosure is \SI{1200}{mm} (\SI{4}{ft}) by \SI{1800}{mm} (\SI{6}{ft}), large enough that with the robot mounted in the center and not holding a tool it cannot touch the sides.
+Four polycarbonate paneled doors allow easy access to the robot for setup and convenient observation during operation.
+Plastic coated wire fencing covers the two remaining openings.
+The robot was mounted centered on the table, Fig.~\ref{fig:enclosuretop}, with the first axis's zero location splitting the enclosure into two nearly square sections.
+From this location the robot can reach most of the enclosure allowing the maximum operating space.
+
+\begin{figure}
+\centering
+        \includegraphics[scale=0.6]{Enclosure.pdf}
+        \caption{Top view of robot enclosure}%
+        \label{fig:enclosuretop}
+\end{figure}
+
+While this arrangement allows the robot to reach much of the enclosure it was later found to cause problems when using a build platform inline with the sixth axis.
+The cubic build volume available with an inline platform is small, $\approx$ \SI{16}{cm^3}, for all nozzle locations as will be explained in section \ref{sec:accuracysolutions}.
+6R robots such as the IRB-120 are most often used for pick and place applications and as such they are designed to have the most position and posture flexibility in the lower ranges of their reach.
+Due to this intended design the robot position in the enclosure which would provide the largest build volume for off-axis printing using a platform inline with the sixth axis is actually upside down with the extruder at a $z$\nobreakdash-height near the base of the robot.
+The IRB-120 is capable of being mounted upside down and with tool and work offsets the level of programming difficulty would remain the same.
+An upside down configuration would require additional framing in the current enclosure design so it has not been switched but future projects should consider this mounting position.
+
+\subsection{Singularities}
+\label{sec:singularity}
+The most common singularity encountered when operating a 6R wrist partitioned robot like the ABB IRB\nobreakdash-120 occurs when the 4th and~6th axes are parallel.
+This parallel alignment is called a \emph{wrist-singularity} \cite{Hayes2002} and it removes one the robot's degrees of freedom preventing some tool postures and movement combinations from being achieved.
+The two other singularity categories, shoulder and wrist singularities, typically only happen when the wrist is above the base and near the centerline of the first axis.
+As long as the extruder is not placed directly over the robot these two singularities are typically avoided.
+
+A common technique for avoiding a wrist singularity is to place the robot's end of arm (EOA)
+\nomenclature[A]{EOA}{End Of Arm}
+tooling at an angle to the 6th axis.
+As the platform's angle becomes steeper the reachable build volume increases but it needs to be placed farther away from the 6th axis to prevent collisions between the platform and the 4th axis linkage.
+Based on initial testing an angle of \ang{45} was chosen to be a good compromise between clearances and build volume, plus was a convenient number to help when checking position and posture values.
+For the inline platform wrist singularities are avoided by printing the spiraled beads with the specimen angled \ang{45} away from the robot's $x$\nobreakdash-axis.
+
+\subsection{Axis Limits}
+One problem with the \ang{45} build platform is that continuous spirals around cylinders are not possible to produce.
+The robot's 6th axis can rotate freely (the software limit is $\pm$242 revolutions) and the 5th axis has enough travel for the required moves, but to create a continuous spiral the 4th axis would also need to continuously rotate and its joint limitation is $\pm$\ang{160}.
+This limitation requires that axes 4, 5, and 6 be reoriented once for each lap around a cylinder.
+A simple technique for handling this reorientation is to only print half way around the part, reorient, and then print the other half.
+Reorienting the part involves flipping axes 4 and 6 \ang{180} and changing the sign on axis~5. This reorientation places the work piece in the exact same location and posture as before but now the 4th axis can continue in the same direction as before with a fresh \ang{180} of travel available.
+
+Reorienting the part half way through a pass causes two problems.
+The first is the printed bead is no longer continuous creating print start and stop issues, surface irregularities, and potentially decreasing part strength.
+The second problem is a limitation in the robot's accuracy.
+The manufacturer's rated pose accuracy of \SI{20}{\micro m} is based on the ISO 9283  standard and is the difference between a taught position and positions obtained during program execution.
+This implies that the robot will be in the same joint configuration when attempting to move to the desired location.
+Tests have shown that when the $z$\nobreakdash-height of the robot is measured and then the end three axes are flipped the $z$\nobreakdash-height can change by almost \SI{300}{\micro m} and the measured nozzle location can change up to \SI{1}{mm}, Table \ref{tab:postionerror}.
+With a minimum desired layer height of \SI{100}{\micro m} a minimum $z$\nobreakdash-height accuracy in the \SI{50}{\micro m} range is required with \SI{10}{\micro m} being preferred.
+Accuracy in the $xy$\nobreakdash-plane is not as critical since the nozzle diameter is \SI{0.5}{mm} and the molten bead material can flow a little while being applied.
+Since the pose error between the two robot configurations is much larger than the required accuracy additional measures need to be taken to enable accurate printing around a part.
+
+\begin{table}
+	\caption{Nozzle location error with axes 4, 5, and 6 flipped for one probe position.}
+	\centering
+	\begin{tabular}{r l}
+		\toprule
+		\textbf{Quaternion:} & 0.6533, 0.2706, 0.6533, -0.2706 \\
+		\textbf{Robot Axes 1-3} (\si{\degree})\textbf{:} & -120, 7, -9 \\
+		\bottomrule
+	\end{tabular}
+	\begin{tabular}{r c c c}
+		\addlinespace
+		& \multicolumn{3}{c}{\textbf{Robot Axes}\tablefootnote{Axis angles rounded to nearest degree to provide approximate robot configuration.} (\si{\degree})}\\ \cmidrule(r){2-4}
+		\textbf{Pos. no.} & 4 & 5 & 6\\
+		\midrule 
+		1 & -90 & -75 &  91 \\
+		2 & 90 & 75 & 271 \\
+		\addlinespace
+		& \multicolumn{3}{c}{\textbf{Coordinates} (\si{mm})} \\ \cmidrule(r){2-4}
+		& X & Y & Z \\	
+		1 & -21.00 & -433.50 & 636.96 \\
+		2 & -21.82 & -434.04 & 636.69 \\ \cmidrule(r){2-4}
+		Coordinate Differences & 0.82 & 0.54 & \textbf{0.27} \\
+		\textbf{Abs. Position Difference:} & \textbf{1.02} & & \\		
+		\bottomrule
+	\end{tabular}
+	\label{tab:postionerror}
+\end{table}
+
+\subsection{Pose Accuracy Solutions}
+\label{sec:accuracysolutions}
+Two possible solutions for the pose accuracy problem were considered.
+Since the pose repeatability of the robot is within our desired tolerances the first solution considered was developing an accuracy map for the robot and then adjusting the programmed locations when calculating the tool path.
+This technique is commonly done in industrial machines which have acceptable repeatability but less than desirable accuracy.
+Lasers are typically used to create a volumetric accuracy map by placing a reflector on the EOA tooling and then having a fixed laser send/receive unit record the actual position of the reflector as the machine moves on a preprogrammed path.
+This data is then used either directly by the robot or by the CAM software used to program the robot to adjust programmed positions enabling the robot more accurately position itself.
+
+For the purposes of this problem a full accuracy map would not be necessary.
+Since the current goal is to print around cylindrical parts the map would only need to be created at a few rotation locations around the desired path.
+This map would then be imported into the tool path generation program which would adjust the commanded program positions to compensate for these errors.
+This solution was not chosen since it increases the difficulty of tool path generation and still produces discontinuous beads.
+
+The chosen solution was to redesign the build platform such that the sixth axis's center of rotation was normal to the print bed.
+This allows torsion specimens to be printed with their central axis co-linear to the sixth axis.
+With this configuration spiraled beads can be continuously printed around a cylinder simply by rotating the 6th axis while using axes 1-5 to move along the part's length.
+This platform configuration keeps the robot in a small section of its joint ranges increasing movement accuracy and decreasing programming complexity since only axis six encounters a configuration change.
+The large drawback of this configuration is the decrease in build volume.
+With the chosen nozzle location the build height away from the platform is limited to $\approx$\SI{95}{mm} before the fifth axis reaches its joint limit.
+Moving the nozzle higher or farther away from the robot can help this height limit but such a move greatly limits the working range when the part is rotated on its side for printing spirals.
+Taking these limits together yields a cubic build volume of only \SI{16}{cm^3} which is a significant reduction in build volume when compared to the angle platform and limits the printable geometries considerably.
+However, the desired tool paths for the test specimen all fall within the working range of this configuration making the inline platform a viable solution.
+
+\subsection{Nozzle Location}
+Nozzle location and build platform configuration must be designed together to ensure singularities and axes limits are avoided.
+Based on initial work with the angled build platform it was found that a nozzle location \SI{430}{mm} away from the centerline of axis~1 and \SI{630}{mm} off the table enabled a cubic build volume of approximately \SI{400}{mm} per side or \SI{0.064}{m^3}.
+This \SI{630}{mm} $z$\nobreakdash-height is the same as the robot's height in the home position (all axes at \ang{0}).
+With the angled build platform axis six starts below the home position when the platform is just touching the nozzle and continues moving down as a part is printed taller.
+If the nozzle was set in a higher position the robot would most likely have to move through a wrist singularity while printing a part since the sixth axis would have to transition from above the home position to below.
+
+When using the inline build platform this chosen nozzle height can cause singularities while printing around a cylinder.
+To prevent these singularities the part is rotated \ang{45} about the $z$\nobreakdash-axis when printing out of the $xy$\nobreakdash-plane.
+Since the robot is using a robot held work object this \ang{45} rotation does not increase the programming complexity, it simply shifts the initial robot configuration.
+
+
+
+\end{document}

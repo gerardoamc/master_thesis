@@ -1,0 +1,53 @@
+% conclusion.tex
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\chapter{Summary and Future Work}
+Off-axis printing is the next technological wave in the FFF market.
+The manufacturing flexibility provided by this process enables both higher quality and higher strength parts to be produced in less time with less waste than traditional 2.5D printing.
+Its ability to move out of the $xy$\nobreakdash-plane and into six degree of freedom three dimensional space provides the tool pathing opportunities to: print across layers reducing anisotropic properties, keep the nozzle normal to the part's surface increasing surface finish quality, and rotate the part to prevent drooping of molten material reducing the need for support structure.
+
+This increased flexibility does come at the cost of increased setup and programming complexity.
+Off line collision detection becomes necessary for preventing crashes, a problem almost non-existent in the current 2.5D printing world.
+High end CAM packages targeting five axis CNC machining, a common industrial application with similar challenges to off-axis printing, come with price tags in the five figures and still require week long trainings, considerable operator experience, and significant operator input to produce acceptable tool paths.
+This challenge becomes more difficult for off-axis printing since the tool path not only effects the part's surface finish and dimensional tolerance, as in machining, but also the part's mechanical, electrical, and thermal properties, etc.
+Quality off-axis CAM software will be required to integrate FEA, optimization, and tool path planning packages into one system before they can fully utilize the flexibility this technology provides.
+
+Machine design will be an interesting section of the off-axis printing field.
+Most of the headlines currently focus on robotic off-axis printing \cite{Hedges2014, Arevo2015, Vurpillat2016} but robots bring with them additional programming and accuracy challenges as well as increased cost compared to more optimal designs leading some to begin developing new machine configurations specifically for off-axis printing \cite{Song2015, Yerazunis2016}.
+In the future these new configurations will provide more robust and cost effective manufacturing opportunities in a smaller footprint than current robot based systems.
+
+An ABB IRB-120 robot was chosen as the machine to perform the off-axis work for this project since it was an off-the-shelf and robust system.
+A fixed extruder and robot held build platform enable the full utilization of the advantages gained from off-axis printing.
+Two build platforms were created, an angled platform enabling a large cubic build volume, and an inline platform enabling continuously spiraled beads around a sample.
+Torsion test specimens were chosen since they provided an easily testable shape which would show enhanced mechanical properties if printed with off-axis tool paths.
+While only a few data points are provided in this study it is already clear that the material properties of off-axis parts can be significantly different than identically shaped, traditionally printed parts.
+The yield strength of the off-axis parts was, surprisingly, the same as the 2.5D parts but the dramatic difference between the nearly 100\% brittle failures of the 2.5D samples to the ductile failures of the off-axis samples was even more pronounced than had been expected.
+
+\section{Future Work}
+The next task for Otto will most likely be printing samples to provide data for the Osswald-Osswald Failure Criterion.
+These samples need to be printed with \ang{45} spiraled layers and will undergo a variety of standard and combined loading tests.
+While not this system's initial purpose, it is perfectly designed to produce these samples which cannot otherwise be made on a 2.5D printer.
+One problem with the current samples is they have the inner helix core which is not at a \ang{45} spiral.
+Work has already begun attempting to print PVA cores off line on a traditional printer and then use them as support for the first spiraled layer.
+\nomenclature[A]{PVA}{Polyvinyl Alcohol}%
+These PVA cores can be dissolved out of the samples increasing the accuracy of the test data.
+One interesting side effect from this work, the PVA cores were not stiff enough to support accurate printing so they have been slid over a metal shaft the length of the specimen which then provides additional support.
+This metal shaft is much stiffer than even the PLA cores providing higher dimensional accuracy and, being bolted on, eliminate the bed adhesion problems.
+
+Multi-material prints provide another avenue for off-axis printing.
+The RAMBo board comes with all of the necessary plugs for a second extruder and some careful wiring could easily add a third.
+The ability to use additional tool objects makes changing the RAPID program as simple as calling a new \texttt{tooldata} object.
+Additional materials could provide support structure where it is still needed with off-axis printing, adjust material properties throughout a part, or provide different colors to prints.
+Imagine an electro-mechanical off-axis printed part were the body is a durable polymer, wires are printed with electrically conductive material, and heat dissipation sections are printed with a third thermally conductive material.
+Since the robot is holding the printed object it can even assemble the non-printed components as their housings are printed creating a fully functional part all in one operation.
+
+Finally, the robotic system can be integrated with pultrusion technology to produce continuous fiber 3D printed parts.
+While some 2.5D printing systems can currently produce long fiber parts, their inability to print across layers causes the parts to have extremely exaggerated anisotropic properties.
+In plane they can produce parts with carbon fiber's tensile properties but across layers the parts are only as strong as the already weak layer bonding of the matrix material.
+Since this system uses a fixed extruder the pultrusion system does not need to be light enough to fit on the robot, only small enough to fit in the room.
+
+
+
+
+
+\end{document}

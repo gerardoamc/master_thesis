@@ -1,0 +1,78 @@
+% Examples
+
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\chapter{Examples}
+My motivation is \cite{einstein}.
+\section{A section}
+More text \cite{knuthwebsite}. Numbers can be in a box \cite{Singamneni2012} as seen in table~\ref{tab:box2} on test test page~\pageref{tab:box2} or in \ref{fig:xloc}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{Xloc.jpg}
+	\caption{Robot X location}
+	\label{fig:xloc}
+\end{figure}
+
+\begin{table}
+  \centering
+    \begin{tabular}{| l c r |}
+    \hline
+    1 & 2 & 3 \\
+    4 & 5 & 6 \\
+    7 & 8 & 9 \\
+    \hline
+    \end{tabular}
+  \caption{A simple table}
+  \label{tab:box1}
+\end{table}
+
+\begin{table}
+  \centering
+    \begin{tabular}{| l c r |}
+    \hline
+    1 & 2 & 3 \\
+    4 & 5 & 6 \\
+    7 & 8 & 9 \\
+    \hline
+    \end{tabular}
+  \caption{The same simple table}
+  \label{tab:box2}
+\end{table}
+
+\lipsum[1-6]
+
+\chapter{Equations}
+This is how SciSlice calculates extrusion rate.
+$$
+ER = \frac{4 \times LH \times ND \times EF}{\pi \times FD^2}
+$$
+where:
+
+$ER$ = Extrusion Rate - $mm/min$
+\nomenclature[S]{$ER$}{Extrusion Rate - Speed filament in fed into the extruder \nomunit{$mm/min$}}
+
+$LH$ = Layer Height - $mm$
+\nomenclature[S]{$LH$}{Layer Height  \nomunit{$mm$}}
+
+$ND$ = Nozzle Diameter - $mm$
+\nomenclature[S]{$ND$}{Nozzle Diameter \nomunit{$mm$}}
+
+$EF$ = Extrusion Factor
+\nomenclature[S]{$EF$}{Extrusion Factor - Multiplier to adjust for over/under filling \nomunit{$-\enspace$}}
+
+$FD$ = Filament Diameter - $mm$
+\nomenclature[S]{$FD$}{Filament Diameter \nomunit{$mm$}}
+ 
+For this project we used Fused Filament Fabrication, FFF,
+\nomenclature[A]{FFF}{Fused Filament Fabrication}
+
+
+\end{document}
+
+
+
+
+
+
+
