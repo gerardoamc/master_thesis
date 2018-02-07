@@ -1,145 +1,20 @@
 % motivation.tex
-
 \documentclass[main.tex]{subfiles}
 \begin{document}
 \chapter{Motivation and Objective}
-Multiple studies over the past decades have characterized the anisotropic nature of parts produced through Fused Filament Fabrication (FFF), commonly referred to by the trademarked name Fused Deposition Modeling (FDM) \cite{Ahn2002a, Cantrell2016}.
+
+%Chapter body
+Additive Manufacturing (AM) is an umbrella term that encompasses all fabrication techniques where the final geometry of the part is obtained through superposition of material in a layer-by-layer basis \cite{Gibson2015}. Developed in the 1980s, this manufacturing technique permits immensely shorter part development cycles since the transition from a 3D computer aided design (CAD) to part fabrication only requires one intermediate step: the use of a slicing engine that converts the geometry of the object into machine instructions \cite{Gibson2015}. For this reason, AM technologies were initially employed exclusively for prototype development and were referred to as Rapid Prototyping techniques (RP). However, recent innovations in the field have caused AM to be perceived as a legitimate manufacturing technology since it is also capable of reproducing complex geometries unattainable through other means \cite{Gibson2015}.
+
+While offering great advantages over traditional part fabrication methods, AM comes with its own set of limitations and disadvantages: First and foremost, the use of a stratified build approach tends to produce extremely anisotropic parts. Secondly, the geometric accuracy of the object produced is highly dependent of process parameters, particularly of the thickness of the layers. Finally, as of the time of this writing, AM lacks the standardization and scrutiny that are associated to most traditional manufacturing techniques \cite{Gibson2015}.  
+
+Fused Filament Fabrication (FFF), also known under the trademark Fused Deposition Modeling (FDM\texttrademark), represents perhaps the most prevalent AM technique in the market due to the advent of low-cost, desktop 3D printers in the early 2010s \cite{Capote2017}. Due to the broad availability of machines and relatively low costs of material, there's a surging interest in optimizing FFF to produce small batches of end user grade parts. Success stories include vacuum form molds, fixtures, jigs and tools used to aid assembly lines in the automotive industry \cite{Hartman2014, VanHulle2017,deVries2017}. However, this technology still faces the challenges and limitations that currently affect the field of AM as a whole. Namely, anisotropy introduced through the layer-by-layer build approach makes it difficult to assess the expected mechanical behavior of FFF produced parts when subjected to important stresses \cite{Capote2017}.   
+
+%Nomenclature introduced in this chapter:
+\nomenclature[A]{AM}{Additive Manufacturing}% 
+\nomenclature[A]{RP}{Rapid Prototyping}%
+\nomenclature[A]{CAD}{Computer Aided Design}%
+\nomenclature[A]{FDM}{Fused Deposition Modeling\texttrademark}
 \nomenclature[A]{FFF}{Fused Filament Fabrication}%
-\nomenclature[A]{FDM}{Fused Deposition Modeling}%
-These studies have shown that the anisotropic behavior of FFF parts is more prevalent when the part is under tension than when it is under compression.
-Careful work adjusting print parameters to produce high solidity parts with low (\SI{0.1}{mm}) layer heights and beads aligned in the load direction can produce parts with tensile strengths within 3\% of an injection molded part \cite{Koch2016, Koch2017}.
-Parts with beads perpendicular to the load direction, called \ang{90} orientation, are much weaker having tensile strengths of only 70\% that of an injection molded part.
-This reduced strength is also present in the build ($z$) direction of a print where the between layer strength is similar to that of parts printed in the \ang{90} orientation \cite{Riddick2016}.
-While it is possible on a standard FFF printer to adjust the bead orientations within a layer, it is not possible to provide any bead adjustments between layers.
-This limitation causes the build direction to have significantly reduced tensile properties.
-For applications where tensile loading is not present in the build direction, FFF parts have already begun to make the transition from prototype to functional part~\cite{Fathom2014}.
-However, to successfully make this transition for a wider variety of applications, parts must be able to have peak mechanical properties in all directions.
-In order to increase the between layer strength of FFF parts a new process is required which can move beyond the 2.5D nature of traditional FFF printers and print material out of the $xy$\nobreakdash-plane in a true 3D fashion.
-Printing in such a manner, hereafter referred to as \emph{off-axis} printing, will not only enable a decrease in the between layer anisotropic behavior of FFF parts but will also improve part surface finish, decrease the need for support structure, and reduce cycle times.
-
-Moving out of the $xy$\nobreakdash-plane and into off-axis printing will require machines to have more degrees of freedom than the standard three axes currently found on FFF machines.
-The first step in moving into off-axis printing would be to add one rotary axis to a traditional machine allowing material to be deposited out of the $xy$\nobreakdash-plane creating a process similar to fiber winding, a technique commonly used in the fiber composite industry to make cylindrical parts and parts with large aspect ratios. While this additional axis would increase the tool path options, it cannot reach the ends of a part and thus is limited in its applications. A minimum of five axes are required, and may be preferred, to enable printing on all sides of a part.
-
-Several groups have begun work in the off-axis printing field either custom building machines \cite{Song2015, Yerazunis2016} or utilizing six rotary axis serial chain robot, (6R), industrial robots \cite{Hedges2014, Arevo2015, Vurpillat2016}.
-\nomenclature[A]{6R}{6 Rotatory axes serial chain robot}%
-The reasons for their choices will be discussed in section \ref{sec:numberAxes}.
-All of the robot examples have chosen to mount the print head on the robot and all but one use a fixed build platform.
-When a robot mounted extruder and fixed build platform configuration is used the full potential of off-axis printing cannot be achieved for three main reasons: many positions on the part are not reachable, the part cannot be rotated to print overhanging surfaces normal to gravity, and a wide variety of tool paths cannot be continuously printed.
-Because of these limitations a fixed extruder with a robot mounted build platform was chosen for this study in order to achieve the full potential of off-axis printing.
-
-\section{Utilizing Anisotropic Properties}
-While the anisotropic properties of FFF parts are often characterized through mechanical testing, this anisotropy is also found in other material properties including electrical and thermal conductivity.
-Since off-axis printing enables material to be printed out of the $xy$\nobreakdash-plane this anisotropy can now be custom tailored throughout the entire part.
-Such a customized part could include a standard plastic body, printed circuitry that provides power for various internal components, and heat dissipation beads which conduct heat out away from components preventing  over heating.
-
-When using traditional FFF printing it is common to decide upon a build orientation for a part by balancing the amount of support material required, the need for strength between layers, and surface finish.
-An example part and use case which causes challenges during the strength/support structure balance is a hollow cylinder which will be fixed at one end and have a load applied perpendicular to the central axis at the opposite end, Fig.~\ref{fig:cylinder}.
-Printing such a part with its central axis parallel to the $xy$\nobreakdash-plane will produce the strongest part but would require a large amount of internal and external support structure.
-Putting the central axis normal to the $xy$\nobreakdash-plane would eliminate the need for support structure but would also produce an extremely weak part, Fig.~\ref{fig:weak}.
-
-\begin{figure}
-\linethickness{1.2pt}
-\center
-	\subfloat[\label{fig:weak}Standard Printer]
-		{\begin{overpic}[height=6cm, keepaspectratio]{BetweenLayerWeak.pdf}
-		\put(10,10){\vector(0,1){24}}
-		\put(8,34.5){$Z$}
-		\end{overpic}}
-	\subfloat[\label{fig:strong}Off-axis Printer]
-		{\includegraphics[height=6cm]{BetweenLayerStrong.pdf}}
-	\caption{Cylinders with one end fixed subject to side loads. Part~\protect\subref{fig:strong} has beads across layers increasing its strength.}
-	\label{fig:cylinder}
-\end{figure}
-
-With off-axis printing the support/strength trade-off can be greatly reduced for this and other part shapes.
-A central cylinder (cream colored) could be printed normal to the $xy$\nobreakdash-plane without the need for support structure, Fig.~\ref{fig:strong}.
-After this internal material is printed additional beads (red) can be printed across the layers increasing the part's resistance to bending without the need for support structure.
-
-As has been shown for fiber composite parts the angle of fiber layup combined with the part's loading scenario has a significant effect on the part's performance \cite{Badie2011}.
-Recent work has been done relating the failure mechanisms of additive manufactured (AM) parts to fiber composites through the Osswald-Osswald model \cite{Obst2017, Osswald2017}.
-\nomenclature[A]{AM}{Additive Manufacturing}%
-With these studies in mind a new loading scenario is imagined for the aforementioned cylinder.
-The bottom end of the cylinder is fixed as before but now a torque about the central axis is applied to the opposite end of the cylinder.
-In this scenario the load lines are no longer straight along the length of the part but instead are spiraled around the outside.
-It is hypothesized that an off-axis printer's ability to print specifically tailored beads in a helix pattern around the length of the cylinder will enable it to produce a part which outperforms an identically sized cylinder printed with a traditional 2.5D tool path.
-These spiraled beads would be more closely aligned with the force lines than other tool paths which should make the part stronger and more durable.
-
-\section{Improve Surface Finish}
-One quality where FFF parts traditionally have poorer performance than other additive manufacturing technologies, such as vat polymerization or material jetting, is surface finish.
-The layer by layer approach of traditional 2.5D printing creates a stair-step finish on parts which is especially noticeable on surfaces nearly parallel to the $xy$\nobreakdash-plane.
-To counteract this stair-step finish an operator has only two options.
-Option one is to position the part such that critical surfaces are either parallel or perpendicular to the build platform.
-Surfaces parallel to the build platform typically have the best surface finish since the nozzle is normal to the surface while printing enabling the flat area around the nozzle's orifice to smooth beads as they are deposited but perpendicular surfaces can produce reasonably good finishes as well.
-Option two is to reduce the layer height on the print.
-While this option is easy to implement and often produces good results, it also increases build time and can increase chances of print failure.
-Build time is inversely proportional to layer height meaning a reduction in layer height from \SI{0.2}{mm} to~\SI{0.1}{mm} to ``make the surface finish a \emph{little} better'' doubles the print time.
-
-When layer height is reduced, it not only reduces the layer height for the outer layer thereby reducing surface roughness but it also reduces the layer height for the infill, increasing build time without any significant increase in part quality%
-\footnote{Some slicing software has begun adding options to control shell and infill layer heights separately.}.
-Off-axis printing allows the part to be finished with the nozzle normal to the part's surface providing quality surface finishes even with thick infill layers.
-Comparing Figure~\ref{fig:pyramidslower} to Figure~\ref{fig:pyramidfaster}, it is expected that Figure~\ref{fig:pyramidfaster} would be printed in less time than Figure~\ref{fig:pyramidslower} since it has thicker infill layers and Figure~\ref{fig:pyramidfaster} would have a better surface finish since it was finished with the nozzle normal to the part's surface.
-
-\begin{figure}[]
-\linethickness{1.2pt}
-\center
-	\subfloat[\label{fig:pyramidslower}Standard Printer]{
-		\begin{overpic}[width=0.45\textwidth, keepaspectratio]
-			{PyramidSlower.pdf}
-			\put(-3,1){\vector(0,1){24}}
-			\put(-5,25.5){$Z$}
-			\put(13,30){$\frac{h}{2}$}
-		\end{overpic}}
-	\quad
-	\subfloat[\label{fig:pyramidfaster}Off-axis Printer]{
-		\begin{overpic}[width=0.45\textwidth, keepaspectratio]
-			{PyramidFaster.pdf}
-			\put(86,30){$h$}
-		\end{overpic}}
-	\caption{Pyramids showing reduced print time and better surface finish with off-axis printing.}
-	\label{fig:pyramid}
-\end{figure}
-
-\begin{figure}[]
-\linethickness{1.2pt}
-\center
-	\subfloat[\label{fig:moresupport}Standard Printer]{
-		\begin{overpic}[width=0.45\textwidth, keepaspectratio]
-			{ReduceSupport_worse.pdf}
-			\put(114,0){\vector(0,1){24}}
-			\put(112,24.5){$Z$}
-		\end{overpic}}
-	\quad
-	\subfloat[\label{fig:less_support}Off-axis Printer]{
-		\begin{overpic}[width=0.46\textwidth, keepaspectratio]
-			{ReduceSupport_Better.pdf}
-		\end{overpic}}
-	\\
-	\subfloat{
-		\begin{overpic}[width=0.9\textwidth, keepaspectratio]
-			{ReduceSupportKey.pdf}
-			\put(4,0.2){$xy$-plane Print}
-			\put(36,0.2){Off-axis Print}
-			\put(69,0.2){Support Structure}
-		\end{overpic}}
-	\caption{Reducing support structure.}
-	\label{reducedsupport}
-\end{figure}
-
-\section{Decrease Support Structure}
-Support structure performs two functions in FFF printing.
-The first function, as the name implies, is to support material which would otherwise need to be printed in free space.
-The second function of support structure is to reduce warpage in areas with large overhangs.
-In both of these functions support structures represent non-value added effort which increases the amount of time and material needed to make a print and requires additional post processing to remove the supports and fix surface defects which supports can create.
-Off-axis printing will not always be able to eliminate support structure%
-\footnote{Nested hollow spheres are an example of a part which would require support structure even with an off-axis printer. To remove the internal supports small holes could be placed in each sphere allowing the support to be dissolved.}
-but many designs would see a reduction in the amount of support structure required if this technique was used.
-
-
-
-Figure~\ref{reducedsupport} provides an example part and print orientation where all of the support structure could be removed with off-axis printing.
-The stem of the \textbf{T} would be printed first with each layer laid down in the $xy$\nobreakdash-plane just like a standard printer.
-Next the part would be rotated to make either the $xz$ or $yz$\nobreakdash-plane normal to the nozzle enabling one half of the crossbar to be printed in a standard layer by layer fashion.
-Finally the part would be rotated \ang{180} about the $z$\nobreakdash-axis and the remaining half of the crossbar would be printed.
-
 
 \end{document}

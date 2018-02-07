@@ -2,41 +2,15 @@
 
  \nomgroup{A}
 
-  \item [{6R}]\begingroup 6 Rotatory axes serial chain robot\nomeqref {1.0}
-		\nompageref{2}
   \item [{AM}]\begingroup Additive Manufacturing\nomeqref {1.0}
-		\nompageref{2}
-  \item [{CAM}]\begingroup Computer Aided Manufacturing\nomeqref {6.0}
-		\nompageref{32}
-  \item [{EOA}]\begingroup End Of Arm\nomeqref {5.0}\nompageref{29}
-  \item [{FDM}]\begingroup Fused Deposition Modeling\nomeqref {1.0}
+		\nompageref{1}
+  \item [{CAD}]\begingroup Computer Aided Design\nomeqref {1.0}
+		\nompageref{1}
+  \item [{FDM}]\begingroup Fused Deposition Modeling\texttrademark\nomeqref {1.0}
 		\nompageref{1}
   \item [{FFF}]\begingroup Fused Filament Fabrication\nomeqref {1.0}
 		\nompageref{1}
-  \item [{PVA}]\begingroup Polyvinyl Alcohol\nomeqref {8.0}
-		\nompageref{54}
-  \item [{PWM}]\begingroup Pulse Width Modulation\nomeqref {6.0}
-		\nompageref{39}
-  \item [{TCP}]\begingroup Tool Center Point\nomeqref {6.0}
-		\nompageref{38}
-  \item [{TIR}]\begingroup Total Indicator Runout\nomeqref {6.0}
-		\nompageref{37}
-
- \nomgroup{S}
-
-  \item [{$\sigma$}]\begingroup Stress \nomunit{\si{Pa}}\nomeqref {7.4}
-		\nompageref{46}
-  \item [{$\theta_H$}]\begingroup Helix angle \nomunit{\si{\degree}}\nomeqref {7.1}
-		\nompageref{44}
-  \item [{$c$}]\begingroup Circumference \nomunit{\si{mm}}\nomeqref {7.1}
-		\nompageref{44}
-  \item [{$I_x$}]\begingroup Area moment of inertia \nomunit{\si{m^4}}\nomeqref {7.4}
-		\nompageref{46}
-  \item [{$n$}]\begingroup Number of beads \nomunit{-}\nomeqref {7.1}
-		\nompageref{44}
-  \item [{$r$}]\begingroup Radius \nomunit{\si{m}}\nomeqref {7.4}
-		\nompageref{46}
-  \item [{$W$}]\begingroup Desired path width \nomunit{\si{mm}}\nomeqref {7.1}
-		\nompageref{44}
+  \item [{RP}]\begingroup Rapid Prototyping\nomeqref {1.0}
+		\nompageref{1}
 
 \end{thenomenclature}

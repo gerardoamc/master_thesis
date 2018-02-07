@@ -13,6 +13,7 @@
 % arara: pdflatex
 \documentclass[ 12pt, letterpaper, twoside, openany]{book}
 
+%These files define a lot of the formatting and commands used throughout the document
 \input{02_Inputs}
 \input{03_PGF_Plot}
 \input{04_Colors}
@@ -37,7 +38,7 @@
                 \renewcommand{\contentsname}{Table of Contents}
                 \tableofcontents
                 
-               % \printnomenclature
+                \printnomenclature
                % \addcontentsline{toc}{section}{Nomenclature}
                % \listoffigures
                %\addcontentsline{toc}{section}{\listfigurename}
@@ -48,7 +49,7 @@
         \mainmatter
                 \pagestyle{fancy} % Needed again because it is turned off in some
                                                   % previous sections.                
-                %\include{motivation}
+                \include{motivation}
                 %\include{scislice};
                 %\include{machineConfigs}
                 %\include{challenges}
@@ -58,7 +59,7 @@
                 %\include{conclusion}
 %               \include{examples}
         
-        %\printbibliography
+       \printbibliography
         
         
         

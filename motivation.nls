@@ -1,0 +1,10 @@
+\begin{thenomenclature} 
+
+ \nomgroup{A}
+
+  \item [{AM}]\begingroup Additive Manufacturing\nomeqref {1.0}
+		\nompageref{1}
+  \item [{RP}]\begingroup Rapid Prototyping\nomeqref {1.0}
+		\nompageref{1}
+
+\end{thenomenclature}
