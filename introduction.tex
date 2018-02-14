@@ -2,8 +2,9 @@
 
 \documentclass[main.tex]{subfiles}
 \begin{document}
-\chapter{Introduction}
-
+	%The next two lines ensure that the Introduction is a unnumbered chapter that shows up in the index
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction} \markboth{Introduction}{}
 %Chapter body
 \emph{Additive Manufacturing} (AM) is an umbrella term that encompasses all fabrication techniques where the final geometry of the part is obtained through superposition of material in a layer-by-layer basis \cite{Gibson2015}. Developed in the 1980s, this manufacturing technique permits immensely shorter part development cycles, since the transition from a 3D \emph{Computer Aided Design} (CAD) to part fabrication only requires one intermediate step: the use of a slicing engine that converts the geometry of the object into machine instructions \cite{Gibson2015}. For this reason, AM technologies were initially employed exclusively for prototype development and were referred to as \emph{Rapid Prototyping techniques} (RP). However, recent innovations in the field have caused AM to be perceived as a legitimate manufacturing technology since it is also capable of reproducing complex geometries unattainable through other means \cite{Gibson2015}.
 
@@ -13,7 +14,7 @@ While offering great advantages over traditional part fabrication methods, AM co
 
 This research applies a novel criterion, tailored for anisotropic materials, to develop a failure surface for FFF parts through mechanical testing of coupons under various types of loading conditions. Certain test specimens were produced using a unique, in house developed off-axis 3D printer that allowed production of coupons in unconventional configurations. Such surface can be an invaluable tool in part design, since catastrophic failure can be prevented in the early stages of part development. This could potentially allow a broader embrace of FFF as a legitimate manufacturing technique in highly demanding engineering fields, such as the aerospace or automotive industries -where part failure is to be avoided at all costs.
 
-This work offers a comprehensive overview of AM technologies and FFF in Chapter 2. Chapter 3 details the failure criterion used, as well as outlining its advantages over similar criteria. Chapters 4 through ? detail the experimental setup followed, as well as outlining noteworthy results. Finally, Conclusions and Recommendations are given in Chapter ?? in the hopes of guiding future work on the topic. %REMEMBER TO MODIFY SPECIFICS OF THE TEXT HERE!.
+This work offers a comprehensive overview of AM technologies and FFF in Chapter 1. Chapter 2 details the failure criterion used, as well as outlining its advantages over similar criteria. Chapters 3 through ? detail the experimental setup followed, as well as outlining noteworthy results. Finally, Conclusions and Recommendations are given in Chapter ?? in the hopes of guiding future work on the topic. %REMEMBER TO MODIFY SPECIFICS OF THE TEXT HERE!.
 
 %Nomenclature introduced in this chapter:
 \nomenclature[A]{AM}{Additive Manufacturing}% 

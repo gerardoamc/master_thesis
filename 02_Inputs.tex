@@ -101,24 +101,24 @@
 \usepackage{epigraph} % Only used in the SciSlice chapter
 
 %------------------------------------------------------------------------------------		
-%Hyperlinks einfügen und PDF Einstellungen 
+%Hyperlinks and PDF Settings 
 \usepackage[
-	bookmarksopen =false, 				% Anzeigen der Bookmarks beim Öffen des Dokuments
-	pdftoolbar =true, 						% Anzeigen der Acrobat toolbar
-	bookmarksnumbered =true,			% Abschnittsnummer anzeigen
-	pdfpagelabels = false, 				% Orginalseitenzahl anzeigen
-	%plainpages = false, 					% Leere Seiten
+	bookmarksopen =false, 				% Display bookmarks when the document is opened
+	pdftoolbar =true, 					% Display Acrobat reader toolbar
+	bookmarksnumbered =true,			% Display section numbers
+	pdfpagelabels = false, 				% Display original page numbers
+	%plainpages = false, 				% Blank pages
 	hyperfootnotes=true,
-	pdfpagelayout = TwoPageRight, % Anzeigen des PDF beim Öffnen (2-seitig)
+	pdfpagelayout = TwoPageRight, 		% Open PDF as 2 sided when opened	
 ]{hyperref}
-
-%Hyperref formatieren
+%Hyperref format
 \hypersetup{
-	colorlinks=true,	% Hyperlinks einfärben, bei "`False"' wird es in rote Rahmen gesetzt
-	linkcolor=blue,		% Farbe des verlinkten Textes, Dokument-interne Links
-	citecolor=blue,	% Farbe des verlinkten Textes, Links zum Literaturverzeichnis
-	pdftitle = {Robotic Off-Axis Fused Filament Fabrication},					% Titel im PDF
-	pdfsubject = {Thesis 2017},							% Beschreibung im PDF
-	pdfauthor = {Luke Van Hulle},					% Autor im PDF
-	pdfkeywords = { } 			% Beschreibung im PDF
+	colorlinks=true,	% Hyperlinks are colored
+	linkcolor=blue,		% Color of internal links (within document)
+	citecolor=blue,	    % Color of internal links to the Reference page (within document)
+	urlcolor=blue,		% Color of URLs (external) - default is magenta.
+	pdftitle = {Robotic Off-Axis Fused Filament Fabrication},
+	pdfsubject = {Thesis 2018},
+	pdfauthor = {Gerardo A. Mazzei Capote},
+	pdfkeywords = { },	
 }

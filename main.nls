@@ -2,15 +2,14 @@
 
  \nomgroup{A}
 
-  \item [{AM}]\begingroup Additive Manufacturing\nomeqref {1.0}
+  \item [{AM}]\begingroup Additive Manufacturing\nomeqref {0}
 		\nompageref{2}
-  \item [{CAD}]\begingroup Computer Aided Design\nomeqref {1.0}
+  \item [{CAD}]\begingroup Computer Aided Design\nomeqref {0}
 		\nompageref{2}
-  \item [{FDM}]\begingroup Fused Deposition Modeling\texttrademark\nomeqref {1.0}
+  \item [{FDM}]\begingroup Fused Deposition Modeling\texttrademark\nomeqref {0}
 		\nompageref{2}
-  \item [{FFF}]\begingroup Fused Filament Fabrication\nomeqref {1.0}
+  \item [{FFF}]\begingroup Fused Filament Fabrication\nomeqref {0}
 		\nompageref{2}
-  \item [{RP}]\begingroup Rapid Prototyping\nomeqref {1.0}
-		\nompageref{2}
+  \item [{RP}]\begingroup Rapid Prototyping\nomeqref {0}\nompageref{2}
 
 \end{thenomenclature}
