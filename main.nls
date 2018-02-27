@@ -12,8 +12,8 @@
 		\nompageref{2}
   \item [{RP}]\begingroup Rapid Prototyping\nomeqref {0}\nompageref{2}
   \item [{SLA}]\begingroup Stereolithography\nomeqref {1.0}
-		\nompageref{4}
+		\nompageref{5}
   \item [{SLS}]\begingroup Selective Laser Sintering\nomeqref {1.0}
-		\nompageref{4}
+		\nompageref{5}
 
 \end{thenomenclature}
