@@ -24,7 +24,7 @@ While all AM technologies operate on the same basic process flow described above
 	\item \textbf{Vat Photopolymerization}: In this AM process, a liquid photopolymer is selectively cured by a light source. \emph{Stereolithography} (SLA), arguably the first AM technology, belongs to this category. Due to the nature of this technique, the only materials used are photopolymers \cite{ASTM52900,3DHubs2018}.
 \end{enumerate} 
 
-\subsection{Advantages and Disadvantages}\label{subsec:AMAdDis} 
+\subsection{Advantages, Disadvantages and Success Stories}\label{subsec:AMAdDis} 
 Since AM processes allow a relatively direct conversion of a CAD model into a constructed object, they were originally exclusively used for prototype development. For this reason, they were initially classified as \textquotedblleft \emph{Rapid Prototyping}\textquotedblright~(RP) technologies. This terminology is still used today, however, it is being superseded by \emph{Additive Manufacturing} since its potential to become a proper fabrication technique exists \cite{Gibson2015}. However, while being capable of quickly jumping from part design to manufacturing is a great advantage, AM has its own set of drawbacks. Table \ref{tab:AM_AdDis} summarizes the most noteworthy set of advantages and disadvantages typical of most AM technologies.
 
 \begin{table}[h]
@@ -44,13 +44,32 @@ Since AM processes allow a relatively direct conversion of a CAD model into a co
 	\end{tabu}
 \end{table}   
 
-Out of all the described advantages and disadvantages, the high anisotropy of AM parts is responsible for the slow embrace of AM in highly demanding engineering fields -such as the aerospace and automotive industries. The highly anisotropic mechanical behavior makes it extremely difficult to predict part failure, and therefore, it can't be implemented in engineering applications where catastrophic failure is to be avoided at all costs. Even so, success stories of implementation of AM are abundant. Below is a number of relatively recent examples:
+Out of all the described advantages and disadvantages, the high anisotropy of AM parts is responsible for the slow embrace of AM in highly demanding engineering fields -such as the aerospace and automotive industries. The highly anisotropic mechanical behavior makes it extremely difficult to predict part failure, and therefore, it can't be implemented in engineering applications where catastrophic failure is to be avoided at all costs. Even so, success stories of implementation of AM in industrial environments are abundant. Below is a number of relatively recent examples:
 
 \begin{itemize}
 	\item \textbf{Volkswagen Autoeuropa}: This automotive assembly plant implemented the use of FFF machines to manufacture tools, jigs and fixtures used in their assembly line. They now produce 93\% of the tools that were historically externally sourced, and have reportedly cut their tool development time and costs by 95\% and 91\% respectively \cite{deVries2017}.
 	\item \textbf{General Electric}: GE is currently producing in Alabama a complex fuel nozzle injector for the LEAP jet engine, using powder based, metal AM. The complex geometry of this component could not be manufactured by any other manufacturing technique. The production plant is expected to have 50 AM machines producing 35,000 fuel nozzle injectors annually by 2020 \cite{GEAdditive2016}. 
+	\item \textbf{Adidas and New Balance}: Both shoe companies have developed separate approaches to constructing highly optimized, 3D printed midsoles for high performance running sneakers. New Balance makes use of SLS technology to build the intricate geometry of their \textquotedblleft \emph{Zante Generate}\textquotedblright~sneaker, using powdered TPU elastomer as the parent material. The designed honeycomb structure of the midsole, combined with the flexible material used, are supposed to improve the comfort and support brought by the shoe \cite{NewBalance2016}. Adidas on the other hand chose to develop the \textquotedblleft \emph{AlphaEDGE 4D LTD}\textquotedblright~running shoe using the CLIP technology by Carbon3D. While the cell geometry in  the midsole is also supposed to bring performance and comfort improvements, the final ambition of Adidas is to perfect the technology to a point where a customer can simply go to a shoe store, have their feet scanned, and receive a fully customized shoe with a 3D printed midsole that fits their particular needs \cite{Matisons2015,Saunders2018}. In both cases, the geometry of the midsole can only be produce by AM. The intricate structures in the midsoles can be seen in Figure \ref{fig:AMshoes}.
+		
 \end{itemize}
-\section{Fused Filament Fabrication}
+
+\begin{figure}[h]
+	\center
+	\subfloat[New Balance Zante Generate~\cite{NewBalance2016}\label{fig:NBZG}]{%
+		\includegraphics[height=6cm, keepaspectratio]{NB_generate}
+	}
+	\hfill
+	\subfloat[Adidas AlphaEdge 4D LTD~\cite{Saunders2018}\label{fig:adidas}]{%
+		\includegraphics[height=6cm, keepaspectratio]{alphaedge_4D}
+	}
+	\caption{Shoes with AM midsoles}
+	\label{fig:AMshoes}
+\end{figure}
+
+Note that in the cases presented, the main reason behind the usage of AM was either reduction expenses associated with producing small batches of parts, or the capability of reproducing a unique and complex geometry. This is a trend that is observed in most of the literature describing implementation of AM into industrial scenarios.
+
+While the advantages and disadvantages described here cover the field of AM as a whole, each technique comes with its own set of pros and cons that may make it the preferred method to reproduce a particular product or geometry. This work, however, focuses solely on FFF. The specifics of this process are described in detail in Section~\ref{sec:FFF}.
+\section{Fused Filament Fabrication}\label{sec:FFF} 
 
 %Nomenclature introduced in this chapter:
 \nomenclature[A]{SLA}{Stereolithography}% 
