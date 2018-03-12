@@ -72,8 +72,15 @@ Note that in the cases presented, the main reason behind the usage of AM was eit
 While the advantages and disadvantages described here cover the field of AM as a whole, each technique comes with its own set of pros and cons that may make it the preferred method to reproduce a particular product or geometry. This work, however, focuses solely on FFF. The specifics of this process are described in detail in Section~\ref{sec:FFF}.
 \section{Fused Filament Fabrication}\label{sec:FFF} 
 \emph{Fused Filament Fabrication}~(FFF) is an AM technology where the final geometry of the part is obtained through controlled extrusion of a liquid, self-hardening material -usually a thermoplastic polymer in molten state \cite{Gibson2015}. Originally developed by Stratasys in the 1980s under the \textendash~still trademarked \textendash~\emph{Fused Deposition Modeling}~(FDM\texttrademark) moniker, it has recently become one of the most widely used AM techniques due to the advent of low-cost, desktop FFF machines in the early 2010s caused by the expiration of key patents from Stratasys \cite{Gibson2015,Capote2017}. 
+
 \pagebreak
 \subsection{The FFF process}\label{ssec:FFFmach}
+Like all AM technologies, the FFF process starts in a computer with a CAD model converted to the \emph{.stl} file format. The geometry is then converted to machine instructions through a \emph{slicing engine}, where the user inputs process parameters. Finally the \emph{toolpath} is executed by the FFF printer, building the object in a layer-by-layer basis -sometimes referred to as \emph{2.5D} printing. Figure \ref{fig:FFFflow} shows an abridged version of the process. The \emph{z} axis indicates the intended build direction. 
+\begin{figure}[h]
+	\center
+	\includegraphics[width=0.95\textwidth]{FFF_flow}
+	\caption{From left to right: stl, toolpath and final part} \label{fig:FFFflow}
+\end{figure}
 \begin{figure}[h]
 	\center
 	\includegraphics[height=4.5cm]{nozzle}
