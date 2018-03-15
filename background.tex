@@ -75,19 +75,22 @@ While the advantages and disadvantages described here cover the field of AM as a
 
 \pagebreak
 \subsection{The FFF process}\label{ssec:FFFmach}
-
+At its core, the typical FFF machine consists of a heated build surface commonly referred to as a \emph{build plate}, a specialized tool known as a \emph{printhead}, and the fabrication material -supplied in the form of spools of thermoplastic polymer filament. The printhead is itself composed of a heating element, a nozzle, and some form of driving mechanism that pushes the filament downward. As the thermoplastic material is moved through the heated chamber, polymer melt is formed and extruded through the opening at the tip of the nozzle. The molten polymer can then be deposited upon the build plate, where controlled movements of the printhead and the fabrication surface gradually construct the final geometry of the part in a layer-by-layer build approach. The typical setup of an FFF machine can be seen in Figure \ref{fig:machconfig}. In this example, the printhead moves in the \emph{x-y} plane, while the build plate moves in the \emph{z} direction. 
+ 
 \begin{figure}[h]
 	\center
-	\subfloat[FFF printhead\label{fig:FFFnoz}]{%
+	\subfloat[FFF printhead cross section\label{fig:FFFnoz}]{%
 		\includegraphics[height=6cm, keepaspectratio]{nozzle}
 		}
 	\hfill
 	\subfloat[Typical FFF machine\label{fig:FFFmach}]{%
 		\includegraphics[height=6cm, keepaspectratio]{printer_layout}
 		}
-	\caption{The typical FFF machine configuration} \label{fig:machconfig}
+	\caption{The basic FFF machine configuration} \label{fig:machconfig}
 \end{figure}
-Like all AM technologies, the FFF process starts in a computer with a CAD model converted to the \emph{.stl} file format. The geometry is then translated to machine instructions through a \emph{slicing engine}, where the user inputs process parameters. Finally the \emph{toolpath} is executed by the FFF printer, building the object in a layer-by-layer basis -sometimes referred to as \emph{2.5D} printing. Figure \ref{fig:FFFflow} shows an abridged version of the process. The \emph{z} axis indicates the intended build direction. 
+Like all AM technologies, the FFF process starts in a computer with a CAD model converted to the \emph{.stl} file format. The geometry is then translated to machine instructions through a \emph{slicing engine}, where the user inputs a plethora of process parameters that include nozzle and build plate temperatures, print speed, layer thickness and build orientation. Finally the \emph{toolpath} is executed by the FFF printer, building the object in a layer-by-layer basis -sometimes referred to as \emph{2.5D} printing. Figure \ref{fig:FFFflow} shows an abridged version of the process. The \emph{z} axis indicates the intended build direction. Note how some of the finer details in the original CAD file are lost in the printed part -due in part to the layer height and build orientation selected.
+
+\pagebreak
 \begin{figure}[h]
 	\center
 	\includegraphics[width=0.95\textwidth]{FFF_flow}
