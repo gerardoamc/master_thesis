@@ -67,7 +67,7 @@ recent examples:
 	\label{fig:AMshoes}
 \end{figure}
 
-Note that in the cases presented, the main reason behind the usage of AM was either reduction expenses associated with producing small batches of parts, or the capability of reproducing a unique and complex geometry. This is a trend that is observed in most of the literature describing implementation of AM into industrial scenarios.
+Note that in the cases presented, the main reason behind the usage of AM was either reduction of expenses associated with producing small batches of parts, or the capability of reproducing a unique and complex geometry. This is a trend that is observed in most of the literature describing implementation of AM into industrial scenarios.
 
 While the advantages and disadvantages described here cover the field of AM as a whole, each technique comes with its own set of pros and cons that may make it the preferred method to reproduce a particular product or geometry. This work, however, focuses solely on FFF. The specifics of this process are described in detail in Section~\ref{sec:FFF}.
 \section{Fused Filament Fabrication}\label{sec:FFF} 
@@ -97,23 +97,26 @@ Like all AM technologies, the FFF process starts in a computer with a CAD model 
 	\caption{From left to right: stl, toolpath and final part} \label{fig:FFFflow}
 \end{figure}
 
-The process is capable of producing complex geometries that would be otherwise hard to reproduce through other polymer processing techniques, such as injection molding. It is however bound by the disadvantages described in \ref{subsec:AMAdDis}, as well its own unique set of drawbacks. Namely:
+The process is capable of producing complex geometries that would be otherwise hard to reproduce through other polymer processing techniques, such as injection molding. However, it is bound by the disadvantages described in \ref{subsec:AMAdDis}, as well its own unique set of drawbacks. Namely:
 
 \begin{itemize}
-	\item the circular nozzle of the orifice makes FFF incapable of reproducing sharp corners, limits the size of the smallest reproducible feature, and causes the final part to be filled with voids \textendashoriginating in the junction of circular beads. These problems can be seen in Figure \ref{fig:FFFpartprob}. A 90\
+	\item The circular orifice in the nozzle makes FFF incapable of reproducing sharp corners, limits the size of the smallest reproducible feature, and causes the final part to be filled with voids \textendash originating in the junction of circular beads. These problems can be seen in Figure \ref{fig:FFFpartprob}: On the left, a comparison of a 90$^\circ$ corner planned in the toolpath and the final geometry of the printed bead is shown. Note the rounded nature of the turn. On the right, a cross section of an FFF part obtained through \emph{Micro Computer Tomography} ($\mu$CT) shows the voids that form during the printing process.
+	\begin{figure}[h]
+		\center
+		\subfloat[FFF toolpath vs. printed bead\label{fig:FFFbead}]{%
+			\includegraphics[height=6cm, keepaspectratio]{Toolpath}
+		}
+		\hfill
+		\subfloat[cross section of an FFF part\label{fig:FFFuCT}]{%
+			\includegraphics[height=6cm, keepaspectratio]{uCT_FFF}
+		}
+		\caption{Typical FFF part mesostructure and its origin} \label{fig:FFFpartprob}
+	\end{figure}
+	\item The junction of adjacent beads behaves akin to a polymeric weld, and therefore has inferior mechanical properties than the bulk material \cite{Capote2017}. This, coupled with the aforementioned voids causes FFF parts to behave in extremely anisotropic manner, with diminished mechanical performance when compared to traditional polymer processing technologies such as injection molding or extrusion \cite{Capote2017}.
 \end{itemize}
-\begin{figure}[h]
-	\center
-	\subfloat[FFF toolpath vs. printed bead\label{fig:FFFbead}]{%
-		\includegraphics[height=6cm, keepaspectratio]{Toolpath}
-	}
-	\hfill
-	\subfloat[cross section of an FFF part\label{fig:FFFuCT}]{%
-		\includegraphics[height=6cm, keepaspectratio]{uCT_FFF}
-	}
-	\caption{Typical FFF part mesostructure} \label{fig:FFFpartprob}
-\end{figure}
+
 %Nomenclature introduced in this chapter:
 \nomenclature[A]{SLA}{Stereolithography}% 
 \nomenclature[A]{SLS}{Selective Laser Sintering}%
+\nomenclature[A]{$\mu$CT}{Micro Computer Tomography}%
 \end{document}
