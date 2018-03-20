@@ -97,7 +97,7 @@ Like all AM technologies, the FFF process starts in a computer with a CAD model 
 	\caption{From left to right: stl, toolpath and final part} \label{fig:FFFflow}
 \end{figure}
 
-The process is capable of producing complex geometries that would be otherwise hard to reproduce through other polymer processing techniques, such as injection molding. However, it is bound by the disadvantages described in \ref{subsec:AMAdDis}, as well its own unique set of drawbacks. Namely:
+The process is capable of producing complex geometries that would be otherwise hard to reproduce through other polymer processing techniques, such as injection molding. However, it is bound by the disadvantages described in Section \ref{subsec:AMAdDis}, as well its own unique set of drawbacks. Namely:
 
 \begin{itemize}
 	\item The circular orifice in the nozzle makes FFF incapable of reproducing sharp corners, limits the size of the smallest reproducible feature, and causes the final part to be filled with voids \textendash originating in the junction of circular beads. These problems can be seen in Figure \ref{fig:FFFpartprob}: On the left, a comparison of a 90$^\circ$ corner planned in the toolpath and the final geometry of the printed bead is shown. Note the rounded nature of the turn. On the right, a cross section of an FFF part obtained through \emph{Micro Computer Tomography} ($\mu$CT) shows the voids that form during the printing process.
@@ -112,9 +112,16 @@ The process is capable of producing complex geometries that would be otherwise h
 		}
 		\caption{Typical FFF part mesostructure and its origin} \label{fig:FFFpartprob}
 	\end{figure}
-	\item The junction of adjacent beads behaves akin to a polymeric weld, and therefore has inferior mechanical properties than the bulk material \cite{Capote2017}. This, coupled with the aforementioned voids causes FFF parts to behave in extremely anisotropic manner, with diminished mechanical performance when compared to traditional polymer processing technologies such as injection molding or extrusion \cite{Capote2017}.
+	\item The junction of adjacent beads behaves akin to a polymeric weld, and therefore has inferior mechanical properties than the bulk material \cite{Capote2017}. This, coupled with the aforementioned voids causes FFF parts to behave in extremely anisotropic manner, with diminished mechanical performance when compared to traditional polymer processing technologies \textendash~such as injection molding or extrusion \cite{Capote2017}.
 \end{itemize}
 
+This last disadvantage is responsible for the slow embrace of FFF as a proper manufacturing technique, in particular, in fields where part failure is to be avoided at all costs \textendash~namely the aerospace and automotive industries. Recent efforts to characterize the mechanical behavior of FFF parts are presented in Section \ref{ssec:mechPropFFF}.
+
+\subsection{Mechanical Properties of FFF parts}\label{ssec:mechPropFFF}
+
+Efforts have been made to characterize the anisotropy of FFF parts. However, due to the lack of testing standards and problems during toolpath planning, most studies focus solely in the tensile mechanical performance of FFF coupons.  
+
+Recent studies performed by Koch \emph{et al.} \cite{Koch2017} and Rankouhi \emph{et al.} \cite{Rankouhi2016} indicate that the final tensile properties of FFF coupons are particularly sensitive to bead orientation and proper mass output through the nozzle. Other process parameters, such as the layer thickness, have varying degrees of impact upon the final tensile strength of the part. 
 %Nomenclature introduced in this chapter:
 \nomenclature[A]{SLA}{Stereolithography}% 
 \nomenclature[A]{SLS}{Selective Laser Sintering}%
