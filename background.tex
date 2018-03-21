@@ -51,7 +51,7 @@ recent examples:
 \begin{itemize}
 	\item \textbf{Volkswagen Autoeuropa}: This automotive assembly plant implemented the use of FFF machines to manufacture tools, jigs and fixtures used in their assembly line. They now produce 93\% of the tools that were historically externally sourced, and have reportedly cut their tool development time and costs by 95\% and 91\% respectively \cite{deVries2017}.
 	\item \textbf{General Electric}: GE is currently producing in Alabama a complex fuel nozzle injector for the LEAP jet engine, using powder based, metal AM. The complex geometry of this component could not be manufactured by any other manufacturing technique. The production plant is expected to have 50 AM machines producing 35,000 fuel nozzle injectors annually by 2020 \cite{GEAdditive2016}. 
-	\item \textbf{Adidas and New Balance}: Both shoe companies have developed separate approaches to constructing highly optimized, 3D printed midsoles for high performance running sneakers. New Balance makes use of SLS technology to build the intricate geometry of their \textquotedblleft \emph{Zante Generate}\textquotedblright~sneaker, using powdered TPU elastomer as the parent material. The designed honeycomb structure of the midsole, combined with the flexible material used, are supposed to improve the comfort and support brought by the shoe \cite{NewBalance2016}. Adidas on the other hand chose to develop the \textquotedblleft \emph{AlphaEDGE 4D LTD}\textquotedblright~running shoe using the CLIP technology by Carbon3D. While the cell geometry in  the midsole is also supposed to bring performance and comfort improvements, the final ambition of Adidas is to perfect the technology to a point where a customer can simply go to a shoe store, have their feet scanned, and receive a fully customized shoe with a 3D printed midsole that fits their particular needs \cite{Matisons2015,Saunders2018}. In both cases, the geometry of the midsole can only be produce by AM. The intricate structures in the midsoles can be seen in Figure \ref{fig:AMshoes}.
+	\item \textbf{Adidas and New Balance}: Both shoe companies have developed separate approaches to constructing highly optimized, 3D printed midsoles for high performance running sneakers. New Balance makes use of SLS technology to build the intricate geometry of their \textquotedblleft \emph{Zante Generate}\textquotedblright~sneaker, using powdered TPU elastomer as the parent material. The designed honeycomb structure of the midsole, combined with the flexible material used, is supposed to improve the comfort and support brought by the shoe \cite{NewBalance2016}. Adidas on the other hand chose to develop the \textquotedblleft \emph{AlphaEDGE 4D LTD}\textquotedblright~running shoe using the CLIP technology by Carbon3D. While the cell geometry in  the midsole is also supposed to bring performance and comfort improvements, the final ambition of Adidas is to perfect the technology to a point where a customer can simply go to a shoe store, have their feet scanned, and receive a fully customized shoe with a 3D printed midsole that fits their particular needs \cite{Matisons2015,Saunders2018}. In both cases, the geometry of the midsole can only be produced by AM. The intricate structures in the midsoles can be seen in Figure \ref{fig:AMshoes}.
 		
 \end{itemize}
 \begin{figure}[h]
@@ -107,21 +107,33 @@ The process is capable of producing complex geometries that would be otherwise h
 			\includegraphics[height=6cm, keepaspectratio]{Toolpath}
 		}
 		\hfill
-		\subfloat[cross section of an FFF part\label{fig:FFFuCT}]{%
+		\subfloat[Cross section of an FFF part\label{fig:FFFuCT}]{%
 			\includegraphics[height=6cm, keepaspectratio]{uCT_FFF}
 		}
 		\caption{Typical FFF part mesostructure and its origin} \label{fig:FFFpartprob}
 	\end{figure}
-	\item The junction of adjacent beads behaves akin to a polymeric weld, and therefore has inferior mechanical properties than the bulk material \cite{Capote2017}. This, coupled with the aforementioned voids causes FFF parts to behave in extremely anisotropic manner, with diminished mechanical performance when compared to traditional polymer processing technologies \textendash~such as injection molding or extrusion \cite{Capote2017}.
+	\item The junction of adjacent beads behaves akin to a polymeric weld, and has inferior mechanical properties than the bulk material \cite{Capote2017}. This, coupled with the aforementioned voids which can act as stress concentrators, causes FFF parts to behave in extremely anisotropic manner with diminished mechanical performance when compared to analogous parts obtained through traditional polymer processing technologies \textendash~such as injection molding \cite{Capote2017}.
 \end{itemize}
 
-This last disadvantage is responsible for the slow embrace of FFF as a proper manufacturing technique, in particular, in fields where part failure is to be avoided at all costs \textendash~namely the aerospace and automotive industries. Recent efforts to characterize the mechanical behavior of FFF parts are presented in Section \ref{ssec:mechPropFFF}.
+This last disadvantage is responsible for the slow embrace of FFF as a proper manufacturing technique. Recent efforts to characterize the mechanical behavior of FFF parts are presented in Section \ref{ssec:mechPropFFF}.
 
 \subsection{Mechanical Properties of FFF parts}\label{ssec:mechPropFFF}
 
-Efforts have been made to characterize the anisotropy of FFF parts. However, due to the lack of testing standards and problems during toolpath planning, most studies focus solely in the tensile mechanical performance of FFF coupons.  
+Efforts have been made to characterize the mechanical anisotropy of FFF parts. However, due to the lack of testing standards and problems during toolpath planning, most studies focus solely in the tensile mechanical performance of FFF coupons. Recent studies performed by Koch \emph{et al.} \cite{Koch2017} and Rankouhi \emph{et al.} \cite{Rankouhi2016} indicate that the final tensile properties of FFF coupons are particularly sensitive to bead orientation and proper mass output through the nozzle. Other process parameters, such as the layer thickness, have varying degrees of impact upon the final tensile strength of the part. In both studies, tensile coupons were printed with bead orientations of 0$^\circ$, 45$^\circ$ and 90$^\circ$ in the \emph{x-y} plane. Results showed that in all the experimental conditions selected, a 0$^\circ$ orientation always behaved closer to the bulk material, whereas a 90$^\circ$ sample always had significantly lower tensile strengths. The 45$^\circ$ samples sat in between both extremes. It is important to note that in both studies, toolpath manipulation was necessary to avoid premature failure of the coupons due to stress concentrators originating in void formation due to the circular nature of the beads. Figure \ref{fig:FFFmechProp} shows some of the results by Koch \emph{et al}. Note the decreasing tensile strength as the bead angle increases from 0 to 90$^\circ$. The geometry corresponds to an ASTM Type I Tensile coupon. Injection molded results are denoted \emph{IM} for comparison.
 
-Recent studies performed by Koch \emph{et al.} \cite{Koch2017} and Rankouhi \emph{et al.} \cite{Rankouhi2016} indicate that the final tensile properties of FFF coupons are particularly sensitive to bead orientation and proper mass output through the nozzle. Other process parameters, such as the layer thickness, have varying degrees of impact upon the final tensile strength of the part. 
+\begin{figure}[h]
+	\center
+	\subfloat[Tensile strength of tensile coupons\label{fig:KochCoup}]{%
+		\includegraphics[height=6cm, keepaspectratio]{lit_mechpropFFF}
+	}
+	\hfill
+	\subfloat[Representation of coupons used\label{fig:KochRes}]{%
+		\includegraphics[height=4cm, keepaspectratio]{lit_mechpropFFF2}
+	}
+	\caption{Results from Koch \emph{et al.} \cite{Koch2017}} \label{fig:FFFmechProp}
+\end{figure}
+
+
 %Nomenclature introduced in this chapter:
 \nomenclature[A]{SLA}{Stereolithography}% 
 \nomenclature[A]{SLS}{Selective Laser Sintering}%
