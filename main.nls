@@ -3,7 +3,7 @@
  \nomgroup{A}
 
   \item [{$\mu$CT}]\begingroup Micro Computer Tomography\nomeqref {1.0}
-		\nompageref{9}
+		\nompageref{10}
   \item [{AM}]\begingroup Additive Manufacturing\nomeqref {0}
 		\nompageref{2}
   \item [{CAD}]\begingroup Computer Aided Design\nomeqref {0}
@@ -14,8 +14,8 @@
 		\nompageref{2}
   \item [{RP}]\begingroup Rapid Prototyping\nomeqref {0}\nompageref{2}
   \item [{SLA}]\begingroup Stereolithography\nomeqref {1.0}
-		\nompageref{9}
+		\nompageref{10}
   \item [{SLS}]\begingroup Selective Laser Sintering\nomeqref {1.0}
-		\nompageref{9}
+		\nompageref{10}
 
 \end{thenomenclature}

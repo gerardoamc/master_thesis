@@ -70,9 +70,9 @@ recent examples:
 Note that in the cases presented, the main reason behind the usage of AM was either reduction of expenses associated with producing small batches of parts, or the capability of reproducing a unique and complex geometry. This is a trend that is observed in most of the literature describing implementation of AM into industrial scenarios.
 
 While the advantages and disadvantages described here cover the field of AM as a whole, each technique comes with its own set of pros and cons that may make it the preferred method to reproduce a particular product or geometry. This work, however, focuses solely on FFF. The specifics of this process are described in detail in Section~\ref{sec:FFF}.
+
 \section{Fused Filament Fabrication}\label{sec:FFF} 
 \emph{Fused Filament Fabrication}~(FFF) is an AM technology where the final geometry of the part is obtained through controlled extrusion of a liquid, self-hardening material -usually a thermoplastic polymer in molten state \cite{Gibson2015}. Originally developed by Stratasys in the 1980s under the \textendash~still trademarked \textendash~\emph{Fused Deposition Modeling}~(FDM\texttrademark) moniker, it has recently become one of the most widely used AM techniques due to the advent of low-cost, desktop FFF machines in the early 2010s caused by the expiration of key patents from Stratasys \cite{Gibson2015,Capote2017}. 
-
 \pagebreak
 \subsection{The FFF process}\label{ssec:FFFmach}
 At its core, the typical FFF machine consists of a heated build surface commonly referred to as a \emph{build plate}, a specialized tool known as a \emph{printhead}, and the fabrication material -supplied in the form of spools of thermoplastic polymer filament. The printhead is itself composed of a heating element, a nozzle, and some form of driving mechanism that pushes the filament downward. As the thermoplastic material is moved through the heated chamber, polymer melt is formed and extruded through the opening at the tip of the nozzle, producing a \emph{bead}. The molten polymer can then be deposited upon the build plate, where controlled movements of the printhead and the fabrication surface gradually construct the final geometry of the part in a layer-by-layer build approach~\cite{Gibson2015}. The typical setup of an FFF machine can be seen in Figure \ref{fig:machconfig}. In this example, the printhead moves in the \emph{x-y} plane, while the build plate moves in the \emph{z} direction. 
@@ -100,7 +100,7 @@ Like all AM technologies, the FFF process starts in a computer with a CAD model 
 The process is capable of producing complex geometries that would be otherwise hard to reproduce through other polymer processing techniques, such as injection molding. However, it is bound by the disadvantages described in Section \ref{subsec:AMAdDis}, as well its own unique set of drawbacks. Namely:
 
 \begin{itemize}
-	\item The circular orifice in the nozzle makes FFF incapable of reproducing sharp corners, limits the size of the smallest reproducible feature, and causes the final part to be filled with voids \textendash originating in the junction of circular beads. These problems can be seen in Figure \ref{fig:FFFpartprob}: On the left, a comparison of a 90$^\circ$ corner planned in the toolpath and the final geometry of the printed bead is shown. Note the rounded nature of the turn. On the right, a cross section of an FFF part obtained through \emph{Micro Computer Tomography} ($\mu$CT) shows the voids that form during the printing process.
+	\item The circular orifice in the nozzle makes FFF incapable of reproducing sharp corners, limits the size of the smallest reproducible feature, and causes the final part to be filled with voids \textendash originating in the junction of round beads. These problems can be seen in Figure \ref{fig:FFFpartprob}: On the left, a comparison of a 90$^\circ$ corner planned in the toolpath and the final geometry of the printed bead is shown. Note the rounded nature of the turn. On the right, a cross section of an FFF part obtained through \emph{Micro Computer Tomography} ($\mu$CT) shows the voids that form during the printing process.
 	\begin{figure}[h]
 		\center
 		\subfloat[FFF toolpath vs. printed bead\label{fig:FFFbead}]{%
@@ -119,7 +119,7 @@ This last disadvantage is responsible for the slow embrace of FFF as a proper ma
 
 \subsection{Mechanical Properties of FFF parts}\label{ssec:mechPropFFF}
 
-Efforts have been made to characterize the mechanical anisotropy of FFF parts. However, due to the lack of testing standards and problems during toolpath planning, most studies focus solely in the tensile mechanical performance of FFF coupons. Recent studies performed by Koch \emph{et al.} \cite{Koch2017} and Rankouhi \emph{et al.} \cite{Rankouhi2016} indicate that the final tensile properties of FFF coupons are particularly sensitive to bead orientation and proper mass output through the nozzle. Other process parameters, such as the layer thickness, have varying degrees of impact upon the final tensile strength of the part. In both studies, tensile coupons were printed with bead orientations of 0$^\circ$, 45$^\circ$ and 90$^\circ$ in the \emph{x-y} plane. Results showed that in all the experimental conditions selected, a 0$^\circ$ orientation always behaved closer to the bulk material, whereas a 90$^\circ$ sample always had significantly lower tensile strengths. The 45$^\circ$ samples sat in between both extremes. It is important to note that in both studies, toolpath manipulation was necessary to avoid premature failure of the coupons due to stress concentrators originating in void formation due to the circular nature of the beads. Figure \ref{fig:FFFmechProp} shows some of the results by Koch \emph{et al}. Note the decreasing tensile strength as the bead angle increases from 0 to 90$^\circ$. The geometry corresponds to an ASTM Type I Tensile coupon. Injection molded results are denoted \emph{IM} for comparison.
+Efforts have been made to characterize the mechanical anisotropy of FFF parts. However, due to the lack of testing standards and problems during toolpath planning, most studies focus solely in the tensile mechanical performance of FFF coupons. Recent studies performed by Koch \emph{et al.} \cite{Koch2017} and Rankouhi \emph{et al.} \cite{Rankouhi2016} indicate that the final tensile properties of FFF coupons are particularly sensitive to bead orientation and proper mass output through the nozzle. Other process parameters, such as the layer thickness, have varying degrees of impact upon the final tensile strength of the part. In both studies, tensile coupons were printed with bead orientations of 0$^\circ$, 45$^\circ$ and 90$^\circ$ in the \emph{x-y} plane. Results showed that in all the experimental conditions selected, a 0$^\circ$ orientation always behaved closer to the bulk material, whereas a 90$^\circ$ sample always had significantly lower tensile strengths. The 45$^\circ$ samples sat in between both extremes. It is important to note that in both studies, toolpath manipulation was necessary to avoid premature failure of the coupons due to stress concentrators originating in void formation due to the elliptical nature of the beads. Figure \ref{fig:FFFmechProp} shows some of the results by Koch \emph{et al}. Note the decreasing tensile strength as the bead angle increases from 0 to 90$^\circ$. The geometry corresponds to an ASTM Type I Tensile coupon. Injection molded results are denoted \emph{IM} for comparison.
 
 \begin{figure}[h]
 	\center
@@ -132,10 +132,20 @@ Efforts have been made to characterize the mechanical anisotropy of FFF parts. H
 	}
 	\caption{Results from Koch \emph{et al.} \cite{Koch2017}} \label{fig:FFFmechProp}
 \end{figure}
+\pagebreak
+
+Literature for other types of mechanical testing of FFF parts is relatively scarce when compared to tension experiments. Research indicates that the compressive strength of FFF parts tends to be higher than the tensile strength, as well as being less sensitive to process parameters and the bead orientation \cite{Ahn2002,Lee2007}. Shear strength results are virtually non-existent. 
+
+\section{Failure Criteria}\label{sec:FC}   
+The increased use of advanced materials in industry has brought upon a necessity to properly characterize their strengths and failure modes. Composites in particular are commonly used in highly demanding engineering fields given that they excel in mechanical properties. However, due to their very nature, their behavior is extremely anisotropic. For this reason, it has been of great interest to develop a proper way to model the behavior of anisotropic materials under mechanical stresses as a way to predict part failure \textendash~a practice from here on referred to as developing a \emph{failure criterion}. 
+
+Early examples to properly predict failure of anisotropic materials go as far back as 1948 with the Hill model \cite{Osswald2017a}.
 
 
-%Nomenclature introduced in this chapter:
+% Nomenclature introduced in this chapter:
 \nomenclature[A]{SLA}{Stereolithography}% 
 \nomenclature[A]{SLS}{Selective Laser Sintering}%
 \nomenclature[A]{$\mu$CT}{Micro Computer Tomography}%
+
+% Symbols introduced in this chapter:
 \end{document}
