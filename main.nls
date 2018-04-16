@@ -3,7 +3,7 @@
  \nomgroup{A}
 
   \item [{$\mu$CT}]\begingroup Micro Computer Tomography\nomeqref {1.0}
-		\nompageref{10}
+		\nompageref{11}
   \item [{AM}]\begingroup Additive Manufacturing\nomeqref {0}
 		\nompageref{2}
   \item [{CAD}]\begingroup Computer Aided Design\nomeqref {0}
@@ -14,8 +14,23 @@
 		\nompageref{2}
   \item [{RP}]\begingroup Rapid Prototyping\nomeqref {0}\nompageref{2}
   \item [{SLA}]\begingroup Stereolithography\nomeqref {1.0}
-		\nompageref{10}
+		\nompageref{11}
   \item [{SLS}]\begingroup Selective Laser Sintering\nomeqref {1.0}
-		\nompageref{10}
+		\nompageref{11}
+
+ \nomgroup{S}
+
+  \item [{$\sigma_{11}$}]\begingroup Axial stress in the 1-1 direction \nomunit{$MPa$}\nomeqref {1.0}
+		\nompageref{11}
+  \item [{$\sigma_{22}$}]\begingroup Axial stress in the 2-2 direction \nomunit{$MPa$}\nomeqref {1.0}
+		\nompageref{11}
+  \item [{$\sigma_{33}$}]\begingroup Axial stress in the 3-3 direction \nomunit{$MPa$}\nomeqref {1.0}
+		\nompageref{11}
+  \item [{$\tau_{12}$}]\begingroup Shear stress in the 1-2 plane \nomunit{$MPa$}\nomeqref {1.0}
+		\nompageref{11}
+  \item [{$\tau_{13}$}]\begingroup Shear stress in the 1-3 plane \nomunit{$MPa$}\nomeqref {1.0}
+		\nompageref{11}
+  \item [{$\tau_{23}$}]\begingroup Shear stress in the 2-3 plane \nomunit{$MPa$}\nomeqref {1.0}
+		\nompageref{11}
 
 \end{thenomenclature}

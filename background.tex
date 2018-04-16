@@ -115,12 +115,17 @@ The process is capable of producing complex geometries that would be otherwise h
 	\item The junction of adjacent beads behaves akin to a polymeric weld, and has inferior mechanical properties than the bulk material \cite{Capote2017}. This, coupled with the aforementioned voids which can act as stress concentrators, causes FFF parts to behave in extremely anisotropic manner with diminished mechanical performance when compared to analogous parts obtained through traditional polymer processing technologies \textendash~such as injection molding \cite{Capote2017}.
 \end{itemize}
 
-This last disadvantage is responsible for the slow embrace of FFF as a proper manufacturing technique. Recent efforts to characterize the mechanical behavior of FFF parts are presented in Section \ref{ssec:mechPropFFF}.
+This last disadvantage is responsible for the slow embrace of FFF as a proper manufacturing technique: the high anisotropy of FFF parts imply that predicting part failure becomes extremely difficult and thus, proper part design that guarantees safe operation of the object under important loads is hard to achieve.  Efforts to characterize the mechanical behavior of FFF parts are presented in Section \ref{ssec:mechPropFFF}.
 
 \subsection{Mechanical Properties of FFF parts}\label{ssec:mechPropFFF}
 
-Efforts have been made to characterize the mechanical anisotropy of FFF parts. However, due to the lack of testing standards and problems during toolpath planning, most studies focus solely in the tensile mechanical performance of FFF coupons. Recent studies performed by Koch \emph{et al.} \cite{Koch2017} and Rankouhi \emph{et al.} \cite{Rankouhi2016} indicate that the final tensile properties of FFF coupons are particularly sensitive to bead orientation and proper mass output through the nozzle. Other process parameters, such as the layer thickness, have varying degrees of impact upon the final tensile strength of the part. In both studies, tensile coupons were printed with bead orientations of 0$^\circ$, 45$^\circ$ and 90$^\circ$ in the \emph{x-y} plane. Results showed that in all the experimental conditions selected, a 0$^\circ$ orientation always behaved closer to the bulk material, whereas a 90$^\circ$ sample always had significantly lower tensile strengths. The 45$^\circ$ samples sat in between both extremes. It is important to note that in both studies, toolpath manipulation was necessary to avoid premature failure of the coupons due to stress concentrators originating in void formation due to the elliptical nature of the beads. Figure \ref{fig:FFFmechProp} shows some of the results by Koch \emph{et al}. Note the decreasing tensile strength as the bead angle increases from 0 to 90$^\circ$. The geometry corresponds to an ASTM Type I Tensile coupon. Injection molded results are denoted \emph{IM} for comparison.
+Efforts have been made to characterize the mechanical anisotropy of FFF parts. However, due to the lack of testing standards and problems during toolpath planning, most studies focus solely in the tensile mechanical performance of FFF coupons.
 
+Recent studies performed by Koch \emph{et al.} \cite{Koch2017} and Rankouhi \emph{et al.} \cite{Rankouhi2016} indicate that the final tensile properties of FFF coupons are particularly sensitive to bead orientation and proper mass output through the nozzle. Other process parameters, such as the layer thickness, have varying degrees of impact upon the final tensile strength of the part. In both studies, tensile coupons were printed with bead orientations of 0$^\circ$, 45$^\circ$ and 90$^\circ$ in the \emph{x-y} plane. Results showed that in all the experimental conditions selected, a 0$^\circ$ orientation always behaved closer to the bulk material, whereas a 90$^\circ$ sample always had significantly lower tensile strengths. The 45$^\circ$ samples sat in between both extremes. It is important to note that in both studies, toolpath manipulation was necessary to avoid premature failure of the coupons due to stress concentrators originating in void formation due to the elliptical nature of the beads. Figure \ref{fig:FFFmechProp} shows some of the results by Koch \emph{et al}. The geometry corresponds to an ASTM Type I Tensile coupon. Injection molded results are denoted \emph{IM} for comparison. Note that the 90$^\circ$ orientation had a tensile strength that was 25\% inferior to the IM counterpart, and 20\% worse than the 0$^\circ$ oriented FFF coupon. This is a prevalent trend in the consulted bibliography.
+
+Literature for other types of mechanical testing of FFF parts is relatively scarce when compared to tension experiments. Research indicates that the compressive strength of FFF parts tends to be higher than the tensile strength, as well as being less sensitive to process parameters \textemdash the bead orientation in particular seems to have a significantly diminished impact upon the compressive strength when compared to its effect upon tensile tests \cite{Ahn2002,Lee2007}. Shear strength results are virtually non-existent.
+
+\pagebreak
 \begin{figure}[h]
 	\center
 	\subfloat[Tensile strength of tensile coupons\label{fig:KochCoup}]{%
@@ -132,14 +137,17 @@ Efforts have been made to characterize the mechanical anisotropy of FFF parts. H
 	}
 	\caption{Results from Koch \emph{et al.} \cite{Koch2017}} \label{fig:FFFmechProp}
 \end{figure}
-\pagebreak
-
-Literature for other types of mechanical testing of FFF parts is relatively scarce when compared to tension experiments. Research indicates that the compressive strength of FFF parts tends to be higher than the tensile strength, as well as being less sensitive to process parameters and the bead orientation \cite{Ahn2002,Lee2007}. Shear strength results are virtually non-existent. 
 
 \section{Failure Criteria}\label{sec:FC}   
 The increased use of advanced materials in industry has brought upon a necessity to properly characterize their strengths and failure modes. Composites in particular are commonly used in highly demanding engineering fields given that they excel in mechanical properties. However, due to their very nature, their behavior is extremely anisotropic. For this reason, it has been of great interest to develop a proper way to model the behavior of anisotropic materials under mechanical stresses as a way to predict part failure \textendash~a practice from here on referred to as developing a \emph{failure criterion}. 
 
-Early examples to properly predict failure of anisotropic materials go as far back as 1948 with the Hill model \cite{Osswald2017a}.
+Early attempts to properly predict failure of anisotropic materials go as far back as 1948 with the Hill model \cite{Osswald2017a}. Further developments lead to a plethora of failure criteria, such as the Tsai-Hill, Malmeister, Tsai-Wu, Gol'denblat-Kopnov, Puck, and Cuntze to name a few \cite{Osswald2017a,Osswald2015}. A wide variety of criteria exists because a model will rarely capture the complete failure behavior of an anisotropic material. To illustrate this point, refer to Figure \ref{fig:FCComp}, reproduced from work by Sun \emph{et al}. \cite{Sun1996} where a composite Glass fiber-Epoxy laminate was loaded biaxially, in a direction that was either parallel ($\sigma_{11}$), perpendicular ($\sigma_{22}$) to the fiber, or a combination of both. Positive stresses indicate tensile load, while negative values point to compressive forces. The data, represented by the white squares, does not agree with any of the used models in the fourth quadrant of the graph. This type of behavior is common throughout the literature: Puck's model is great at predicting shear strengthening effects, but doesn't perform well when dealing with combined axial loading scenarios; the Gol'denblat-Kopnov model by contrast is great at predicting axial stress interactions, but falls short when dealing with shear strengthening effects caused by combined shear-axial loadings. These trends point to the limitations of each model: in order to either facilitate calculations, or due to the difficulty of performing combined loading tests, interaction effects are neglected either by mathematical choice, or indirectly through the inner workings of the failure criterion \cite{Osswald2017a}.  
+
+\begin{figure}[h]
+	\center
+	\includegraphics[height=10cm, keepaspectratio]{FC_comparison}
+	\caption{Comparison of different Failure criteria. \cite{Sun1996}} \label{fig:FCComp}
+\end{figure}     
 
 
 % Nomenclature introduced in this chapter:
@@ -148,4 +156,10 @@ Early examples to properly predict failure of anisotropic materials go as far ba
 \nomenclature[A]{$\mu$CT}{Micro Computer Tomography}%
 
 % Symbols introduced in this chapter:
+\nomenclature[S]{$\sigma_{11}$}{Axial stress in the 1-1 direction \nomunit{$MPa$}}
+\nomenclature[S]{$\sigma_{22}$}{Axial stress in the 2-2 direction \nomunit{$MPa$}}
+\nomenclature[S]{$\sigma_{33}$}{Axial stress in the 3-3 direction \nomunit{$MPa$}}
+\nomenclature[S]{$\tau_{12}$}{Shear stress in the 1-2 plane \nomunit{$MPa$}}
+\nomenclature[S]{$\tau_{13}$}{Shear stress in the 1-3 plane \nomunit{$MPa$}}
+\nomenclature[S]{$\tau_{23}$}{Shear stress in the 2-3 plane \nomunit{$MPa$}}
 \end{document}
