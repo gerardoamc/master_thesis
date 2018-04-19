@@ -12,6 +12,8 @@
 		\nompageref{2}
   \item [{FFF}]\begingroup Fused Filament Fabrication\nomeqref {0}
 		\nompageref{2}
+  \item [{OOC}]\begingroup Osswald-Osswald Criterion\nomeqref {2.0}
+		\nompageref{12}
   \item [{RP}]\begingroup Rapid Prototyping\nomeqref {0}\nompageref{2}
   \item [{SLA}]\begingroup Stereolithography\nomeqref {1.0}
 		\nompageref{11}
@@ -20,11 +22,15 @@
 
  \nomgroup{S}
 
+  \item [{$\sigma$}]\begingroup Axial stress \nomunit{$MPa$}\nomeqref {1.0}
+		\nompageref{11}
   \item [{$\sigma_{11}$}]\begingroup Axial stress in the 1-1 direction \nomunit{$MPa$}\nomeqref {1.0}
 		\nompageref{11}
   \item [{$\sigma_{22}$}]\begingroup Axial stress in the 2-2 direction \nomunit{$MPa$}\nomeqref {1.0}
 		\nompageref{11}
   \item [{$\sigma_{33}$}]\begingroup Axial stress in the 3-3 direction \nomunit{$MPa$}\nomeqref {1.0}
+		\nompageref{11}
+  \item [{$\tau$}]\begingroup Shear stress \nomunit{$MPa$}\nomeqref {1.0}
 		\nompageref{11}
   \item [{$\tau_{12}$}]\begingroup Shear stress in the 1-2 plane \nomunit{$MPa$}\nomeqref {1.0}
 		\nompageref{11}

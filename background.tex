@@ -1,7 +1,7 @@
 % background.tex
 \documentclass[main.tex]{subfiles}
 \begin{document}
-\chapter{Background}
+\chapter{Background} \label{ch:bg}
 \section{Additive Manufacturing}\label{sec:AM} %Section labeling for cross-referencing
 \emph{Additive Manufacturing} (AM) technologies had their beginnings in the decade of the 1980s. During this time, various independently developed patents were filed across the globe, describing a process that would construct an object by selectively adding layers of material -as opposed to removing excess matter or deforming mass to obtain a desired shape. This represents the core definition of AM: any technology where the final geometry of the manufactured object is obtained through controlled addition of material qualifies as an Additive Manufacturing technique \cite{Gibson2015}.
 
@@ -115,7 +115,7 @@ The process is capable of producing complex geometries that would be otherwise h
 	\item The junction of adjacent beads behaves akin to a polymeric weld, and has inferior mechanical properties than the bulk material \cite{Capote2017}. This, coupled with the aforementioned voids which can act as stress concentrators, causes FFF parts to behave in extremely anisotropic manner with diminished mechanical performance when compared to analogous parts obtained through traditional polymer processing technologies \textendash~such as injection molding \cite{Capote2017}.
 \end{itemize}
 
-This last disadvantage is responsible for the slow embrace of FFF as a proper manufacturing technique: the high anisotropy of FFF parts imply that predicting part failure becomes extremely difficult and thus, proper part design that guarantees safe operation of the object under important loads is hard to achieve.  Efforts to characterize the mechanical behavior of FFF parts are presented in Section \ref{ssec:mechPropFFF}.
+This last disadvantage is responsible for the slow embrace of FFF as a proper manufacturing technique: the high anisotropy of FFF parts imply that predicting part failure becomes extremely difficult and thus, proper part design that guarantees safe operation of the object under important loads is hard to achieve.  For this reason, efforts to characterize the mechanical behavior of FFF parts have existed since as early as the 1990s. Recent examples are presented in Section \ref{ssec:mechPropFFF}.
 
 \subsection{Mechanical Properties of FFF parts}\label{ssec:mechPropFFF}
 
@@ -141,7 +141,7 @@ Literature for other types of mechanical testing of FFF parts is relatively scar
 \section{Failure Criteria}\label{sec:FC}   
 The increased use of advanced materials in industry has brought upon a necessity to properly characterize their strengths and failure modes. Composites in particular are commonly used in highly demanding engineering fields given that they excel in mechanical properties. However, due to their very nature, their behavior is extremely anisotropic. For this reason, it has been of great interest to develop a proper way to model the behavior of anisotropic materials under mechanical stresses as a way to predict part failure \textendash~a practice from here on referred to as developing a \emph{failure criterion}. 
 
-Early attempts to properly predict failure of anisotropic materials go as far back as 1948 with the Hill model \cite{Osswald2017a}. Further developments lead to a plethora of failure criteria, such as the Tsai-Hill, Malmeister, Tsai-Wu, Gol'denblat-Kopnov, Puck, and Cuntze to name a few \cite{Osswald2017a,Osswald2015}. A wide variety of criteria exists because a model will rarely capture the complete failure behavior of an anisotropic material. To illustrate this point, refer to Figure \ref{fig:FCComp}, reproduced from work by Sun \emph{et al}. \cite{Sun1996} where a composite Glass fiber-Epoxy laminate was loaded biaxially, in a direction that was either parallel ($\sigma_{11}$), perpendicular ($\sigma_{22}$) to the fiber, or a combination of both. Positive stresses indicate tensile load, while negative values point to compressive forces. The data, represented by the white squares, does not agree with any of the used models in the fourth quadrant of the graph. This type of behavior is common throughout the literature: Puck's model is great at predicting shear strengthening effects, but doesn't perform well when dealing with combined axial loading scenarios; the Gol'denblat-Kopnov model by contrast is great at predicting axial stress interactions, but falls short when dealing with shear strengthening effects caused by combined shear-axial loadings. These trends point to the limitations of each model: in order to either facilitate calculations, or due to the difficulty of performing combined loading tests, interaction effects are neglected either by mathematical choice, or indirectly through the inner workings of the failure criterion \cite{Osswald2017a}.  
+Early attempts to properly predict failure of anisotropic materials go as far back as 1948 with the Hill model \cite{Osswald2017a}. Further developments led to a plethora of failure criteria, such as the Tsai-Hill, Malmeister, Tsai-Wu, Gol'denblat-Kopnov, Puck, and Cuntze to name a few \cite{Osswald2017a,Osswald2015}. A wide variety of criteria exists because a model will rarely capture the complete failure behavior of an anisotropic material. To illustrate this point, refer to Figure \ref{fig:FCComp}, reproduced from work by Sun \emph{et al}. \cite{Sun1996} where a composite Glass fiber-Epoxy laminate was loaded biaxially, in a direction that was either parallel ($\sigma_{11}$), perpendicular ($\sigma_{22}$) to the fiber, or a combination of both. Positive stresses indicate tensile load, while negative values point to compressive forces. The data, represented by the white squares, does not agree with any of the used models in the fourth quadrant of the graph. This type of behavior is common throughout the literature: Puck's model is great at predicting shear strengthening effects, but doesn't perform well when dealing with combined axial loading scenarios; the Gol'denblat-Kopnov model by contrast is great at predicting axial stress interactions, but falls short when dealing with shear strengthening effects caused by combined shear-axial loadings. These trends point to the limitations of each model: in order to either facilitate calculations, or due to the difficulty of performing combined loading tests, interaction effects are neglected either by mathematical choice, or indirectly through the inner workings of the failure criterion \cite{Osswald2017a}.  
 
 \begin{figure}[h]
 	\center
@@ -149,13 +149,15 @@ Early attempts to properly predict failure of anisotropic materials go as far ba
 	\caption{Comparison of different Failure criteria. \cite{Sun1996}} \label{fig:FCComp}
 \end{figure}     
 
-
+Properly mapping a failure surface through a failure criterion proves to be an invaluable tool for design, since it allows engineers to assess if a part will perform safely under its intended loading conditions. Such tool could in theory help overcome the main shortcoming of FFF since a properly tailored failure envelope would allow proper part design considerations. However, since no present failure criterion completely captures the behavior of anisotropic materials, a novel approach is needed. Chapter \ref{ch:oocrit} describes in detail a novel model based on the Gol'denblat- Kopnov failure criterion that includes interaction effects to properly describe the failure behavior of anisotropic parts.
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{SLA}{Stereolithography}% 
 \nomenclature[A]{SLS}{Selective Laser Sintering}%
 \nomenclature[A]{$\mu$CT}{Micro Computer Tomography}%
 
 % Symbols introduced in this chapter:
+\nomenclature[S]{$\sigma$}{Axial stress \nomunit{$MPa$}}
+\nomenclature[S]{$\tau$}{Shear stress \nomunit{$MPa$}}
 \nomenclature[S]{$\sigma_{11}$}{Axial stress in the 1-1 direction \nomunit{$MPa$}}
 \nomenclature[S]{$\sigma_{22}$}{Axial stress in the 2-2 direction \nomunit{$MPa$}}
 \nomenclature[S]{$\sigma_{33}$}{Axial stress in the 3-3 direction \nomunit{$MPa$}}
