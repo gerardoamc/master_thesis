@@ -12,6 +12,8 @@
 		\nompageref{2}
   \item [{FFF}]\begingroup Fused Filament Fabrication\nomeqref {0}
 		\nompageref{2}
+  \item [{GKC}]\begingroup Gol'denblat-Kopnov Criterion\nomeqref {2.0}
+		\nompageref{12}
   \item [{OOC}]\begingroup Osswald-Osswald Criterion\nomeqref {2.0}
 		\nompageref{12}
   \item [{RP}]\begingroup Rapid Prototyping\nomeqref {0}\nompageref{2}
