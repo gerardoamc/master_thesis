@@ -58,14 +58,13 @@ Most of the terms in the GKC are obtained through mechanical testing of coupons 
 
 The only exception to this procedure would be the $F_{1122}$ component, which requires measuring the positive and negative shear strengths of a coupon with reinforcement oriented in 45$^\circ$. These parameters are named $S_{45p}$ and $S_{45n}$ respectively. Table \ref{tab:GKparam} summarizes the nomenclature used for the strength parameters required to completely populate the failure function of the GKC. Table \ref{tab:GKtens} summarizes all the tensorial component calculations.
 
-\begin{table}[h]
+\begin{table} [h]
 	\centering
 	\caption{Nomenclature of the GKC parameters}
-	\label{tab:GKparam}
-	\begin{tabu} to 0.75\textwidth {  X[c]  X[c] }
-		\hline
+	\begin{tabular}{ c c }
+	\toprule
 		\textbf{Parameter} & \textbf{Description} \\ 
-		\hline
+		\midrule
 		$X_t$ & Tensile strength in the 1-1 direction\\
 		$X_c$ & Compressive strength in the 1-1 direction\\
 		$Y_t$ & Tensile strength in the 2-2 direction\\
@@ -73,28 +72,56 @@ The only exception to this procedure would be the $F_{1122}$ component, which re
 		$S_{45p}$ & Positive shear strength for 45$^\circ$ specimen\\
 		$S_{45n}$ & Negative shear strength for 45$^\circ$ specimen\\
 		$S$ & Shear strength in the 1-2 plane\\
-		\hline
-	\end{tabu}
+	\bottomrule
+	\end{tabular}
+	\label{tab:GKparam}
 \end{table}
 
-\begin{table}[h]
+\begin{table} [h]
 	\centering
 	\caption{Tensorial components of the GKC}
+	\begin{tabular}{ c c } 
+	\toprule
+		\textbf{Component} & \textbf{Formula} \\
+		\midrule
+		$F_{11}$ & $\frac{1}{2}(\frac{1}{X_t}-\frac{1}{X_c})$\\ [1ex]
+		$F_{1111}$ & $\frac{1}{4}(\frac{1}{X_t}+\frac{1}{X_c})^2$\\ [1ex]
+		$F_{22}$ & $\frac{1}{2}(\frac{1}{Y_t}-\frac{1}{Y_c})$\\ [1ex]
+		$F_{2222}$ & $\frac{1}{4}(\frac{1}{Y_t}+\frac{1}{Y_c})^2$\\ [1ex]
+		$F_{12}$ & 0\\ [1ex]
+		$F_{1212}$ & $\frac{1}{S^2}$\\ [1ex]
+		$F_{1122}$ & $\frac{1}{8}[(\frac{1}{X_t}+\frac{1}{X_c})^2+(\frac{1}{Y_t}+\frac{1}{Y_c})^2-(\frac{1}{S_{45p}}+\frac{1}{S_{45n}})^2]$\\ [1ex]
+		\bottomrule
+	\end{tabular}
 	\label{tab:GKtens}
-	\begin{tabu} to 0.8\textwidth {  X[c]  X[c] }
-		\hline
-		\textbf{Tensorial component} & \textbf{Formula} \\ 
-		\hline
-		$F_{11}$ & $\frac{1}{2}(\frac{1}{X_t}-\frac{1}{X_c})$\\
-		$F_{1111}$ & $\frac{1}{4}(\frac{1}{X_t}+\frac{1}{X_c})^2$\\
-		$F_{22}$ & $\frac{1}{2}(\frac{1}{Y_t}-\frac{1}{Y_c})$\\
-		$F_{2222}$ & $\frac{1}{4}(\frac{1}{Y_t}+\frac{1}{Y_c})^2$\\
-		$F_{12}$ & 0\\
-		$F_{1212}$ & $\frac{1}{S^2}$\\
-		$F_{1122}$ & $\frac{1}{8}[(\frac{1}{X_t}+\frac{1}{X_c})^2+(\frac{1}{Y_t}+\frac{1}{Y_c})^2-\frac{1}{S_{45p}}+\frac{1}{S_{45n}})^2]$\\
-		\hline
-	\end{tabu}
 \end{table}
+\pagebreak
+
+\section{The Osswald-Osswald Criterion}\label{sec:OOC}
+One of the assumptions made in the GKC is that the components $F_{1112}$ and $F_{2212}$ in Equation \ref{eq:GKCfinal} are null. While this simplifies the model, it essentially neglects any interactions between axial loads and shear stresses, namely, the $\sigma_{11}$ - $\tau_{12}$ and $\sigma_{22}$ - $\tau_{12}$ interactions. Practically, this causes the failure surface developed through the GKC to under predict shear strengthening effects exhibited by anisotropic materials loaded in combined axial and shear conditions. Figure \ref{fig:GKClimit} shows a comparison between experimental data obtained from the first World Wide Failure Exercise (WWFE-I) and the GKC envelope developed for this material. In this example, a unidirectional glass reinforced epoxy composite was tested in multiple loading conditions in the $\sigma_{22}$ and $\tau_{12}$ stress plane. The resulting data was used to develop a failure envelope following the GKC. Note how on the first quadrant, the model follows the data closely. However, in the second quadrant, the criterion is relatively conservative, failing to capture the strengthening that occurs when loading the material in compression and shear.   
+
+\begin{figure}[h]
+	\center
+	\includegraphics[height=7cm]{GK_thesis}
+	\caption{GKC failure surface developed using data from the WWFE-1} \label{fig:GKClimit}
+\end{figure}
+
+The Osswald-Osswald Criterion (OOC) attempts to overcome these limitations by building upon the GKC. For the OOC, the interaction effects are captured through the use of the slopes of the failure surface at any of the points where the engineering strength is known within a particular stress plane \cite{Osswald2017a}. In this failure scenario, the stress state of the coupon is known and easy to implement into Equation \ref{eq:GKCfinal}, where $f=1$. The resulting expression can then be derived with respect to one of the stresses, allowing for the interaction components to be calculated. This is better illustrated through an example. Assuming the component of interest is the $F_{2212}$, the procedure to calculate it through the OOC would be as follows:
+
+\pagebreak
+\begin{enumerate}
+	\item Obtain all the tensorial components possible through the GKC.
+	\item Using the $\sigma_{22}$\textendash$\tau_{12}$ stress plane, derive Equation \ref{eq:GKCfinal} as a function of $\sigma_{22}$ in the scenario of failure under pure shear ($f=1$). This yields the expression:
+	\begin{equation} \label{eq:OOCex1}
+	 0= F_{22}+[F_{1212}S(\frac{d\tau_{12}}{d\sigma_{22}})+F_{2212}S]
+	\end{equation}
+	 where $\frac{d\tau_{12}}{d\sigma_{22}}$  is the slope of the graph at failure under shear. This term is named $\mu^{2212}$ in the OOC and can be obtained by performing combined loading tests.
+	\item Rearranging Equation \ref{eq:OOCex1} to solve for the unknown $F_{2212}$ gives the following expression:
+	\begin{equation} \label{eq:OOCex2}
+	F_{2212}=-\frac{F_{22}}{S}-F_{1212}\mu^{2212}
+	\end{equation}
+\end{enumerate}
+
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{OOC}{Osswald-Osswald Criterion}% 
 \nomenclature[A]{GKC}{Gol'denblat-Kopnov Criterion}% 
