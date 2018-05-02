@@ -24,6 +24,10 @@
 
  \nomgroup{S}
 
+  \item [{$\mu^{1112}$}]\begingroup OOC parameter- slope at pure shear failure in the $\sigma_{11}$ - $\tau_{12}$ plane \nomunit{$-$}\nomeqref {2.5}
+		\nompageref{16}
+  \item [{$\mu^{2212}$}]\begingroup OOC parameter- slope at pure shear failure in the $\sigma_{22}$ - $\tau_{12}$ plane \nomunit{$-$}\nomeqref {2.5}
+		\nompageref{16}
   \item [{$\sigma$}]\begingroup Axial stress \nomunit{$MPa$}\nomeqref {1.0}
 		\nompageref{11}
   \item [{$\sigma_{11}$}]\begingroup Axial stress in the 1-1 direction \nomunit{$MPa$}\nomeqref {1.0}

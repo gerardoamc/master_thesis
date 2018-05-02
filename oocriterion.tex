@@ -4,7 +4,7 @@
 \chapter{A Novel Failure Criterion} \label{ch:oocrit}
 \epigraph{\textit{The Osswald$^2$ criterion}}
 
-As described during Section \ref{sec:FC} of Chapter \ref{ch:bg}, currently available Failure Criteria fail to completely integrate interaction effects into the modeled failure behavior of anisotropic materials. In 2017, Paul and Tim Osswald proposed a model that attempts to overcome these limitiations \cite{Osswald2017a}. This recent failure criteria has the following characteristics:
+As described during Section \ref{sec:FC} of Chapter \ref{ch:bg}, currently available Failure Criteria fail to completely integrate interaction effects into the modeled failure behavior of anisotropic materials. In 2017, Paul and Tim Osswald proposed a model that attempts to overcome these limitiations \cite{Osswald2017a}. This recent failure criterion has the following characteristics:
 \begin{itemize}
 	\item \textbf{Tensor based and purely mathematical}: as opposed to phenomenological or mechanistic models such as the Puck or Cuntze failure criteria.
 	\item \textbf{Based on the Gol'denblat-Kopnov model}.
@@ -106,7 +106,7 @@ One of the assumptions made in the GKC is that the components $F_{1112}$ and $F_
 	\caption{GKC failure surface developed using data from the WWFE-1} \label{fig:GKClimit}
 \end{figure}
 
-The Osswald-Osswald Criterion (OOC) attempts to overcome these limitations by building upon the GKC. For the OOC, the interaction effects are captured through the use of the slopes of the failure surface at any of the points where the engineering strength is known within a particular stress plane \cite{Osswald2017a}. In this failure scenario, the stress state of the coupon is known and easy to implement into Equation \ref{eq:GKCfinal}, where $f=1$. The resulting expression can then be derived with respect to one of the stresses, allowing for the interaction components to be calculated. This is better illustrated through an example. Assuming the component of interest is the $F_{2212}$, the procedure to calculate it through the OOC would be as follows:
+The Osswald-Osswald Criterion (OOC) attempts to overcome these limitations by building upon the GKC. For the OOC, the interaction effects are captured through the use of the slopes of the failure surface at any of the points where the engineering strength is known within a particular stress plane \cite{Osswald2017a}. In this failure scenario, the stress state of the coupon is known and easy to implement into Equation \ref{eq:GKCfinal}, where $f=1$. The resulting expression can then be derived with respect to one of the stresses, allowing for the interaction components to be calculated. This is better illustrated through an example. Assuming the component of interest is $F_{2212}$, the procedure to calculate it through the OOC would be as follows:
 
 \pagebreak
 \begin{enumerate}
@@ -115,13 +115,45 @@ The Osswald-Osswald Criterion (OOC) attempts to overcome these limitations by bu
 	\begin{equation} \label{eq:OOCex1}
 	 0= F_{22}+[F_{1212}S(\frac{d\tau_{12}}{d\sigma_{22}})+F_{2212}S]
 	\end{equation}
-	 where $\frac{d\tau_{12}}{d\sigma_{22}}$  is the slope of the graph at failure under shear. This term is named $\mu^{2212}$ in the OOC and can be obtained by performing combined loading tests.
+	 where $\frac{d\tau_{12}}{d\sigma_{22}}$  is the slope of the graph at failure under shear. This term is named $\mu^{2212}$ in the OOC and can be obtained by performing combined loading tests. Refer to Figure \ref{fig:OOCdemo} for a visual representation.
 	\item Rearranging Equation \ref{eq:OOCex1} to solve for the unknown $F_{2212}$ gives the following expression:
 	\begin{equation} \label{eq:OOCex2}
 	F_{2212}=-\frac{F_{22}}{S}-F_{1212}\mu^{2212}
 	\end{equation}
 \end{enumerate}
 
+\begin{figure}[h]
+	\center
+	\includegraphics[height=5cm]{OOC_demo_thesis}
+	\caption{$\mu^{2212}$ parameter in the $\tau_{12}$ - $\sigma_{22}$ plane} \label{fig:OOCdemo}
+\end{figure}
+
+A similar procedure can be followed for any $\sigma_{ii}$-$\tau_{ij}$ interaction, or even any $\sigma_{ii}$-$\sigma_{jj}$ components. For this last scenario, the user has four potential choices of slopes to determine the tensorial component of interest. In the OOC, any slope obtained from a $\sigma_{ii}$-$\sigma_{jj}$ stress plane is named $\lambda^{iijj}$, as opposed to $\mu^{iiij}$ for slopes in a $\sigma_{ii}$-$\tau_{ij}$ reference. A schematic of all possible $\lambda^{iijj}$ is shown in Figure \ref{fig:OOCdemo2}, while Table \ref{tab:OOCcomp} summarizes all the possible interaction factors available through the OOC, where $\tau_{ij}^u$ denotes ultimate shear strength in a particular shear plane. 
+
+\begin{figure}[h]
+	\center
+	\includegraphics[height=10cm]{OOC_demo_thesis2}
+	\caption{$\lambda^{iijj}$ parameters in a generic $\sigma_{ii}$ - $\sigma_{jj}$ stress plane} \label{fig:OOCdemo2}
+\end{figure}
+
+\begin{table} [h]
+	\renewcommand{\arraystretch}{1.5}
+	\centering
+	\caption{Interaction components attainable through the OOC}
+	\begin{tabular}{ c c } 
+		\toprule
+		\textbf{Component} & \textbf{Formula} \\
+		\midrule
+		$F_{iiij}$ & $-\frac{F_{ii}}{\tau_{ij}^u}-F_{ijij}\mu^{iiij}$\\
+		$F_{iijj}$ through $\lambda^{iijj}_1$ & $-\frac{(F_{ii}+F_{jj}\lambda^{iijj}_1)F_{iiii}^{1/2}+F_{iiii}}{\lambda^{iijj}_1}$\\
+		$F_{iijj}$ through $\lambda^{iijj}_2$ & $-(F_{ii}+F_{jj}\lambda^{iijj}_2)F_{jjjj}^{1/2}-F_{jjjj}\lambda^{iijj}_2$\\
+		$F_{iijj}$ through $\lambda^{iijj}_3$ & $\frac{(F_{ii}+F_{jj}\lambda^{iijj}_3)F_{iiii}^{1/2}-F_{iiii}}{\lambda^{iijj}_3}$\\
+		$F_{iijj}$ through $\lambda^{iijj}_4$ & $(F_{ii}+F_{jj}\lambda^{iijj}_4)F_{jjjj}^{1/2}-F_{jjjj}\lambda^{iijj}_4$\\
+		\bottomrule
+	\end{tabular}
+	\label{tab:OOCcomp}
+\end{table}
+\pagebreak
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{OOC}{Osswald-Osswald Criterion}% 
 \nomenclature[A]{GKC}{Gol'denblat-Kopnov Criterion}% 
@@ -134,4 +166,6 @@ The Osswald-Osswald Criterion (OOC) attempts to overcome these limitations by bu
 \nomenclature[S]{$S$}{Shear strength in the 1-2 plane \nomunit{$MPa$}}
 \nomenclature[S]{$S_{45p}$}{Positive shear strength for 45$^\circ$ specimen \nomunit{$MPa$}}
 \nomenclature[S]{$S_{45n}$}{Negative shear strength for 45$^\circ$ specimen \nomunit{$MPa$}}
+\nomenclature[S]{$\mu^{1112}$}{OOC parameter- slope at pure shear failure in the $\sigma_{11}$ - $\tau_{12}$ plane \nomunit{$-$}}
+\nomenclature[S]{$\mu^{2212}$}{OOC parameter- slope at pure shear failure in the $\sigma_{22}$ - $\tau_{12}$ plane \nomunit{$-$}}
 \end{document}
