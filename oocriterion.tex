@@ -103,7 +103,7 @@ One of the assumptions made in the GKC is that the components $F_{1112}$ and $F_
 \begin{figure}[h]
 	\center
 	\includegraphics[height=7cm]{GK_thesis}
-	\caption{GKC failure surface developed using data from the WWFE-1} \label{fig:GKClimit}
+	\caption{GKC failure surface developed using data from the WWFE-1 \cite{Osswald2017a}} \label{fig:GKClimit}
 \end{figure}
 
 The Osswald-Osswald Criterion (OOC) attempts to overcome these limitations by building upon the GKC. For the OOC, the interaction effects are captured through the use of the slopes of the failure surface at any of the points where the engineering strength is known within a particular stress plane \cite{Osswald2017a}. In this failure scenario, the stress state of the coupon is known and easy to implement into Equation \ref{eq:GKCfinal}, where $f=1$. The resulting expression can then be derived with respect to one of the stresses, allowing for the interaction components to be calculated. This is better illustrated through an example. Assuming the component of interest is $F_{2212}$, the procedure to calculate it through the OOC would be as follows:
@@ -130,13 +130,13 @@ The Osswald-Osswald Criterion (OOC) attempts to overcome these limitations by bu
 
 A similar procedure can be followed for any $\sigma_{ii}$-$\tau_{ij}$ interaction, or even any $\sigma_{ii}$-$\sigma_{jj}$ components. For this last scenario, the user has four potential choices of slopes to determine the tensorial component of interest. In the OOC, any slope obtained from a $\sigma_{ii}$-$\sigma_{jj}$ stress plane is named $\lambda^{iijj}$, as opposed to $\mu^{iiij}$ for slopes in a $\sigma_{ii}$-$\tau_{ij}$ reference. A schematic of all possible $\lambda^{iijj}$ is shown in Figure \ref{fig:OOCdemo2}, while Table \ref{tab:OOCcomp} summarizes all the possible interaction factors available through the OOC, where $\tau_{ij}^u$ denotes ultimate shear strength in a particular shear plane. 
 
+\pagebreak
 \begin{figure}[h]
 	\center
 	\includegraphics[height=10cm]{OOC_demo_thesis2}
 	\caption{$\lambda^{iijj}$ parameters in a generic $\sigma_{ii}$ - $\sigma_{jj}$ stress plane} \label{fig:OOCdemo2}
 \end{figure}
-
-\begin{table} [h]
+\begin{table}[!htbp] %Fixates table so that it doesn't randomly jump around between pages
 	\renewcommand{\arraystretch}{1.5}
 	\centering
 	\caption{Interaction components attainable through the OOC}
@@ -153,7 +153,15 @@ A similar procedure can be followed for any $\sigma_{ii}$-$\tau_{ij}$ interactio
 	\end{tabular}
 	\label{tab:OOCcomp}
 \end{table}
-\pagebreak
+
+Applying the OOC to the data shown in Figure \ref{fig:GKClimit} demonstrates how the failure surface developed through this new criterion better reflects the failure behavior than its GKC counterpart. A comparison between the two can be seen in Figure \ref{fig:GKOOComp}. Note how the OOC envelope captures the shear strengthening effect that the GKC under-predicts. 
+\begin{figure}[h]
+	\center
+	\includegraphics[height=7cm]{GK_OO}
+	\caption{Comparison of GKC and OOC failure envelopes \cite{Osswald2017a}} \label{fig:GKOOComp}
+\end{figure}
+
+Given that AM parts tend to be highly anisotropic, the OOC could potentially describe a failure surface
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{OOC}{Osswald-Osswald Criterion}% 
 \nomenclature[A]{GKC}{Gol'denblat-Kopnov Criterion}% 
