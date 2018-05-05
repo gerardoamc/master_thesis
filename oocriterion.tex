@@ -98,7 +98,7 @@ The only exception to this procedure would be the $F_{1122}$ component, which re
 \pagebreak
 
 \section{The Osswald-Osswald Criterion}\label{sec:OOC}
-One of the assumptions made in the GKC is that the components $F_{1112}$ and $F_{2212}$ in Equation \ref{eq:GKCfinal} are null. While this simplifies the model, it essentially neglects any interactions between axial loads and shear stresses, namely, the $\sigma_{11}$ - $\tau_{12}$ and $\sigma_{22}$ - $\tau_{12}$ interactions. Practically, this causes the failure surface developed through the GKC to under predict shear strengthening effects exhibited by anisotropic materials loaded in combined axial and shear conditions. Figure \ref{fig:GKClimit} shows a comparison between experimental data obtained from the first World Wide Failure Exercise (WWFE-I) and the GKC envelope developed for this material. In this example, a unidirectional glass reinforced epoxy composite was tested in multiple loading conditions in the $\sigma_{22}$ and $\tau_{12}$ stress plane. The resulting data was used to develop a failure envelope following the GKC. Note how on the first quadrant, the model follows the data closely. However, in the second quadrant, the criterion is relatively conservative, failing to capture the strengthening that occurs when loading the material in compression and shear.   
+One of the assumptions made in the GKC is that the components $F_{1112}$ and $F_{2212}$ in Equation \ref{eq:GKCfinal} are null. While this simplifies the model, it essentially neglects any interactions between axial loads and shear stresses, namely, the $\sigma_{11}$ - $\tau_{12}$ and $\sigma_{22}$ - $\tau_{12}$ interactions. Practically, this causes the failure surface developed through the GKC to under predict shear strengthening effects exhibited by anisotropic materials loaded in combined axial and shear conditions. Figure \ref{fig:GKClimit} shows a comparison between experimental data obtained from the first World Wide Failure Exercise (WWFE-I) and the GKC envelope developed for this material. In this example, a unidirectional glass reinforced epoxy composite was tested in multiple loading conditions in the $\sigma_{22}$ and $\tau_{12}$ stress plane. Note how on the first quadrant, the model follows the data closely. However, in the second quadrant, the criterion is relatively conservative, failing to capture the strengthening that occurs when loading the material in compression and shear.   
 
 \begin{figure}[h]
 	\center
@@ -161,7 +161,15 @@ Applying the OOC to the data shown in Figure \ref{fig:GKClimit} demonstrates how
 	\caption{Comparison of GKC and OOC failure envelopes \cite{Osswald2017a}} \label{fig:GKOOComp}
 \end{figure}
 
-Given that AM parts tend to be highly anisotropic, the OOC could potentially describe a failure surface
+The OOC offers a way of capturing in a more accurate manner the different failure modes of parts produced through AM technologies. As an example, the model has been successfully implemented by Obst \emph{et al.} in 2018 for SLS manufactured parts produced with PA12 \cite{Obst2018}. Their results show how the model was able to capture the $\tau_{12}$-$\sigma_{22}$ and $\sigma_{11}$-$\sigma_{22}$ interactions. The failure surface obtained is shown in Figure \ref{fig:OOCSLS}.
+
+\begin{figure}[h]
+	\center
+	\includegraphics[height=7cm]{Obst_SLS}
+	\caption{Failure surface for SLS developed through the OOC \cite{Obst2018}} \label{fig:OOCSLS}
+\end{figure}
+
+This work will apply the OOC to FFF, in the hopes that it becomes a tool for safely designing parts intended to be manufactured through this process. The upcoming chapters will detail the material and experimental methods followed to achieve this goal.  
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{OOC}{Osswald-Osswald Criterion}% 
 \nomenclature[A]{GKC}{Gol'denblat-Kopnov Criterion}% 
