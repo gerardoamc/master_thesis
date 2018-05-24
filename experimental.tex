@@ -34,24 +34,33 @@ As explained in Chapter \ref{ch:oocrit}, the OOC requires mechanical tests to ob
 \label{tab:testsum}
 \end{table}
 
+This section will detail the the coupon geometry used to perform all the mechanical tests described in Table \ref{tab:testsum}, as well as the printing equipment, and toolpath considerations necessary to properly arrange the printed beads in the desired orientation for each testing condition.
 
-\subsection{Printing Equipment}
-\begin{figure}[h]
-	\center
-	\includegraphics[height=6cm]{TAZ_5}
-	\caption{TAZ 5 printer \cite{Lulzbot2018}} \label{fig:taz5}
-\end{figure}
-
-\begin{figure}[h]
-	\center
-	\includegraphics[height=7cm]{Otto}
-	\caption{6-axis robotic printer: \emph{Otto}} \label{fig:Otto}
-\end{figure}
-\subsection{Toolpath Planning}
 \subsection{Tensile Tests}
+Tensile coupons were manufactured with bead orientations of 0$^\circ$ and 90$^\circ$ in order to test $X_t$ and $Y_t$ respectively. The chosen geometry was the ASTM D-638 Type I coupon \cite{ASTMD638}. The coupon geometry can be seen in Figure \ref{fig:db}.
+
+\begin{figure}[h]
+	\center
+	\includegraphics[width=\linewidth, keepaspectratio]{typeIDB}
+	\caption{ASTM D-638 Type I coupon} \label{fig:db}
+\end{figure}
 \subsection{Compressive Tests}
 \subsection{Torsion and Combined Loading Tests}
+\subsection{Printing Equipment}
 
+\begin{figure}[h]
+	\center
+	\subfloat[TAZ 5 Printer \cite{Lulzbot2018}\label{fig:taz5}]{%
+		\includegraphics[height=6cm, keepaspectratio]{TAZ_5}
+	}
+	\hfill
+	\subfloat[6-axis robotic printer: \emph{Otto}\label{fig:Otto}]{%
+		\includegraphics[height=6cm, keepaspectratio]{Otto}
+	}
+	\caption{Printing equipment} \label{fig:PrintEquip}
+\end{figure}
+
+\subsection{Toolpath Planning}
 
 \section{Mechanical Testing}
 % Nomenclature introduced in this chapter:
