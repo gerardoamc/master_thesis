@@ -34,14 +34,28 @@ As explained in Chapter \ref{ch:oocrit}, the OOC requires mechanical tests to ob
 \label{tab:testsum}
 \end{table}
 
-Given that at the moment of this writing, AM testing standards are still in development, custom specimens had to be developed for this work. This section will detail the coupon geometry used to perform all the mechanical tests described in Table \ref{tab:testsum}, as well as the printing equipment, and toolpath considerations necessary to properly arrange the printed beads in the desired orientation for each condition. 
+Given that at the moment of this writing AM testing standards are still in development, custom specimens had to be developed for this work. Additionally, some bead orientations required are impossible to reproduce through \emph{2.5-D} FFF, therefore, the use of a customized robotic, off-axis FFF was necessary. This section will detail the coupon geometry used to perform all the mechanical tests described in Table \ref{tab:testsum}, as well as the printing equipment, and toolpath considerations necessary to properly arrange the printed beads in the desired orientation for each condition. 
+
+\subsection{Printing Equipment}
+Specimens were produced using either a commercially available desktop FFF printer (Lulzbot TAZ5, USA), or a customized 6-axis robotic printing solution whenever the required bead orientation was hard to achieve using a \emph{2.5-D} printer. The robotic printer, developed in the Polymer Engineering Center and nicknamed \emph{Otto} by its creator \cite{VanHulle2017}, was based on a 6-axis robot (ABB IRB-120, Switzerland) and fitted with a stationary printhead, carefully chosen to be the same as the traditional printer (LulzBot TAZ Single Extruder Tool Head v2, USA) to minimize machine influence on the results. Both of these FFF machines can be seen in Figure \ref{fig:PrintEquip}.
+\begin{figure}[h]
+	\center
+	\subfloat[TAZ 5 Printer \cite{Lulzbot2018}\label{fig:taz5}]{%
+		\includegraphics[height=6cm, keepaspectratio]{TAZ_5}
+	}
+	\hfill
+	\subfloat[6-axis robotic printer: \emph{Otto}\label{fig:Otto}]{%
+		\includegraphics[height=6cm, keepaspectratio]{Otto}
+	}
+	\caption{Printing equipment} \label{fig:PrintEquip}
+\end{figure}
 
 \subsection{Tensile Tests}
-Tensile coupons were manufactured with bead orientations of 0$^\circ$ and 90$^\circ$ in order to test $X_t$ and $Y_t$ respectively. The chosen geometry was the ASTM D-638 Type I coupon \cite{ASTMD638} which can be seen in Figure \ref{fig:db}. The toolpath required to produce these samples was developed through \emph{SciSlice}, a customized slicing engine created in the Polymer Engineering Center that allows layer-by-layer and part-by-part controls of crucial process parameters \textemdash such as the bead orientation \textemdash making it ideal for research in the field of FFF \cite{VanHulle2017a}.
+Tensile coupons were manufactured on the TAZ5, with bead orientations of 0$^\circ$ and 90$^\circ$ with respect to the load direction in order to test $X_t$ and $Y_t$ respectively. The chosen geometry was the ASTM D-638 Type I coupon \cite{ASTMD638} which can be seen in Figure \ref{fig:db}. The toolpath required to produce these samples was developed through \emph{SciSlice}, a customized slicing engine created in the Polymer Engineering Center that allows layer-by-layer and part-by-part controls of crucial process parameters \textemdash such as the bead orientation \textemdash making it ideal for research in the field of FFF \cite{VanHulle2017a}.
 
 \begin{figure}[h]
 	\center
-	\includegraphics[width=\linewidth, keepaspectratio]{typeIDB}
+	\includegraphics[width=0.9\linewidth, keepaspectratio]{typeIDB}
 	\caption{ASTM D-638 Type I coupon} \label{fig:db}
 \end{figure}
 \subsection{Compressive Tests}
@@ -55,19 +69,6 @@ Tensile coupons were manufactured with bead orientations of 0$^\circ$ and 90$^\c
 	\center
 	\includegraphics[width=\linewidth, keepaspectratio]{torsion}
 	\caption{Torsion specimen geometry} \label{fig:tors}
-\end{figure}
-\subsection{Printing Equipment}
-
-\begin{figure}[h]
-	\center
-	\subfloat[TAZ 5 Printer \cite{Lulzbot2018}\label{fig:taz5}]{%
-		\includegraphics[height=6cm, keepaspectratio]{TAZ_5}
-	}
-	\hfill
-	\subfloat[6-axis robotic printer: \emph{Otto}\label{fig:Otto}]{%
-		\includegraphics[height=6cm, keepaspectratio]{Otto}
-	}
-	\caption{Printing equipment} \label{fig:PrintEquip}
 \end{figure}
 
 \subsection{Toolpath Planning}
