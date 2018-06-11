@@ -50,6 +50,13 @@ Specimens were produced using either a commercially available desktop FFF printe
 	\caption{Printing equipment} \label{fig:PrintEquip}
 \end{figure}
 
+The 6-axis robotic printer's layout is optimized to produce objects of cylindrical nature. A specialized base plate is attached to the sixth axis of the robot, where a threaded rod allows the attachment of disposable plastic cylinders that act as a build surface. A cylindrical core can then be built by \emph{Otto}, upon which beads in any orientation can be deposited after the robot reorients its joints. Refer to Figure \ref{fig:otto2} for a representation of the process. The left side shows the core being produced atop the disposable build surface, followed by the right hand side, where beads are being laid upon the core.  
+\begin{figure}[h]
+	\center
+	\includegraphics[height=7.5cm, keepaspectratio]{otto2}
+	\caption{Print process in \emph{Otto}} \label{fig:otto2}
+\end{figure}
+
 \subsection{Tensile Tests}
 Tensile coupons were manufactured on the TAZ5, with bead orientations of 0$^\circ$ and 90$^\circ$ with respect to the load direction in order to test $X_t$ and $Y_t$ respectively. The chosen geometry was the ASTM D-638 Type I coupon \cite{ASTMD638} which can be seen in Figure \ref{fig:db}. The toolpath required to produce these samples was developed through \emph{SciSlice}, a customized slicing engine created in the Polymer Engineering Center that allows layer-by-layer and part-by-part controls of crucial process parameters \textemdash such as the bead orientation \textemdash making it ideal for research in the field of FFF \cite{VanHulle2017a}.
 
@@ -59,16 +66,17 @@ Tensile coupons were manufactured on the TAZ5, with bead orientations of 0$^\cir
 	\caption{ASTM D-638 Type I coupon} \label{fig:db}
 \end{figure}
 
-In order to minimize stress concentrators due to printing discontinuities, the 0$^\circ$ specimens were printed using 13 shells. This produced a continuous toolpath with beads oriented in the loading direction at the neck section of the specimen. No shells were added to the 90$^\circ$ samples. Refer to Figure \ref{fig:090db} for a visual representation of the coupons. 
+In order to minimize stress concentrators due to printing discontinuities, the 0$^\circ$ specimens were printed using 13 perimeters, also known as \emph {shells}. This produced a continuous toolpath with beads oriented in the loading direction at the neck section of the specimen. No shells were added to the 90$^\circ$ samples. Refer to Figure \ref{fig:090db} for a visual representation of the coupons. 
 
 \begin{figure}[h]
 	\center
-	\includegraphics[width=0.8\linewidth, keepaspectratio]{090db}
+	\includegraphics[width=0.7\linewidth, keepaspectratio]{090db}
 	\caption{Toolpath considerations for the tensile coupons} \label{fig:090db}
 \end{figure}
 
 \subsection{Compressive Tests}
 
+Compressive samples were designed with a tubular cross section. This geometry was chosen to mitigate hydrostatic stresses that could artificially increase the compressive strength of the sample if it were made as completely solid object. Additionally, the cylindrical geometry allowed production of the 0$^\circ$ samples in \emph{Otto}. The geometry can be seen in Figure \ref{fig:comp}.
 \begin{figure}[h]
 	\center
 	\includegraphics[height=6cm, keepaspectratio]{compres}
