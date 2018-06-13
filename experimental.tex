@@ -57,7 +57,7 @@ The 6-axis robotic printer's layout is optimized to produce objects of cylindric
 	\caption{Print process in \emph{Otto}} \label{fig:otto2}
 \end{figure}
 
-\subsection{Tensile Tests}
+\subsection{Tensile Specimens}
 Tensile coupons were manufactured on the TAZ5, with bead orientations of 0$^\circ$ and 90$^\circ$ with respect to the load direction in order to test $X_t$ and $Y_t$ respectively. The chosen geometry was the ASTM D-638 Type I coupon \cite{ASTMD638} which can be seen in Figure \ref{fig:db}. The toolpath required to produce these samples was developed through \emph{SciSlice}, a customized slicing engine created in the Polymer Engineering Center that allows layer-by-layer and part-by-part controls of crucial process parameters \textemdash such as the bead orientation \textemdash making it ideal for research in the field of FFF \cite{VanHulle2017a}.
 
 \begin{figure}[h]
@@ -74,7 +74,7 @@ In order to minimize stress concentrators due to printing discontinuities, the 0
 	\caption{Toolpath considerations for the tensile coupons} \label{fig:090db}
 \end{figure}
 
-\subsection{Compressive Tests}
+\subsection{Compressive Specimens}
 
 Compressive samples were designed with a tubular cross section. This geometry was chosen to mitigate hydrostatic stresses that could artificially increase the compressive strength of the sample if it were made as a completely solid object. Additionally, the cylindrical geometry allowed production of the 0$^\circ$ samples in \emph{Otto}. The geometry can be seen in Figure \ref{fig:comp}.
 \begin{figure}[h]
@@ -90,13 +90,25 @@ Compression samples with bead a bead orientation of 90$^\circ$ with respect to t
 	\caption{Representation of compression samples} \label{fig:comp_d}
 \end{figure}
 
-\subsection{Torsion and Combined Loading Tests}
+\subsection{Torsion and Combined Loading Specimens}
+
+The geometry of the torsion specimens was loosely based in the EN ISO 3167, Type A specimens used by Obst \emph{et al.} \cite{Obst2018}. This geometry was chosen since it has a thin walled tube cross sectional area that allows easy integration with the 6-axis robotic printer, as well as offering axisymmetry and reduction of the risk of artificially increasing the strength of the sample due to yielding restrictions associated with using a completely solid coupon \cite{Obst2018}. The cross sectional area of the testing area was chosen to be the same as for the compression specimens. However, due to toolpathing complications, more than one torsion geometry was necessary. Each one is described in detail below.  
+
+\subsubsection{45$^\circ$ torsion samples}
+
+To test the $\sigma_{11}$-$\sigma_{22}$ interaction, a torsion sample with beads oriented in 45$^\circ$ was necessary. The geometry, which can be seen in Figure \ref{fig:tors45}, consists of a specimen of cylindrical nature, with a filleted, widening change in cross sectional area that culminates in a gripping section. In this portion, three flat surfaces are added to ensure proper contact with the grips of the torsion machine. 
 \begin{figure}[h]
 	\center
 	\includegraphics[width=\linewidth, keepaspectratio]{torsion}
-	\caption{Torsion specimen geometry} \label{fig:tors}
+	\caption{$S_{45}$ Torsion specimen geometry} \label{fig:tors45}
 \end{figure}
 
+The manufacturing of this type of specimen through \emph{Otto} involved laying 10 layers of beads in a 45$^\circ$ angle atop a cylindrical core of 10 mm in diameter and 95 mm in height. Finally, the gripping section is added using $\pm$45$^\circ$ orientations, culminating in a wider area with a diameter of 24 mm. The flat areas had to be machined in post processing by producing cuts of 1.5 mm in depth in the grips, separated by 120$^\circ$. A visual representation of the finished sample can be seen in Figure \ref{fig:tors45d}. Note that the disposable build surface (visible on the left side of the figure) becomes a part of the coupon without impacting the gage section of the sample.
+\begin{figure}[h]
+	\center
+	\includegraphics[width=0.5\linewidth, keepaspectratio]{Torsion_45}
+	\caption{$S_{45}$ Representation of the 45$^\circ$ specimen} \label{fig:tors45d}
+\end{figure}
 \section{Mechanical Testing}
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{ABS}{Acrylonitrile Butadiene Styrene}% 
