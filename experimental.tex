@@ -57,9 +57,41 @@ The 6-axis robotic printer's layout is optimized to produce objects of cylindric
 	\caption{Print process in \emph{Otto}} \label{fig:otto2}
 \end{figure}
 
+Since printing parameters in FFF are known to impact in varying degrees the mechanical performance of objects manufactured through this technology, a conscious effort was made to keep as many processing parameters as possible constant. Table \ref{tab:printparam} summarizes these values.
+
+\begin{table}[!htbp] %Fixates table so that it doesn't randomly jump around between pages
+	\renewcommand{\arraystretch}{1.2}
+	\centering
+	\caption{Constant printing parameters}
+	\begin{tabular}{ c c } 
+		\toprule
+		\textbf{Printing Parameter} & \textbf{Value} \\
+		\midrule
+		Nozzle temperature & 220$^\circ$C\\
+		Bed temperature~\tablefootnote{Applicable only to prints performed on the traditional FFF printer.} & 100$^\circ$C\\
+		Printing Speed & 2000 $\frac{mm}{min}$\\
+		Layer height & 0.2 mm\\
+		Path width & 0.5 mm\\
+		Extrusion Factor & 1\\
+		\bottomrule
+	\end{tabular}
+	\label{tab:printparam}
+\end{table}
+
+Extrusion Factor (EF) refers to a ratio of the area occupied by the cross section of a bead ($A_{bead}$) divided by the product of the bead width ($W_{bead}$) with the layer height ($H_{layer}$). This factor is used to calculate the length of filament ($L_{fil}$) necessary to produce a bead of known length ($L_{bead}$) as shown in Equations \ref{eq:EFdef} and \ref{eq:EFvol}. The cross sectional area of the filament ($A_{fil}$) is known through the filament diameter used by the printer.
+
+\begin{equation} \label{eq:EFdef}
+EF=\frac{A_{bead}}{W_{bead}\times H_{layer}}
+\end{equation}  
+
+\begin{equation}\label{eq:EFvol}
+\frac{L_{fil}}{L_{bead}}\times A_{fil}=EF \times W_{bead} \times H_{layer}
+\end{equation}
+
+   
 \subsection{Tensile Specimens}
 Tensile coupons were manufactured on the TAZ5, with bead orientations of 0$^\circ$ and 90$^\circ$ with respect to the load direction in order to test $X_t$ and $Y_t$ respectively. The chosen geometry was the ASTM D-638 Type I coupon \cite{ASTMD638} which can be seen in Figure \ref{fig:db}. The toolpath required to produce these samples was developed through \emph{SciSlice}, a customized slicing engine created in the Polymer Engineering Center that allows layer-by-layer and part-by-part controls of crucial process parameters \textemdash such as the bead orientation \textemdash making it ideal for research in the field of FFF \cite{VanHulle2017a}.
-
+\pagebreak
 \begin{figure}[h]
 	\center
 	\includegraphics[width=0.95\linewidth, keepaspectratio]{typeIDB}
@@ -92,7 +124,7 @@ Compression samples with bead a bead orientation of 90$^\circ$ with respect to t
 
 \subsection{Torsion and Combined Loading Specimens}
 
-The geometry of the torsion specimens was loosely based in the EN ISO 3167, Type A specimens used by Obst \emph{et al.} \cite{Obst2018}. This geometry was chosen since it has a thin walled tube cross sectional area that allows easy integration with the 6-axis robotic printer, as well as offering axisymmetry and reduction of the risk of artificially increasing the strength of the sample due to yielding restrictions associated with using a completely solid coupon \cite{Obst2018}. The cross sectional area of the testing area was chosen to be the same as for the compression specimens. However, due to toolpathing complications, more than one torsion geometry was necessary. Each one is described in detail below.  
+The geometry of the torsion specimens was loosely based in the EN ISO 3167, Type A specimens used by Obst \emph{et al.} \cite{Obst2018}. The cross sectional area of the testing area was chosen to be the same as for the compression specimens. This geometry was chosen since its tubular arrangement allows easy integration with the 6-axis robotic printer, as well as offering axisymmetry and reduction of the risk of artificially increasing the strength of the sample due to yielding restrictions associated with using a completely solid coupon \cite{Obst2018}. However, due to toolpathing complications, more than one torsion geometry was necessary. Each one is described in detail below.  
 
 \subsubsection{45$^\circ$ torsion samples}
 
@@ -103,16 +135,23 @@ To test the $\sigma_{11}$-$\sigma_{22}$ interaction, a torsion sample with beads
 	\caption{$S_{45}$ Torsion specimen geometry} \label{fig:tors45}
 \end{figure}
 
-The manufacturing of this type of specimen through \emph{Otto} involved laying 10 layers of beads in a 45$^\circ$ angle atop a cylindrical core of 10 mm in diameter and 95 mm in height. Finally, the gripping section is added using $\pm$45$^\circ$ orientations, culminating in a wider area with a diameter of 24 mm. The flat areas had to be machined in post processing by producing cuts of 1.5 mm in depth in the grips, separated by 120$^\circ$. A visual representation of the finished sample can be seen in Figure \ref{fig:tors45d}. Note that the disposable build surface (visible on the left side of the figure) becomes a part of the coupon without impacting the gage section of the sample.
+The manufacturing of this type of specimen through \emph{Otto} involved laying 10 layers of beads in a 45$^\circ$ angle atop a cylindrical core of 10 mm in diameter and 95 mm in height. Finally, the gripping section is added using beads in alternating  $\pm$45$^\circ$ orientations, culminating in a wider area with a diameter of 24 mm. The flat areas had to be machined in post processing by producing cuts of 1.5 mm in depth in the grips, separated by 120$^\circ$. A visual representation of the finished sample can be seen in Figure \ref{fig:tors45d}. Note that the disposable build surface (visible on the left side of the figure) becomes a part of the coupon without impacting the gage section of the sample. All toolpath was generated using a customized  \emph{Python} script that converted process parameters into instructions for the robotic arm.
 \begin{figure}[h]
 	\center
 	\includegraphics[width=0.5\linewidth, keepaspectratio]{Torsion_45}
 	\caption{$S_{45}$ Representation of the 45$^\circ$ specimen} \label{fig:tors45d}
 \end{figure}
+
+\subsubsection{0$^\circ$ and 90$^\circ$ torsion samples}
+
 \section{Mechanical Testing}
+
+\subsection{Tension and Compression tests}
+Tensile and compressive tests were performed with an Instron 5967 Dual Column Universal testing machine, using a 30 kN load cell. All data acquisition was handled through the accompanying Instron Bluehill 3 software.    
+\subsection{Torsion and Combined loading tests}
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{ABS}{Acrylonitrile Butadiene Styrene}% 
 
 % Symbols introduced in this chapter:
-%\nomenclature[S]{$X_t$}{Tensile strength in the 1-1 direction \nomunit{$MPa$}}
+\nomenclature[A]{EF}{Extrusion Factor \nomunit{$-$}}
 \end{document}
