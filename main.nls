@@ -4,12 +4,14 @@
 
   \item [{$\mu$CT}]\begingroup Micro Computer Tomography\nomeqref {1.0}
 		\nompageref{11}
-  \item [{ABS}]\begingroup Acrylonitrile Butadiene Styrene\nomeqref {3.0}
-		\nompageref{25}
+  \item [{ABS}]\begingroup Acrylonitrile Butadiene Styrene\nomeqref {3.2}
+		\nompageref{26}
   \item [{AM}]\begingroup Additive Manufacturing\nomeqref {0}
 		\nompageref{2}
   \item [{CAD}]\begingroup Computer Aided Design\nomeqref {0}
 		\nompageref{2}
+  \item [{EF}]\begingroup Extrusion Factor\nomeqref {3.2}
+		\nompageref{26}
   \item [{FDM}]\begingroup Fused Deposition Modeling\texttrademark\nomeqref {0}
 		\nompageref{2}
   \item [{FFF}]\begingroup Fused Filament Fabrication\nomeqref {0}

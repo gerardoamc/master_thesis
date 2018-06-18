@@ -136,7 +136,7 @@ To test the $\sigma_{11}$-$\sigma_{22}$ interaction, a torsion sample with beads
 \end{figure}
 
 The manufacturing of this type of specimen through \emph{Otto} involved laying 10 layers of beads in a 45$^\circ$ angle atop a cylindrical core of 10 mm in diameter and 95 mm in height. Finally, the gripping section is added using beads in alternating  $\pm$45$^\circ$ orientations, culminating in a wider area with a diameter of 24 mm. The flat areas had to be machined in post processing by producing cuts of 1.5 mm in depth in the grips, separated by 120$^\circ$. A visual representation of the finished sample can be seen in Figure \ref{fig:tors45d}. Note that the disposable build surface (visible on the left side of the figure) becomes a part of the coupon without impacting the gage section of the sample. All toolpath was generated using a customized  \emph{Python} script that converted process parameters into instructions for the robotic arm.
-\begin{figure}[h]
+\begin{figure}[!htbp]
 	\center
 	\includegraphics[width=0.5\linewidth, keepaspectratio]{Torsion_45}
 	\caption{$S_{45}$ Representation of the 45$^\circ$ specimen} \label{fig:tors45d}
@@ -147,11 +147,19 @@ The manufacturing of this type of specimen through \emph{Otto} involved laying 1
 \section{Mechanical Testing}
 
 \subsection{Tension and Compression tests}
-Tensile and compressive tests were performed with an Instron 5967 Dual Column Universal testing machine, using a 30 kN load cell. All data acquisition was handled through the accompanying Instron Bluehill 3 software.    
+Tensile and compressive tests were performed with an Instron 5967 Dual Column Universal testing machine, using a 30 kN load cell. All data acquisition was handled through the accompanying Instron Bluehill 3 software. In both instances, a movement speed of 5 mm/min was used to deform the specimens.
+
+The tensile specimens were tested using clamp grips and an extensometer. To protect the samples from excessive gripping force, emery cloth tabs were used, as described by Mazzei Capote \emph{et al}~\cite{Capote2017}. Figure \ref{fig:tensgrip} shows a photograph of the setup.
+\begin{figure}[h]
+	\center
+	\includegraphics[height=8cm]{tensgrip}
+	\caption{Tensile test setup} \label{fig:tensgrip}
+\end{figure}
+    
 \subsection{Torsion and Combined loading tests}
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{ABS}{Acrylonitrile Butadiene Styrene}% 
-
+\nomenclature[A]{EF}{Extrusion Factor}%
 % Symbols introduced in this chapter:
-\nomenclature[A]{EF}{Extrusion Factor \nomunit{$-$}}
+
 \end{document}
