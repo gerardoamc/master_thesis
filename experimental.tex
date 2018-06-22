@@ -150,18 +150,18 @@ The modified torsion sample was redesigned to have the same cross sectional area
 \section{Mechanical Testing}
 
 \subsection{Tension and Compression tests}
-Tensile and compressive tests were performed with an Instron 5967 Dual Column Universal testing machine, using a 30 kN load cell. All data acquisition was handled through the accompanying Instron Bluehill 3 software. In both instances, a movement speed of 5 mm/min was used to deform the specimens. This testing speed, combined with the sample dimensions, ensured a strain rate of 0.1 min$^{-1}$ across both specimen types.
+Tensile and compressive tests were performed with an Instron 5967 Dual Column Universal testing machine, using a 30 kN load cell. All data acquisition was handled through the accompanying Instron Bluehill 3 software. A movement speed of 5 mm/min was used to deform the tensile specimens, while a testing speed of 2.5 mm/min was used in the compression samples. These testing speeds, combined with the sample dimensions, ensured a strain rate of 0.1 min$^{-1}$ across both specimen types.
 
 The tensile specimens were tested using clamp grips and an extensometer. To protect the samples from excessive gripping force, emery cloth tabs were used, as described by Mazzei Capote \emph{et al}~\cite{Capote2017}. Figure \ref{fig:testsetup} shows a photograph of the setup.
     
 \subsection{Torsion and Combined loading tests}
 
-All torsion tests were performed using an ADMET eXpert 9618 torsion machine. The machine sits on a rail system that allows the sample to deform freely during testing. The equipment has an adjustable, 3 point contact jaw system that allows the sample to be held in place concentrically, as shown in Figure \ref{fig:testsetup}. 
+All torsion tests were performed using an ADMET eXpert 9618 torsion machine fitted with an MTEST Quattro controller and software suite. The machine sits on a rail system that allows the sample to deform freely during testing. The equipment has two adjustable jaws, with three contact surfaces that holds the sample in place, as shown in Figure \ref{fig:testsetup}. Of the two jaws, one rotates as controlled by a servomotor, while the other is fixed in terms of angular movement. 
 
 \begin{figure}[h]
 	\center
 	\subfloat[Tensile setup \label{fig:tens}]{%
-		\includegraphics[height=8cm, keepaspectratio]{tensgrip}
+		\includegraphics[height=6cm, keepaspectratio]{tensgrip}
 	}
 	\hfill
 	\subfloat[Torsion setup\label{fig:tors}]{%
@@ -176,11 +176,11 @@ A conscious effort was made to maintain the same strain rate of 0.1 min$^{-1}$ u
 \dot{\gamma}= 2 \times \dot{\epsilon} 
 \end{equation}
 
-Using Figure \ref{fig:torscal} as reference, one can see that if point B is fixed, point A will deform due to torque T to position A'. The angle of deformation $\Phi$ can then be obtained as $AA'=L\times \gamma$ for small values of $\gamma$. Similarly, $AA'=\rho \times \Phi$. from this, Equation \ref{eq:tors2} can be obtained.
+Figure \ref{fig:torscal} represents a tubular element of outer radius $\rho$ and length L, subjected to a torque T. Using this image as reference, one can see that if point B is fixed in space \textemdash as is the case of the stationary jaw of the torsion machine used throughout this work~\textemdash point A will deform to position A'. The angle of twist $\Phi$ can then be approximated using the arc length $AA'$ as $AA'=\rho \times \Phi$ for small values of shear strain~$\gamma$. It can also be seen in Figure \ref{fig:torscal} that the relationship $AA'=L\times \gamma$ also exists. From this, Equation \ref{eq:tors2} can be obtained.
 
 \begin{figure}[h]
 	\center
-	\includegraphics[width=0.5\linewidth, keepaspectratio]{tors2}
+	\includegraphics[width=0.55\linewidth, keepaspectratio]{tors2}
 	\caption{Stress and strain caused by torque on a tubular geometry~\cite{Obst2018}} \label{fig:torscal}
 \end{figure} 
 
@@ -192,10 +192,24 @@ Finally, after rearranging and deriving with respect to time, Equation \ref{eq:t
 \begin{equation}\label{eq:tors3}
 \dot{\Phi}=\frac{L\times\dot{\gamma}}{\rho}  
 \end{equation}
- 
+
+For this work, $\dot{\gamma}$ is known to be $2 \times 0.1~min^{-1}= 0.2~min^{-1}$, as dictated by Equation \ref{eq:tors1} and the testing conditions chosen for the tensile and compressive tests. In the case of the 45$^\circ$ specimens, preliminary tests performed in positive torsion showed an average outer radius of 6.91 mm and a mean length of failure propagation of 54 mm. Using these values in Equation \ref{eq:tors3} yields a rotational speed of 1.56 rad/min, or 89.4$^\circ$/min. Following a similar procedure for the 0$^\circ$ and 90$^\circ$ samples, the angular speed of the torsion test was calculated to be ???.
+
+In the case of combined loading scenarios, the setup was fitted with a pulley system that allowed a weight to pull the sample in a nominal direction, while the torsion machine applied shear stresses. Refer to Figure \ref{fig:torscomb} for a visual representation of the compressive and tensile force setup of the torsion machine. 
+
+\begin{figure}[h]
+	\center
+	\includegraphics[width=0.9\linewidth, keepaspectratio]{torsion_machine}
+	\caption{Machine setup for combined loading scenarios} \label{fig:torscomb}
+\end{figure}
+
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{ABS}{Acrylonitrile Butadiene Styrene}% 
 \nomenclature[A]{EF}{Extrusion Factor}%
-% Symbols introduced in this chapter:
 
+% Symbols introduced in this chapter:
+\nomenclature[S]{$\epsilon$}{Engineering Strain \nomunit{$-$}}%
+\nomenclature[S]{$\gamma$}{Shear Strain \nomunit{$-$}}%
+\nomenclature[S]{$\dot{\epsilon}$}{Engineering Strain rate \nomunit{$min^{-1}$}}%
+\nomenclature[S]{$\dot{\gamma}$}{Shear Strain rate \nomunit{$min^{-1}$}}%
 \end{document}
