@@ -115,7 +115,7 @@ Compressive samples were designed with a tubular cross section. This geometry wa
 	\caption{Compression specimen geometry} \label{fig:comp}
 \end{figure}
 
-Compression samples with bead a bead orientation of 90$^\circ$ with respect to the loading direction were produced using the TAZ5 and \emph{SciSlice}. The coupons with a bead orientation of 0$^\circ$ with respect to the loading direction were made using \emph{Otto} and a customized \emph{Python} script that converted process parameters into instructions for the robotic arm through ABB's \emph{RAPID} toolpathing language. A visual representation of the specimens can be seen in Figure \ref{fig:comp_d}. 
+Compression samples with a bead orientation of 90$^\circ$ with respect to the loading direction were produced using the TAZ5 and \emph{SciSlice}. The coupons with a bead orientation of 0$^\circ$ with respect to the loading direction were made using \emph{Otto} and a customized \emph{Python} script that converted process parameters into instructions for the robotic arm through ABB's \emph{RAPID} toolpathing language. A visual representation of the specimens can be seen in Figure \ref{fig:comp_d}. 
 \begin{figure}[h]
 	\center
 	\includegraphics[height=5cm, keepaspectratio]{comp_diagram}
@@ -138,25 +138,61 @@ To test the $\sigma_{11}$-$\sigma_{22}$ interaction, a torsion sample with beads
 The manufacturing of this type of specimen through \emph{Otto} involved laying 10 layers of beads in a 45$^\circ$ angle atop a cylindrical core of 10 mm in diameter and 95 mm in height. Finally, the gripping section is added using beads in alternating  $\pm$45$^\circ$ orientations, culminating in a wider area with a diameter of 24 mm. The flat areas had to be machined in post processing by producing cuts of 1.5 mm in depth in the grips, separated by 120$^\circ$. A visual representation of the finished sample can be seen in Figure \ref{fig:tors45d}. Note that the disposable build surface (visible on the left side of the figure) becomes a part of the coupon without impacting the gage section of the sample. All toolpath was generated using a customized  \emph{Python} script that converted process parameters into instructions for the robotic arm.
 \begin{figure}[!htbp]
 	\center
-	\includegraphics[width=0.5\linewidth, keepaspectratio]{Torsion_45}
+	\includegraphics[width=0.35\linewidth, keepaspectratio]{Torsion_45}
 	\caption{$S_{45}$ Representation of the 45$^\circ$ specimen} \label{fig:tors45d}
 \end{figure}
 
 \subsubsection{0$^\circ$ and 90$^\circ$ torsion samples}
+For the 0$^\circ$ and 90$^\circ$ bead orientations, a specimen redesign was necessary due to toolpathing problems. Specifically, the length of the 45$^\circ$ torsion specimens proved problematic to print using 0$^\circ$ and 90$^\circ$ orientations, each for different reasons. In the case of the 0$^\circ$ orientation, the long and unidirectional travel distance of each bead introduced considerable tool pressure on the core, causing bowing. This was significant enough to cause poor adhesion of the beads towards the end of the specimen. By contrast, the 90$^\circ$ samples caused the sixth axis of the robot to heat up considerably and to almost completely maximize its range. 
+
+The modified torsion sample was redesigned to have the same cross sectional area as the original 45$^\circ$ torsion samples, but shorter length. An optimal distance was devised through multiple print trials where the length of the specimen was varied between 95 and 50 mm. The final chosen geometry is shown below in Figure ????.
 
 \section{Mechanical Testing}
 
 \subsection{Tension and Compression tests}
-Tensile and compressive tests were performed with an Instron 5967 Dual Column Universal testing machine, using a 30 kN load cell. All data acquisition was handled through the accompanying Instron Bluehill 3 software. In both instances, a movement speed of 5 mm/min was used to deform the specimens.
+Tensile and compressive tests were performed with an Instron 5967 Dual Column Universal testing machine, using a 30 kN load cell. All data acquisition was handled through the accompanying Instron Bluehill 3 software. In both instances, a movement speed of 5 mm/min was used to deform the specimens. This testing speed, combined with the sample dimensions, ensured a strain rate of 0.1 min$^{-1}$ across both specimen types.
 
-The tensile specimens were tested using clamp grips and an extensometer. To protect the samples from excessive gripping force, emery cloth tabs were used, as described by Mazzei Capote \emph{et al}~\cite{Capote2017}. Figure \ref{fig:tensgrip} shows a photograph of the setup.
-\begin{figure}[h]
-	\center
-	\includegraphics[height=8cm]{tensgrip}
-	\caption{Tensile test setup} \label{fig:tensgrip}
-\end{figure}
+The tensile specimens were tested using clamp grips and an extensometer. To protect the samples from excessive gripping force, emery cloth tabs were used, as described by Mazzei Capote \emph{et al}~\cite{Capote2017}. Figure \ref{fig:testsetup} shows a photograph of the setup.
     
 \subsection{Torsion and Combined loading tests}
+
+All torsion tests were performed using an ADMET eXpert 9618 torsion machine. The machine sits on a rail system that allows the sample to deform freely during testing. The equipment has an adjustable, 3 point contact jaw system that allows the sample to be held in place concentrically, as shown in Figure \ref{fig:testsetup}. 
+
+\begin{figure}[h]
+	\center
+	\subfloat[Tensile setup \label{fig:tens}]{%
+		\includegraphics[height=8cm, keepaspectratio]{tensgrip}
+	}
+	\hfill
+	\subfloat[Torsion setup\label{fig:tors}]{%
+		\includegraphics[height=5cm, keepaspectratio]{torsmach}
+	}
+	\caption{Mechanical testing setup} \label{fig:testsetup}
+\end{figure} 
+
+A conscious effort was made to maintain the same strain rate of 0.1 min$^{-1}$ used for the tensile and compression tests. The approach used was the same described by Obst \emph{et al.}~\cite{Obst2018}. The initial assumption is that the shear strain rate ($\dot{\gamma}$) is twice the engineering strain rate ($\dot{\epsilon}$), as shown in Equation \ref{eq:tors1}.
+
+\begin{equation}\label{eq:tors1}
+\dot{\gamma}= 2 \times \dot{\epsilon} 
+\end{equation}
+
+Using Figure \ref{fig:torscal} as reference, one can see that if point B is fixed, point A will deform due to torque T to position A'. The angle of deformation $\Phi$ can then be obtained as $AA'=L\times \gamma$ for small values of $\gamma$. Similarly, $AA'=\rho \times \Phi$. from this, Equation \ref{eq:tors2} can be obtained.
+
+\begin{figure}[h]
+	\center
+	\includegraphics[width=0.5\linewidth, keepaspectratio]{tors2}
+	\caption{Stress and strain caused by torque on a tubular geometry~\cite{Obst2018}} \label{fig:torscal}
+\end{figure} 
+
+\begin{equation}\label{eq:tors2}
+L\times \gamma= \rho \times \Phi  
+\end{equation}
+
+Finally, after rearranging and deriving with respect to time, Equation \ref{eq:tors3} is obtained.
+\begin{equation}\label{eq:tors3}
+\dot{\Phi}=\frac{L\times\dot{\gamma}}{\rho}  
+\end{equation}
+ 
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{ABS}{Acrylonitrile Butadiene Styrene}% 
 \nomenclature[A]{EF}{Extrusion Factor}%
