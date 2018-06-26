@@ -4,13 +4,13 @@
 
   \item [{$\mu$CT}]\begingroup Micro Computer Tomography\nomeqref {1.0}
 		\nompageref{11}
-  \item [{ABS}]\begingroup Acrylonitrile Butadiene Styrene\nomeqref {3.5}
+  \item [{ABS}]\begingroup Acrylonitrile Butadiene Styrene\nomeqref {3.8}
 		\nompageref{28}
   \item [{AM}]\begingroup Additive Manufacturing\nomeqref {0}
 		\nompageref{2}
   \item [{CAD}]\begingroup Computer Aided Design\nomeqref {0}
 		\nompageref{2}
-  \item [{EF}]\begingroup Extrusion Factor\nomeqref {3.5}
+  \item [{EF}]\begingroup Extrusion Factor\nomeqref {3.8}
 		\nompageref{28}
   \item [{FDM}]\begingroup Fused Deposition Modeling\texttrademark\nomeqref {0}
 		\nompageref{2}
@@ -28,13 +28,13 @@
 
  \nomgroup{S}
 
-  \item [{$\dot{\epsilon}$}]\begingroup Engineering Strain rate \nomunit{$min^{-1}$}\nomeqref {3.5}
+  \item [{$\dot{\epsilon}$}]\begingroup Engineering Strain rate \nomunit{$min^{-1}$}\nomeqref {3.8}
 		\nompageref{28}
-  \item [{$\dot{\gamma}$}]\begingroup Shear Strain rate \nomunit{$min^{-1}$}\nomeqref {3.5}
+  \item [{$\dot{\gamma}$}]\begingroup Shear Strain rate \nomunit{$min^{-1}$}\nomeqref {3.8}
 		\nompageref{28}
-  \item [{$\epsilon$}]\begingroup Engineering Strain\nomeqref {3.5}
+  \item [{$\epsilon$}]\begingroup Engineering Strain \nomunit{$-$}\nomeqref {3.8}
 		\nompageref{28}
-  \item [{$\gamma$}]\begingroup Shear Strain\nomeqref {3.5}
+  \item [{$\gamma$}]\begingroup Shear Strain \nomunit{$-$}\nomeqref {3.8}
 		\nompageref{28}
   \item [{$\mu^{1112}$}]\begingroup OOC parameter- slope at pure shear failure in the $\sigma_{11}$ - $\tau_{12}$ plane \nomunit{$-$}\nomeqref {2.5}
 		\nompageref{18}
