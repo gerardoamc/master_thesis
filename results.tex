@@ -6,7 +6,7 @@
 This chapter presents all the results stemming from the experimental procedures described in Chapter \ref{ch:exp}. Additionally, details are provided regarding proper data processing, and the calculations that lead to the definition of the desired failure surface. 
 
 \section{Tensile Tests} \label{sec:tensr}
-Performing tensile tests showed that the values of $X_t$ and $Y_t$ were significantly different, in accordance to the literature review presented in Section \ref{ssec:mechPropFFF}. An initial number of 20 samples per orientation was produced, however, multiple specimens failed outside the gage section of the coupon and thus, data originating from these samples was considered invalid and was promptly discarded. The valid results are summarized in Table \ref{tab:tensrtab}. Note that $X_t$ was on average 9.16 MPa higher than $Y_t$, a difference of 22.7\%.
+Performing tensile tests showed that the values of $X_t$ and $Y_t$ were significantly different, in accordance to the literature review presented in Section \ref{ssec:mechPropFFF}. An initial number of 20 samples per orientation was produced, however, multiple specimens failed outside the gage section of the coupon and thus, data originating from these coupons was considered invalid and promptly discarded. The valid results are summarized in Table \ref{tab:tensrtab}. Note that $X_t$ was on average 9.16 MPa higher than $Y_t$, a difference of 22.7\%.
 \begin{table} [h]
 	\centering
 	\caption{Summary of Tensile tests}
@@ -24,7 +24,7 @@ Performing tensile tests showed that the values of $X_t$ and $Y_t$ were signific
 \label{tab:tensrtab}
 \end{table}
 
-The behavior of both sets of samples was completely different. Coupons used to measure $X_t$ generally clearly showed whitening of the gage section, indicating plastic deformation. Specimens used for $Y_t$ on the other hand generally failed between beads and rarely showed any change of color. Figure~\ref{fig:tensComp} clearly shows the difference in mechanical behavior. Note how the $X_t$ specimen shows a clearly ductile failure, as opposed to brittle breakage for the $Y_t$ sample.
+The behavior of both sets of samples was completely different. Coupons used to measure $X_t$ clearly showed whitening of the gage section, indicating plastic deformation. Specimens used for $Y_t$ on the other hand generally failed between beads and rarely showed any change in color. Figure~\ref{fig:tensComp} clearly shows the difference in mechanical behavior. Note how the $X_t$ specimen shows a ductile failure, as opposed to brittle breakage for the $Y_t$ sample.
 \pagebreak
 
 \begin{figure}[h]
@@ -33,8 +33,23 @@ The behavior of both sets of samples was completely different. Coupons used to m
 	\caption{Comparison of tensile results} \label{fig:tensComp}
 \end{figure}
 
-Statistical analysis reveals that the $X_t$ samples may not necessarily follow a normal distribution. An Anderson-Darling test (ADT) yields a p-value of 0.023, thus, the null hypothesis that the distribution is normalized can be rejected. This can be seen graphically in the goodness of fit plot, where data points fail to properly line up with the straight line that corresponds to a theoretical Gaussian distribution. By contrast, performing the ADT on the $Y_t$ samples fails to reject the null hypothesis. However, the ADT validity has been known to be questionable for sample small sample sizes -such as the 19 replications used in this study.      
+Anderson-Darling tests (ADT) were performed on the results to validate if the data follows a normalized distribution. In the case of $X_t$, the ADT yields a p-value of 0.023. Thus, on a 95\% confidence interval, a normalized distribution can be discarded. This can be seen graphically in the goodness of fit plot, where data points fail to align with the slope that corresponds to a theoretical Gaussian distribution. By contrast, performing the ADT on the $Y_t$ samples fails to reject a normalized distribution using the same confidence interval, offering a p-value of 0.109. A case could be made for a false negative for $X_t$ and a false positive for $Y_t$, given the relatively small sample size for each data set. The results from ADT can be seen in Figure \ref{fig:adttens}.
+
+\begin{figure}[!htbp]
+	\center
+	\subfloat[$X_t$ \label{fig:adtxt}]{%
+		\includegraphics[height=4cm, keepaspectratio]{TAZ_5}
+	}
+	\hfill
+	\subfloat[$Y_t$\label{fig:adtyt}]{%
+		\includegraphics[height=4cm, keepaspectratio]{ADTyt.pdf}
+	}
+	\caption{ADT results} \label{fig:adttens}
+\end{figure}
+      
 \section{Compression Tests} \label{sec:compr}
+For the compression tests, a total of 25 samples were produced for each orientation. However, a number of coupons were discarded due to manufacturing defects. Table \ref{tab:comprtab} summarizes the test results.
+
 \begin{table} [h]
 	\centering
 	\caption{Summary of Compression tests}
@@ -42,14 +57,17 @@ Statistical analysis reveals that the $X_t$ samples may not necessarily follow a
 		\toprule
 		\textbf{Information} & $X_c$ & $Y_c$\\
 		\midrule
-		Average [MPa] &  & 58.8\\
-		Standard Deviation &  & 1.90\\
-		Number of samples &  & 15\\
+		Average [MPa] &  & 57.96\\
+		Standard Deviation &  & 1.81\\
+		Number of samples &  & 22\\
+		Lowest measurement [MPa] & &54.93 \\
+		Highest measurement [MPa] & &61.39 \\
 		\bottomrule
 	\end{tabular}
 \label{tab:comprtab}
 \end{table}
 
+The $Y_c$ samples displayed ductile behavior through testing. A clear maximum stress can be observed at the yield point in a stress-strain graph. The tubular samples showed localized whitening and deformation along portions of the tubular geometry.
 \section{Torsion Tests} \label{sec:torsr}
 \subsection{45$^\circ$ orientation} \label{ssec:45r}
 \subsection{0$^\circ$ orientation} \label{ssec:0r}
