@@ -57,14 +57,18 @@
                 %\include{validation}
                 %\include{conclusion}
 %               \include{examples}
-        
-        \printbibliography
-        \addcontentsline{toc}{chapter}{Bibliography}
+
+		%Create Bibliography
+		\cleardoublepage
+        \phantomsection
+		\addcontentsline{toc}{chapter}{Bibliography}
+		\printbibliography
+
+        %Create Appendices
 		\appendix
 			\pagestyle{fancy}
 			\include{fsurfcode}
 			
-
 
 
         

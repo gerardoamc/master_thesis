@@ -75,7 +75,7 @@ Performing an ADT on the $Y_c$ samples reveals a p-value of 0.072, thus a normal
 \subsection{45$^\circ$ orientation} \label{ssec:45r}
 A total of 30 samples were produced with a 45$^\circ$ bead orientation, divided evenly for tests in positive and negative shear. As was the case for tensile and compressive tests, a number of specimens had to be discarded due to undesired behavior during testing. A common problem was delamination of the grips, thus requiring the data to be discarded. 
 
-Results showed significant difference in behavior depending on the direction of the applied torque. The $S_{45p}$ samples showed a completely brittle behavior, fracturing between beads, as opposed to ductile failure in the center of the specimen for the $S_{45n}$ coupons. This resulted in an average difference of 6.3 MPa between both sets of data. Results are summarized in Table \ref{tab:tors45r}.
+Results showed significant difference in behavior depending on the direction of the applied torque. The $S_{45p}$ samples showed a completely brittle behavior, fracturing between beads, as opposed to ductile failure in the center of the specimen for the $S_{45n}$ coupons. This resulted in an average difference of 6.3 MPa between both sets of data. Results are summarized in Table \ref{tab:tors45r} and a graph comparing the behavior of both sets of samples can be seen in Figure \ref{fig:45comp}. Note how the positive shear sample fails at low angles in a completely brittle manner.
 
 \begin{table} [h]
 	\centering
@@ -93,15 +93,21 @@ Results showed significant difference in behavior depending on the direction of 
 \end{tabular}
 \label{tab:tors45r}
 \end{table}
+
+\begin{figure}[h]
+	\center
+	\includegraphics[height=9cm, keepaspectratio]{comp45t}
+	\caption{Comparison of 45$^\circ$ torsion results} \label{fig:45comp}
+\end{figure}
   
 \subsection{0$^\circ$ orientation} \label{ssec:0r}
 \subsection{90$^\circ$ orientation} \label{ssec:90r}
 \section{Combined Loading Tests} \label{sec:clr}
 \section{Development of the Failure Surface} \label{sec:fsc}
 
-The failure surface calculations were performed using MATLAB\textregistered~code based on previous work by Obst \emph{et al.} \cite{Obst2018}. This code can be found in Appendix \ref{ch:fsurfcode} for reference.
+The failure surface calculations were performed using MATLAB\textregistered~code based on previous work by Obst \emph{et al.} \cite{Obst2018} and the mathematical relations shown in Chapter \ref{ch:oocrit}. This code can be found in Appendix \ref{ch:fsurfcode} for reference.
 
-Calculations were based on the average values obtained from the mechanical tests to incorporate a probabilistic approach to the failure surface as developed by Zaitsev, Pashkov and Strelyaev \cite{Zaitsev1975}. This implies that the condition $f=1$ in Equation \ref{eq:GKCfinal} is equivalent to a probability of part failure of 50\%, since mean values of mechanical strength were used to calculate the tensorial components of the failure envelope.  
+Calculations were based on the average values obtained from the mechanical tests to incorporate a probabilistic approach to the failure surface as developed by Zaitsev, Pashkov and Strelyaev \cite{Zaitsev1975}. In practice, this implies that the condition $f=1$ in Equation \ref{eq:GKCfinal} is equivalent to a probability of part failure of 50\% since mean values of mechanical strength were used to calculate the tensorial components of the failure envelope.  
 
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{ADT}{Anderson-Darling Test}% 
