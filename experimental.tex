@@ -8,7 +8,7 @@ This chapter explains all the experimental procedures followed to obtain all the
 
 The first step of the experimental work involved development of a custom thermoplastic filament for the FFF process. The reasoning behind this decision was two-fold. First, the use of an off the shelf, commercial thermoplastic filament generally does not guarantee that two different spools were produced under the same processing conditions \textemdash or even using the same parent material. Secondly, the results from Koch \emph{et al.} \cite{Koch2017} show that fluctuations in the filament diameter have an impact in the mechanical properties of FFF parts due to improper volumetric output at the nozzle.
 
-The Cycolac\texttrademark~MG94 material produced by SABIC was chosen for this work. This is an Acrylonitrile Butadiene Styrene (ABS) based material traditionally used for injection molding thin walled parts, as well as extrusion of FFF filament. With a reported Melt Flow Index of 11.7 g/10 min, it is an ideal material for both the FFF and extrusion processes. The MG94 was extruded in a setup that consisted of a single screw extruder (Extrudex EDN 45X30D, Germany) with 45 mm screw diameter and L/D ratio of 30D. The hot melt was extruded at 205 $^\circ$C through a circular die with a 5.8 mm diameter, and then guided through a pre-skinner into a vacuum-assisted, heated water bath (Conair, USA) to cool the extrudate whilst minimizing void formation. The solidified filament was then passed through a 3-axis laser micrometer (LaserLinc, USA) and a belt puller (Conair, USA) configured in a control loop. The dimensions of the filament were controlled by automatically adjusting the speed of the puller if the readings from the micrometer were out of specification \textemdash in this case a diameter of 2.85 mm with a tolerance of $\pm$ 0.02 mm. Finally, the product was wound onto spools using a filament winder. A schematic of the extrusion setup can be seen in Figure \ref{fig:extrLine}. Prior to any usage in a printer, the filament was dried in a silo (Novatec, USA) at 82~$^\circ$C for 3 hours.
+The Cycolac\textregistered~MG94 material produced by SABIC was chosen for this work. This is an Acrylonitrile Butadiene Styrene (ABS) based material traditionally used for injection molding thin walled parts, as well as extrusion of FFF filament. With a reported Melt Flow Index of 11.7 g/10 min, it is an ideal material for both the FFF and extrusion processes. The MG94 was extruded in a setup that consisted of a single screw extruder (Extrudex EDN 45X30D, Germany) with 45 mm screw diameter and L/D ratio of 30D. The hot melt was extruded at 205 $^\circ$C through a circular die with a 5.8 mm diameter, and then guided through a pre-skinner into a vacuum-assisted, heated water bath (Conair, USA) to cool the extrudate whilst minimizing void formation. The solidified filament was then passed through a 3-axis laser micrometer (LaserLinc, USA) and a belt puller (Conair, USA) configured in a control loop. The dimensions of the filament were controlled by automatically adjusting the speed of the puller if the readings from the micrometer were out of specification \textemdash in this case a diameter of 2.85 mm with a tolerance of $\pm$ 0.02 mm. Finally, the product was wound onto spools using a filament winder. A schematic of the extrusion setup can be seen in Figure \ref{fig:extrLine}. Prior to any usage in a printer, the filament was dried in a silo (Novatec, USA) at 82~$^\circ$C for 3 hours.
 
 \begin{figure}[h]
 	\center
@@ -147,7 +147,7 @@ The manufacturing of this type of specimen through \emph{Otto} involved laying 1
 \subsubsection{0$^\circ$ and 90$^\circ$ torsion samples}
 For the 0$^\circ$ and 90$^\circ$ bead orientations, a specimen redesign was necessary due to toolpathing problems. Specifically, the length of the 45$^\circ$ torsion specimens proved problematic to print using 0$^\circ$ and 90$^\circ$ orientations, each for different reasons. In the case of the 0$^\circ$ orientation, the long and unidirectional travel distance of each bead introduced considerable tool pressure on the core, causing bowing. This was significant enough to cause poor adhesion of the beads towards the end of the specimen. By contrast, the 90$^\circ$ samples caused the sixth axis of the robot to heat up considerably and to almost completely maximize its range. 
 
-The modified torsion sample was redesigned to have the same cross sectional area as the original 45$^\circ$ torsion samples, but shorter length. An optimal distance was devised through multiple print trials where the length of the specimen was varied between 95 and 50 mm. The final chosen geometry is shown below in Figure ????.
+The modified torsion sample was redesigned to have the same cross sectional area as the original 45$^\circ$ torsion samples, but shorter length. An optimal distance was devised through multiple print trials where the length of the specimen was varied between 95 and 50 mm. The final chosen geometry is shown below in Figure ????.%ELABORATE
 
 \section{Mechanical Testing}
 
@@ -195,13 +195,14 @@ Finally, after rearranging and deriving with respect to time, Equation \ref{eq:t
 \dot{\Phi}=\frac{L\times\dot{\gamma}}{\rho}  
 \end{equation}
 
-For this work, $\dot{\gamma}$ is known to be $2 \times 0.1~min^{-1}= 0.2~min^{-1}$, as dictated by Equation \ref{eq:tors1} and the testing conditions chosen for the tensile and compressive tests. In the case of the 45$^\circ$ specimens, preliminary tests performed in positive torsion showed an average outer radius of 6.91 mm and a mean length of failure propagation of 54 mm. Using these values in Equation \ref{eq:tors3} yields a rotational speed of 1.56 rad/min, or 89.4$^\circ$/min. Following a similar procedure for the 0$^\circ$ and 90$^\circ$ samples, the angular speed of the torsion test was calculated to be ???.
+For this work, $\dot{\gamma}$ is known to be $2 \times 0.1~min^{-1}= 0.2~min^{-1}$, as dictated by Equation \ref{eq:tors1} and the testing conditions chosen for the tensile and compressive tests. In the case of the 45$^\circ$ specimens, preliminary tests performed in positive torsion showed an average outer radius of 6.91 mm and a mean length of failure propagation of 54 mm. Using these values in Equation \ref{eq:tors3} yields a rotational speed of 1.56 rad/min, or 89.4$^\circ$/min. Following a similar procedure for the 0$^\circ$ and 90$^\circ$ samples, the angular speed of the torsion test was calculated to be ???.%ELABORATE.
 
+\pagebreak
 In the case of combined loading scenarios, the setup was fitted with a pulley system that allowed a weight to pull the sample in a nominal direction, while the torsion machine applied shear stresses. Refer to Figure \ref{fig:torscomb} for a visual representation of the compressive and tensile force setup of the torsion machine. 
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
 	\center
-	\includegraphics[width=0.95\linewidth, keepaspectratio]{torsion_machine}
+	\includegraphics[width=0.8\linewidth, keepaspectratio]{torsion_machine}
 	\caption{Machine setup for combined loading scenarios} \label{fig:torscomb}
 \end{figure}
 
