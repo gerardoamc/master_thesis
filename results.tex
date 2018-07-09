@@ -24,7 +24,7 @@ Performing tensile tests showed that the values of $X_t$ and $Y_t$ were signific
 \label{tab:tensrtab}
 \end{table}
 
-The behavior of both sets of samples was completely different. Coupons used to measure $X_t$ clearly showed whitening of the gage section, indicating plastic deformation. Specimens used for $Y_t$ on the other hand generally failed between beads and rarely showed any change in color. Figure~\ref{fig:tensComp} clearly shows the difference in mechanical behavior. Note how the $X_t$ specimen shows a ductile failure, as opposed to brittle breakage for the $Y_t$ sample.
+The behavior of both sets of samples was completely different. Coupons used to measure $X_t$ clearly showed whitening of the gage section, indicating plastic deformation. Specimens used for $Y_t$ on the other hand generally failed between beads and rarely showed any change in color. Figure~\ref{fig:tensComp} clearly shows the difference in mechanical behavior. Note how the $X_t$ specimen shows a ductile failure, as opposed to brittle breakage for the $Y_t$ sample. Figure \ref{fig:tensSComp} shows both tested samples side by side.
 \pagebreak
 
 \begin{figure}[h]
@@ -33,8 +33,17 @@ The behavior of both sets of samples was completely different. Coupons used to m
 	\caption{Comparison of tensile results} \label{fig:tensComp}
 \end{figure}
 
-Anderson-Darling tests (ADT) were performed on the results to validate if the data follows a normalized distribution. In the case of $X_t$, the ADT yields a p-value of 0.023. Thus, on a 95\% confidence interval, a normalized distribution can be discarded. This can be seen graphically in the goodness of fit plot, where data points fail to align with the slope that corresponds to a theoretical Gaussian distribution. By contrast, performing the ADT on the $Y_t$ samples fails to reject a normalized distribution using the same confidence interval, offering a p-value of 0.109. A case could be made for a false negative for $X_t$ and a false positive for $Y_t$, given the relatively small sample size for each data set. The results from ADT can be seen in Figure \ref{fig:adttens}.
+\begin{figure}[!htbp]
+	\center
+	\includegraphics[height=6cm, keepaspectratio]{tenscsomp.pdf}
+	\captionsetup{justification=centering} %long caption
+	\caption[$X_t$ and $Y_t$ tested samples]{$Y_t$ (top) and $X_t$ (bottom) tested samples. Scale in inches. Note whitening in gage section for $X_t$ specimen.} \label{fig:tensSComp}
+\end{figure}
 
+Anderson-Darling tests (ADT) were performed on the results to validate if the data follows a normalized distribution. In the case of $X_t$, the ADT yields a p-value of 0.023. Thus, on a 95\% confidence interval, a normalized distribution can be discarded. This can be seen graphically in the goodness of fit plot, where data points fail to align with the slope that corresponds to a theoretical Gaussian distribution. By contrast, performing the ADT on the $Y_t$ samples fails to reject a normalized distribution using the same confidence interval, offering a p-value of 0.109. %A case could be made for a false negative for $X_t$ and a false positive for $Y_t$, given the relatively small sample size for each data set.
+The results from ADT can be seen in Figure \ref{fig:adttens}.
+
+%FIX
 \begin{figure}[!htbp]
 	\center
 	\subfloat[$X_t$ \label{fig:adtxt}]{%
@@ -67,10 +76,22 @@ For the compression tests, a total of 25 samples were produced for each orientat
 \label{tab:comprtab}
 \end{table}
 
-The $Y_c$ samples displayed ductile behavior through testing. A clear maximum stress can be observed at the yield point in a stress-strain graph. The tubular samples showed localized whitening and deformation along portions of the tubular geometry.
+Surprisingly, both sets of specimens had different failure behavior. The $Y_c$ samples displayed pure ductile behavior through testing. A clear maximum stress can be observed at the yield point in a stress-strain graph, and all samples showed localized whitening and deformation along the center of the specimen. By contrast, the $X_c$ samples showed a considerably lower yield point, and specimens deformed in a way that formed petal-like structures, due to contiguous bead delamination. This difference in mechanical behavior can be seen in Figure \ref{fig:comprComp}, where stress-strain curves for $X_c$ and $Y_c$ are compared. Note the erratic behavior of the $X_t$ sample, caused by delamination of adjacent beads. Figure \ref{fig:CompSComp} shows $X_c$ and $Y_c$ samples side by side post testing, where the different failure behavior becomes evident. 
 
-Performing an ADT on the $Y_c$ samples reveals a p-value of 0.072, thus a normalized distribution cannot be discarded on a 95\% confidence interval. %ELABORATE
+\begin{figure}[!htbp]
+	\center
+	\includegraphics[height=9cm, keepaspectratio]{compresscomp}
+	\caption{Comparison of compression results} \label{fig:comprComp}
+\end{figure}  
 
+\begin{figure}[!htbp]
+	\center
+	\includegraphics[height=6cm, keepaspectratio]{compscomp.pdf}
+	\captionsetup{justification=centering} %long caption
+	\caption[$X_c$ and $Y_c$ tested samples]{$X_c$ (left) and $Y_c$ (right) tested samples. Scale in inches. Note petal-like structure of $X_c$ sample.} \label{fig:CompSComp}
+\end{figure}
+
+Performing ADT on the data reveals a p-value of 0.072 for $Y_c$, and 0.056 for $X_c$, thus, normalized distributions cannot be discarded on a 95\% confidence interval. %ELABORATE
 \section{Torsion Tests} \label{sec:torsr}
 \subsection{45$^\circ$ orientation} \label{ssec:45r}
 A total of 30 samples were produced with a 45$^\circ$ bead orientation, divided evenly for tests in positive and negative shear. As was the case for tensile and compressive tests, a number of specimens had to be discarded due to undesired behavior during testing. A common problem was delamination of the grips, thus requiring the data to be discarded. 
@@ -94,10 +115,17 @@ Results showed significant difference in behavior depending on the direction of 
 \label{tab:tors45r}
 \end{table}
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
 	\center
 	\includegraphics[height=9cm, keepaspectratio]{comp45t}
 	\caption{Comparison of 45$^\circ$ torsion results} \label{fig:45comp}
+\end{figure}
+
+\begin{figure}[!htbp]
+	\center
+	\includegraphics[height=7cm, keepaspectratio]{t45scomp}
+	\captionsetup{justification=centering} %long caption
+	\caption[Comparison of 45$^\circ$ torsion results]{Comparison of 45$^\circ$ torsion samples. Positive shear (top) caused bead delamination and brittle failure, whereas negative shear (bottom) produced plastic deformation of the gage section} \label{fig:45scomp}
 \end{figure}
   
 \subsection{0$^\circ$ orientation} \label{ssec:0r}
