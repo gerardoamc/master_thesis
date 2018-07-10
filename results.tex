@@ -135,7 +135,18 @@ Results showed significant difference in behavior depending on the direction of 
 
 The failure surface calculations were performed using MATLAB\textregistered~code based on previous work by Obst \emph{et al.} \cite{Obst2018} and the mathematical relations shown in Chapter \ref{ch:oocrit}. This code can be found in Appendix \ref{ch:fsurfcode} for reference.
 
-Calculations were based on the average values obtained from the mechanical tests to incorporate a probabilistic approach to the failure surface as developed by Zaitsev, Pashkov and Strelyaev \cite{Zaitsev1975}. In practice, this implies that the condition $f=1$ in Equation \ref{eq:GKCfinal} is equivalent to a probability of part failure of 50\% since mean values of mechanical strength were used to calculate the tensorial components of the failure envelope.  
+Calculations were based on the average values obtained from the mechanical tests in order to incorporate a probabilistic approach to the failure surface as developed by Zaitsev, Pashkov and Strelyaev \cite{Zaitsev1975}. In practice, this signifies that the condition $f=1$ in Equation \ref{eq:GKCfinal} is equivalent to a probability of part failure equal to 50\%.
+
+Starting with the $\sigma_{11}$-$\sigma_{22}$ plane, it can be seen that the failure envelope has a notable tilt. This agrees with the difference observed between compressive and tensile strengths in both directions. Refer to Figure \ref{fig:1122plane} for a graph showing the calculated failure envelope, including the experimental data for reference.
+
+\begin{figure}[!htbp]
+	\center
+	\includegraphics[width=0.95\linewidth, keepaspectratio]{11_22plane}
+	\captionsetup{justification=centering} %long caption
+	\caption[$\sigma_{11}$-$\sigma_{22}$ plane]{$\sigma_{11}$-$\sigma_{22}$ plane including data of $X_t$, $X_c$, $Y_t$ and $Y_c$ tests. Graph shows f values of 1, 0.75, 0.50 and 0.25} \label{fig:1122plane}
+\end{figure}
+
+  
 
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{ADT}{Anderson-Darling Test}% 
