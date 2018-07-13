@@ -76,7 +76,7 @@ For the compression tests, a total of 25 samples were produced for each orientat
 \label{tab:comprtab}
 \end{table}
 
-Surprisingly, both sets of specimens had different failure behavior. The $Y_c$ samples displayed pure ductile behavior through testing. A clear maximum stress can be observed at the yield point in a stress-strain graph, and all samples showed localized whitening and deformation along the center of the specimen. By contrast, the $X_c$ samples showed a considerably lower yield point, and specimens deformed in a way that formed petal-like structures, due to contiguous bead delamination. This difference in mechanical behavior can be seen in Figure \ref{fig:comprComp}, where stress-strain curves for $X_c$ and $Y_c$ are compared. Note the erratic behavior of the $X_t$ sample, caused by delamination of adjacent beads. Figure \ref{fig:CompSComp} shows $X_c$ and $Y_c$ samples side by side post testing, where the different failure behavior becomes evident. 
+Surprisingly, both sets of specimens had different failure behavior. The $Y_c$ samples displayed pure ductile behavior through testing. A clear maximum stress can be observed at the yield point in a stress-strain graph, and all samples showed localized whitening and deformation along the center of the specimen. By contrast, the $X_c$ samples showed a considerably lower yield point, and specimens deformed in a way that formed petal-like structures due to contiguous bead delamination. This difference in mechanical behavior can be seen in Figure \ref{fig:comprComp}, where stress-strain curves for $X_c$ and $Y_c$ are compared. Note the erratic behavior of the $X_t$ sample, caused by delamination of adjacent beads. Figure \ref{fig:CompSComp} shows $X_c$ and $Y_c$ samples side by side post testing, where the different failure behavior becomes evident. 
 
 \begin{figure}[!htbp]
 	\center
@@ -96,7 +96,7 @@ Performing ADT on the data reveals a p-value of 0.072 for $Y_c$, and 0.056 for $
 \subsection{45$^\circ$ orientation} \label{ssec:45r}
 A total of 30 samples were produced with a 45$^\circ$ bead orientation, divided evenly for tests in positive and negative shear. As was the case for tensile and compressive tests, a number of specimens had to be discarded due to undesired behavior during testing. A common problem was delamination of the grips, thus requiring the data to be discarded. 
 
-Results showed significant difference in behavior depending on the direction of the applied torque. The $S_{45p}$ samples showed a completely brittle behavior, fracturing between beads, as opposed to ductile failure in the center of the specimen for the $S_{45n}$ coupons. This resulted in an average difference of 6.3 MPa between both sets of data. Results are summarized in Table \ref{tab:tors45r} and a graph comparing the behavior of both sets of samples can be seen in Figure \ref{fig:45comp}. Note how the positive shear sample fails at low angles in a completely brittle manner.
+Results showed significant difference in behavior depending on the direction of the applied torque. The $S_{45p}$ samples showed a completely brittle behavior, with fracture occurring between beads, as opposed to ductile failure in the center of the specimen for the $S_{45n}$ coupons. This resulted in an average difference of 6.3 MPa between both sets of data. Results are summarized in Table \ref{tab:tors45r} and a graph comparing the behavior of both sets of samples can be seen in Figure \ref{fig:45comp}. Note how the positive shear sample fails at low angles in a completely brittle manner.
 
 \begin{table} [h]
 	\centering
@@ -135,7 +135,7 @@ Results showed significant difference in behavior depending on the direction of 
 
 The failure surface calculations were performed using MATLAB\textregistered~code based on previous work by Obst \emph{et al.} \cite{Obst2018} and the mathematical relations shown in Chapter \ref{ch:oocrit}. This code can be found in Appendix \ref{ch:fsurfcode} for reference.
 
-Calculations were based on the average values obtained from the mechanical tests in order to incorporate a probabilistic approach to the failure surface as developed by Zaitsev, Pashkov and Strelyaev \cite{Zaitsev1975}. In practice, this signifies that the condition $f=1$ in Equation \ref{eq:GKCfinal} is equivalent to a probability of part failure equal to 50\%.
+Calculations were based on the average values obtained from the mechanical tests in order to incorporate a probabilistic approach as developed by Zaitsev, Pashkov and Strelyaev \cite{Zaitsev1975}. In practice, this signifies that the condition $f=1$ in Equation \ref{eq:GKCfinal} is equivalent to a probability of part failure equal to 50\%.
 
 Starting with the $\sigma_{11}$-$\sigma_{22}$ plane, it can be seen that the failure envelope has a notable tilt, agreeing with the difference observed between compressive and tensile strengths in both directions, as well as the difference in behavior for the $S_{45}$ tests. Refer to Figure \ref{fig:1122plane} for a graph showing the calculated failure envelope, including the experimental data for reference.
 
@@ -165,7 +165,7 @@ It can be seen from the tilt of the envelope that there's a strong interaction b
 	\label{tab:1122calc}
 \end{table}  
 
-Figure \ref{fig:1122plane} indicates that FFF parts produced with the print parameters used in this body of work should show considerable strengthening when loaded bi-axially in compression. Further experimental work would be of interest to compare bi-axial data to this result.
+Figure \ref{fig:1122plane} indicates that FFF parts produced with the print parameters used should show considerable strengthening when loaded bi-axially in compression. Further experimental work would be of interest to compare bi-axial compression test data to this result.
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{ADT}{Anderson-Darling Test}% 
 
