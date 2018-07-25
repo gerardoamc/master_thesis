@@ -47,14 +47,16 @@ The results from ADT can be seen in Figure \ref{fig:adttens}.
 \begin{figure}[!htbp]
 	\center
 	\subfloat[$X_t$ \label{fig:adtxt}]{%
-		\includegraphics[height=4cm, keepaspectratio]{TAZ_5}
+		\includegraphics[height=8.5cm, keepaspectratio]{PP_Xt}
 	}
 	\hfill
 	\subfloat[$Y_t$\label{fig:adtyt}]{%
-		\includegraphics[height=4cm, keepaspectratio]{ADTyt.pdf}
+		\includegraphics[height=8.5cm, keepaspectratio]{PP_Yt}
 	}
 	\caption{ADT results for tensile data} \label{fig:adttens}
 \end{figure}
+
+\pagebreak
       
 \section{Compression Tests} \label{sec:compr}
 For the compression tests, a total of 25 samples were produced for each orientation. However, a number of coupons were discarded due to manufacturing defects. Table \ref{tab:comprtab} summarizes the test results.  
@@ -76,13 +78,7 @@ For the compression tests, a total of 25 samples were produced for each orientat
 \label{tab:comprtab}
 \end{table}
 
-Surprisingly, both sets of specimens had different failure behavior. The $Y_c$ samples displayed pure ductile behavior through testing. A clear maximum stress can be observed at the yield point in a stress-strain graph, and all samples showed localized whitening and deformation along the center of the specimen. By contrast, the $X_c$ samples showed a considerably lower yield point, cracking sounds were common during testing, and specimens deformed in a way that formed petal-like structures due to contiguous bead delamination. This difference in mechanical behavior can be seen in Figure \ref{fig:comprComp}, where stress-strain curves for $X_c$ and $Y_c$ are compared. Note the erratic behavior of the $X_t$ sample, caused by delamination of adjacent beads. Figure \ref{fig:CompSComp} shows $X_c$ and $Y_c$ samples side by side post testing, where the different failure behavior becomes evident. 
-
-\begin{figure}[!htbp]
-	\center
-	\includegraphics[height=9cm, keepaspectratio]{compresscomp}
-	\caption{Comparison of compression results} \label{fig:comprComp}
-\end{figure}  
+Surprisingly, both sets of specimens had different failure behavior. The $Y_c$ samples displayed pure ductile behavior through testing. A clear maximum stress can be observed at the yield point in a stress-strain graph, and all samples showed localized whitening and deformation along the center of the specimen. By contrast, the $X_c$ samples showed a considerably lower yield point, cracking sounds were common during testing, and specimens deformed in a way that formed petal-like structures due to contiguous bead delamination. Figure \ref{fig:CompSComp} shows $X_c$ and $Y_c$ samples side by side post testing, where the different failure behavior becomes evident.
 
 \begin{figure}[!htbp]
 	\center
@@ -91,7 +87,28 @@ Surprisingly, both sets of specimens had different failure behavior. The $Y_c$ s
 	\caption[$X_c$ and $Y_c$ tested samples]{$X_c$ (left) and $Y_c$ (right) tested samples. Scale in inches. Note petal-like structure of $X_c$ sample.} \label{fig:CompSComp}
 \end{figure}
 
-Performing ADT on the data reveals a p-value of 0.072 for $Y_c$, and 0.056 for $X_c$, thus, normalized distributions cannot be discarded on a 95\% confidence interval. These tests can be seen in ???. %ELABORATE
+The difference in mechanical behavior can be seen clearly in Figure \ref{fig:comprComp}, where stress-strain curves for $X_c$ and $Y_c$ are compared. Note the erratic behavior of the $X_c$ sample, caused by delamination of adjacent beads.  
+
+\begin{figure}[!htbp]
+	\center
+	\includegraphics[height=9cm, keepaspectratio]{compresscomp}
+	\caption{Comparison of compression results} \label{fig:comprComp}
+\end{figure}  
+
+Performing ADT on the data reveals a p-value of 0.072 for $Y_c$, and 0.056 for $X_c$, thus, normalized distributions cannot be discarded on a 95\% confidence interval. These tests can be seen in Figure \ref{fig:adtcomp}. %ELABORATE
+
+\begin{figure}[!htbp]
+	\center
+	\subfloat[$X_t$ \label{fig:adtxc}]{%
+		\includegraphics[height=8.5cm, keepaspectratio]{PP_Xc}
+	}
+	\hfill
+	\subfloat[$Y_t$\label{fig:adtyc}]{
+		\includegraphics[height=8.5cm, keepaspectratio]{PP_Yc}
+	}
+	\caption{ADT results for compression tests} \label{fig:adtcomp}
+\end{figure}
+
 \section{Torsion Tests} \label{sec:torsr}
 \subsection{45$^\circ$ orientation} \label{ssec:45r}
 A total of 30 samples were produced with a 45$^\circ$ bead orientation, divided evenly for tests in positive and negative shear. As was the case for tensile and compressive tests, a number of specimens had to be discarded due to undesired behavior during testing. A common problem was delamination of the grips, thus requiring the data to be discarded. 
@@ -129,6 +146,26 @@ Results showed significant difference in behavior depending on the direction of 
 \end{figure}
   
 \subsection{0$^\circ$ and 90$^\circ$ orientation} \label{ssec:090r}
+
+A total of 10 samples was produced for each orientation. Table \ref{tab:tors090r} summarizes the results from the torsion tests.
+
+\begin{table} [h]
+	\centering
+	\caption{Summary of 0$^\circ$ and 90$^\circ$ torsion tests}
+\begin{tabular}{ c| c c } 
+	\toprule
+	\textbf{Information} & $S_{0}$ & $S_{90}$\\
+	\midrule
+	Average [MPa] &  & \\
+	Standard Deviation & & \\
+	Number of samples &  & \\
+	Lowest measurement [MPa] &  & \\
+	Highest measurement [MPa] & & \\
+	\bottomrule
+\end{tabular}
+\label{tab:tors090r}
+\end{table}
+
 \section{Combined Loading Tests} \label{sec:clr}
 \section{Development of the Failure Surface} \label{sec:fsc}
 
