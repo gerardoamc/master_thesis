@@ -113,7 +113,7 @@ Performing ADT on the data reveals a p-value of 0.072 for $Y_c$, and 0.056 for $
 \subsection{45$^\circ$ orientation} \label{ssec:45r}
 A total of 30 samples were produced with a 45$^\circ$ bead orientation, divided evenly for tests in positive and negative shear. As was the case for tensile and compressive tests, a number of specimens had to be discarded due to undesired behavior during testing. A common problem was delamination of the grips, thus requiring the data to be discarded. 
 
-Results showed significant difference in behavior depending on the direction of the applied torque. The $S_{45p}$ samples showed a completely brittle behavior, with fracture occurring between beads, as opposed to ductile failure in the center of the specimen for the $S_{45n}$ coupons. This resulted in an average difference of 6.3 MPa between both sets of data. Results are summarized in Table \ref{tab:tors45r} and a graph comparing the behavior of both sets of samples can be seen in Figure \ref{fig:45comp}. Note how the positive shear sample fails at low angles in a completely brittle manner.
+Results showed significant difference in behavior depending on the direction of the applied torque. The $S_{45p}$ samples showed a completely brittle behavior, with fracture occurring between beads, as opposed to ductile failure in the center of the specimen for the $S_{45n}$ coupons. This resulted in an average difference of roughly 17 MPa between both sets of data. Results are summarized in Table \ref{tab:tors45r} and a graph comparing the behavior of both sets of samples can be seen in Figure \ref{fig:45comp}. Note how the positive shear sample fails at low angles in a completely brittle manner.
 
 \begin{table} [h]
 	\centering
@@ -122,11 +122,11 @@ Results showed significant difference in behavior depending on the direction of 
 	\toprule
 	\textbf{Information} & $S_{45p}$ & $S_{45n}$\\
 	\midrule
-	Average [MPa] & 20.80 & 27.13\\
-	Standard Deviation & 2.50 & 0.50\\
+	Average [MPa] & 20.80 & 38.17\\
+	Standard Deviation & 2.50 & 0.71\\
 	Number of samples & 9 & 9\\
-	Lowest measurement [MPa] &17.21  & 26.59\\
-	Highest measurement [MPa] &24.61 & 28.17\\
+	Lowest measurement [MPa] &17.21  & 37.39\\
+	Highest measurement [MPa] &24.61 & 39.62\\
 	\bottomrule
 \end{tabular}
 \label{tab:tors45r}
@@ -156,16 +156,25 @@ A total of 10 samples were produced for each orientation. Table \ref{tab:tors090
 	\toprule
 	\textbf{Information} & $S_{0}$ & $S_{90}$\\
 	\midrule
-	Average [MPa] &  & \\
-	Standard Deviation & & \\
-	Number of samples &  & \\
-	Lowest measurement [MPa] &  & \\
-	Highest measurement [MPa] & & \\
+	Average [MPa] &23.35  & 23.41\\
+	Standard Deviation &2.78 & 3.21\\
+	Number of samples &8  & 10\\
+	Lowest measurement [MPa] &18.52  & 18.27\\
+	Highest measurement [MPa] &26.56 & 26.60\\
 	\bottomrule
 \end{tabular}
 \label{tab:tors090r}
 \end{table}
 
+
+It can be seen that both orientations produced nearly identical shear stress results. In both cases, samples behaved in an extremely brittle manner, delaminating along contiguous beads. In the case of the 90$^\circ$ orientation, this usually resulted in complete breakage of the specimen. This can be appreciated in Figure \ref{fig:090comptors}.
+
+\begin{figure}[!htbp]
+	\center
+	\includegraphics[height=9cm, keepaspectratio]{comp090tors}
+	\caption{Comparison of 0$^\circ$ and 90$^\circ$ torsion results} \label{fig:090comptors}
+\end{figure}
+   
 \section{Combined Loading Tests} \label{sec:clr}
 
 Combined loading scenarios involved testing 10 samples in shear and tension, and 10 in shear and compression, totaling 20 samples for each orientation. These results were plotted in the $\tau_{12}-\sigma_{11}$ and $\tau_{12}-\sigma_{22}$ to develop the terms $\mu_{1112}$ and $\mu_{2212}$ respectively. 
@@ -176,16 +185,16 @@ The failure surface calculations were performed using MATLAB\textregistered~code
 
 Calculations were based on the average values obtained from the mechanical tests in order to incorporate a probabilistic approach as developed by Zaitsev, Pashkov and Strelyaev \cite{Zaitsev1975}. In practice, this signifies that the condition $f=1$ in Equation \ref{eq:GKCfinal} is equivalent to a probability of part failure equal to 50\%.
 
-Starting with the $\sigma_{11}$-$\sigma_{22}$ plane, it can be seen that the failure envelope has a notable tilt, agreeing with the difference observed between compressive and tensile strengths in both directions, as well as the difference in behavior for the $S_{45}$ tests. Refer to Figure~\ref{fig:1122plane} for a graph showing the calculated failure envelope, including the experimental data for reference.
+Starting with the $\sigma_{11}$-$\sigma_{22}$ plane, it can be seen that the failure envelope has a slight tilt, agreeing with the difference observed between compressive and tensile strengths in both directions, as well as the difference in behavior for the $S_{45}$ tests. Refer to Figure~\ref{fig:1122plane} for a graph showing the calculated failure envelope, including the experimental data for reference.
 
 \begin{figure}[!htbp]
 	\center
-	\includegraphics[width=\linewidth, keepaspectratio]{11_22plane}
+	\includegraphics[width=0.85\linewidth, keepaspectratio]{11_22plane}
 	\captionsetup{justification=centering} %long caption
 	\caption[failure envelope in the $\sigma_{11}$-$\sigma_{22}$ plane]{$\sigma_{11}$-$\sigma_{22}$ plane including data of $X_t$, $X_c$, $Y_t$ and $Y_c$ tests. Graph shows calculated f values of 1, 0.75, 0.50 and 0.25 to illustrate safety factors of 1, 4/3, 2 and 4 respectively} \label{fig:1122plane}
 \end{figure}
 
-It can be seen from the tilt of the envelope that there's a strong interaction between the transverse and longitudinal stresses. Computing all tensorial components associated with the  $\sigma_{11}$-$\sigma_{22}$ plane results in Table \ref{tab:1122calc}. Note how $F_{1122}$ is negative and in the same order of magnitude as $F_{1111}$ and $F_{2222}$. 
+It can be seen from the tilt of the envelope that there's an interaction between the transverse and longitudinal stresses. Computing all tensorial components associated with the  $\sigma_{11}$-$\sigma_{22}$ plane results in Table \ref{tab:1122calc}. Note how $F_{1122}$ is negative and in the same order of magnitude as $F_{1111}$ and $F_{2222}$. 
 
 \begin{table} [h]
 	\centering
@@ -198,13 +207,13 @@ It can be seen from the tilt of the envelope that there's a strong interaction b
 		$F_{1111}$ & 5.663$\times 10^{-4}$\\ [1ex]
 		$F_{22}$ & 7.435$\times 10^{-3}$\\ [1ex]
 		$F_{2222}$ & 6.095$\times 10^{-4}$\\ [1ex]
-		$F_{1122}$ & -3.139$\times 10^{-4}$\\ [1ex]
+		$F_{1122}$ & -1.017$\times 10^{-4}$\\ [1ex]
 		\bottomrule
 	\end{tabular}
 	\label{tab:1122calc}
 \end{table}  
 
-Figure \ref{fig:1122plane} indicates that FFF parts produced with the print parameters used should show considerable strengthening when loaded bi-axially in compression. Further experimental work would be of interest to compare bi-axial compression test data to this result.
+Figure \ref{fig:1122plane} indicates that FFF parts produced with the print parameters used should show strengthening when loaded bi-axially in compression. Further experimental work would be of interest to compare bi-axial compression test data to this result.
 
 
 % Nomenclature introduced in this chapter:
