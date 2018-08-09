@@ -209,7 +209,7 @@ Combined loading scenarios involved testing 10 samples in shear and tension, and
  
 \section{Development of the Failure Surface} \label{sec:fsc}
 
-The failure surface calculations were performed using MATLAB\textregistered~code based on previous work by Obst \emph{et al.} \cite{Obst2018} and the mathematical relations shown in Chapter \ref{ch:oocrit}. This code can be found in Appendix \ref{ch:fsurfcode} for reference. Appendix \ref{ch:data} includes code that recreates the data from mechanical tests in a form that is easy to overlay upon the failure surface for reference.  
+The failure surface calculations were performed using MATLAB\textregistered~code based on previous work by Obst \emph{et al.} \cite{Obst2018} and the mathematical relations shown in Chapter \ref{ch:oocrit}. This code can be found in Appendix \ref{ch:fsurfcode} for reference. Appendices \ref{ch:data} and \ref{ch:surf} include MATLAB\textregistered~code that recreates the data and envelopes shown here.  
 
 Calculations were based on the average values obtained from the mechanical tests in order to incorporate a probabilistic approach as developed by Zaitsev, Pashkov and Strelyaev \cite{Zaitsev1975}. In practice, this signifies that the condition $f=1$ in Equation \ref{eq:GKCfinal} is equivalent to a probability of part failure equal to 50\%.
 
@@ -244,7 +244,7 @@ It can be seen from the tilt of the envelope that there's an interaction between
 	\label{tab:1122calc}
 \end{table}  
 
-Using the results from combined loading tests plotted in the $11-12$ and $22-12$ planes allows the calculation of the slopes $\mu^{1112}$ and  $\mu^{2212}$. Beginning with the $11-12$ plane, it can be seen that applying an axial load had little to no effect on the shear strength of the samples. Using the averages for $S_{0}$ and $S_{0}^t$ yields $\mu^{1112}$ equal to $5.2\times 10^{-3}$, a value that's practically zero. Using this parameter, the failure surface shown in Figure \ref{fig:1112plane} can be obtained. A dashed line representing $\mu^{1112}$ is added for reference.
+Using the results from combined loading tests plotted in the $11-12$ and $22-12$ planes allows the calculation of the slopes $\mu^{1112}$ and  $\mu^{2212}$. Beginning with the $11-12$ plane, it can be seen that the averages for $S_{0}$, $S_{0}^c$  and $S_{0}^t$ were extremely close to each other, and the spread of the data occludes any trends. Using the averages for $S_{0}$ and $S_{0}^t$ to calculate the slope yields $\mu^{1112}$ equal to $5.2\times 10^{-3}$, a value that's practically zero. Using this parameter, the failure surface shown in Figure \ref{fig:1112plane} can be obtained. A dashed line representing $\mu^{1112}$ is added for reference.
 
 \pagebreak
 
@@ -255,7 +255,7 @@ Using the results from combined loading tests plotted in the $11-12$ and $22-12$
 	\caption[failure envelope in the $\sigma_{11}$-$\tau_{12}$ plane]{$\sigma_{11}$-$\tau_{12}$ plane including data of $X_t$, $X_c$, $S_{0}$, $S_{0}^t$ and $S_{0}^c$ tests. Graph shows calculated f values of 1, 0.75, 0.50 and 0.25 to illustrate safety factors of 1, 4/3, 2 and 4 respectively} \label{fig:1112plane}
 \end{figure}
 
-The $22-12$ plane by comparison reveals a slight interaction. It can be seen through the use of combined loads that there's a slight decrease in the shear strength of the specimens when a tensile load is applied in the $2-2$ direction. A slope of -0.16 was chosen for $\mu^{2212}$. Figure \ref{fig:2212plane} shows the resulting surface with the data and a line with a slope of -0.2 overlaid for reference.
+The $22-12$ plane by comparison reveals a slight interaction. It can be seen through the use of combined loads that there's a slight decrease in the shear strength of the specimens when a tensile load is applied in the $2-2$ direction. A slope of -0.2 was chosen for $\mu^{2212}$. Figure \ref{fig:2212plane} shows the resulting surface with the data and a line with a slope of -0.2 overlaid for reference.
 
 \begin{figure}[!htbp]
 	\center
@@ -268,12 +268,12 @@ Finally, using the chosen values of $\mu^{1112}$ and $\mu^{2212}$, the remaining
 
 \begin{table} [!htbp]
 	\centering
-	\caption{Tensorial components obtained from tests from the $\sigma_{11}$-$\tau_{12}$ and $\sigma_{22}$-$\tau_{12}$ planes}
+	\caption{Tensorial components obtained from tests in the $\sigma_{11}$-$\tau_{12}$ and $\sigma_{22}$-$\tau_{12}$ planes}
 	\begin{tabular}{ c c } 
 		\toprule
 		\textbf{Component} & \textbf{Value} \\
 		\midrule
-		$F_{12}$ & 0\\ [1ex]
+		$F_{12}$ & 0\\
 		$F_{1212}$ & 1.834$\times 10^{-3}$\\
 		$F_{1112}$ & -3.428$\times 10^{-5}$\\
 		$F_{2212}$ & 4.841$\times 10^{-5}$\\
@@ -286,8 +286,9 @@ Finally, using the chosen values of $\mu^{1112}$ and $\mu^{2212}$, the remaining
 	\center
 	\includegraphics[width=\linewidth, keepaspectratio]{Final_surface}
 	\captionsetup{justification=centering} %long caption
-	\caption{Complete Failure Surface} \label{fig:fullfs}
+	\caption[Complete Failure Surface]{Complete Failure Surface plotted with calculated f values of 1, 0.75, 0.50 and 0.25 to illustrate safety factors of 1, 4/3, 2 and 4 respectively} \label{fig:fullfs}
 \end{figure} 
+
 
 % Nomenclature introduced in this chapter:
 \nomenclature[A]{ADT}{Anderson-Darling Test}% 
