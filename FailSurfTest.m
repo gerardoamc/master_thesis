@@ -1,7 +1,7 @@
 %Failure Surface plots
 clear all
 clc
-test =1; %Change number to calculate desired surface
+test =4; %Change number to calculate desired surface
 if (test==1)
     %G. Mazzei Master Thesis; 11-22 plane
     Xt=40.29;    Xc=43.91;    Yt=31.13;    Yc=57.96;    S=23.35;
