@@ -29,8 +29,15 @@ The behavior of both sets of samples was completely different. Coupons used to m
 
 \begin{figure}[h]
 	\center
-	\includegraphics[height=9cm, keepaspectratio]{tenscomp}
-	\caption{Comparison of tensile results} \label{fig:tensComp}
+	\subfloat[All $X_t$ tests \label{fig:XtTens}]{%
+	\includegraphics[height=7.5cm, keepaspectratio]{0plot}
+	}
+	%\hfill
+	\subfloat[One test representative of each orientation\label{fig:tenscomp}]{%
+	\includegraphics[height=7.3cm, keepaspectratio]{tenscomp}
+	}
+	\captionsetup{justification=centering} %long caption
+	\caption{Comparison of tensile results.} \label{fig:tensComp}
 \end{figure}
 
 \begin{figure}[!htbp]
@@ -47,11 +54,11 @@ The results from ADT can be seen in Figure \ref{fig:adttens}.
 \begin{figure}[!htbp]
 	\center
 	\subfloat[$X_t$ \label{fig:adtxt}]{%
-		\includegraphics[height=8.5cm, keepaspectratio]{PP_Xt}
+		\includegraphics[height=7.5cm, keepaspectratio]{PP_Xt}
 	}
 	\hfill
 	\subfloat[$Y_t$\label{fig:adtyt}]{%
-		\includegraphics[height=8.5cm, keepaspectratio]{PP_Yt}
+		\includegraphics[height=7.5cm, keepaspectratio]{PP_Yt}
 	}
 	\caption{ADT results for tensile data} \label{fig:adttens}
 \end{figure}
@@ -92,7 +99,8 @@ The difference in mechanical behavior can be seen clearly in Figure \ref{fig:com
 \begin{figure}[!htbp]
 	\center
 	\includegraphics[height=9cm, keepaspectratio]{compresscomp}
-	\caption{Comparison of compression results} \label{fig:comprComp}
+	\captionsetup{justification=centering} %long caption
+	\caption[Comparison of compression results]{Comparison of compression results. One test representative of each orientation shown.} \label{fig:comprComp}
 \end{figure}  
 
 Performing ADT on the data reveals a p-value of 0.072 for $Y_c$, and 0.056 for $X_c$, thus, normalized distributions cannot be discarded on a 95\% confidence interval. These tests can be seen in Figure \ref{fig:adtcomp}.
@@ -100,11 +108,11 @@ Performing ADT on the data reveals a p-value of 0.072 for $Y_c$, and 0.056 for $
 \begin{figure}[!htbp]
 	\center
 	\subfloat[$X_c$ \label{fig:adtxc}]{%
-		\includegraphics[height=8.5cm, keepaspectratio]{PP_Xc}
+		\includegraphics[height=7.5cm, keepaspectratio]{PP_Xc}
 	}
 	\hfill
 	\subfloat[$Y_c$\label{fig:adtyc}]{
-		\includegraphics[height=8.5cm, keepaspectratio]{PP_Yc}
+		\includegraphics[height=7.5cm, keepaspectratio]{PP_Yc}
 	}
 	\caption{ADT results for compression tests} \label{fig:adtcomp}
 \end{figure}
@@ -136,7 +144,8 @@ Results showed significant difference in behavior depending on the direction of 
 \begin{figure}[!htbp]
 	\center
 	\includegraphics[height=9cm, keepaspectratio]{comp45t}
-	\caption{Comparison of 45$^\circ$ torsion results} \label{fig:45comp}
+	\captionsetup{justification=centering} %long caption
+	\caption[Comparison of 45$^\circ$ torsion results]{Comparison of 45$^\circ$ torsion results. One test representative of each shear direction shown.} \label{fig:45comp}
 \end{figure}
 
 \begin{figure}[!htbp]
@@ -176,7 +185,8 @@ It can be seen that both orientations produced nearly identical shear stress res
 \begin{figure}[!htbp]
 	\center
 	\includegraphics[height=9cm, keepaspectratio]{comp090tors}
-	\caption{Comparison of 0$^\circ$ and 90$^\circ$ torsion results} \label{fig:090comptors}
+	\captionsetup{justification=centering} %long caption
+	\caption[Comparison of 0$^\circ$ and 90$^\circ$ torsion results]{Comparison of 0$^\circ$ and 90$^\circ$ torsion results. One test representative of each orientation shown.} \label{fig:090comptors}
 \end{figure}
 
 \begin{figure}[!htbp]
